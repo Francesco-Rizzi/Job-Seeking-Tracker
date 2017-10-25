@@ -1,6 +1,10 @@
 RewriteEngine on
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^assets/(.*)$ frontend/dist/$1 [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [QSA,L]
 
 <IfModule mod_deflate.c>
 
@@ -35,7 +39,7 @@ RewriteRule ^assets/(.*)$ frontend/dist/$1 [NC,L]
     ExpiresActive on
     ExpiresDefault                                      "access plus 1 week"
 
-    ExpiresByType text/css                              "access plus 1 day"
+    ExpiresByType text/css                              "access plus 0 seconds"
 
     ExpiresByType application/json                      "access plus 0 seconds"
     ExpiresByType application/xml                       "access plus 0 seconds"

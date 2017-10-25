@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-export default class App extends Component {
+export default class Sign extends Component {
 	render(){
 		return (
-			<div>use</div>
+			<h1>testeee</h1>
 		);
 	}
 }
