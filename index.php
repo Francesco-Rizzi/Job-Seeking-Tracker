@@ -26,10 +26,15 @@
 	 * API SECTION
 	 * */
 	
-	$app->get('/get-user-data', function ( Request $request ) use ( $app ){
+	$app->get('/fetch-user-data', function ( Request $request ) use ( $app ){
 		
-		$JWT  = $request->request->get('JWT');
-		$data = [ 'JWT' => fetchUserData($JWT) ];
+		$JWT = $request->request->get('JWT');
+		
+		try {
+			$data = [ 'user' => fetchUserData($JWT) ];
+		} catch ( Exception $e ) {
+			$data = [ 'error' => $e->getMessage() ];
+		}
 		
 		return $app->json($data, 200);
 		
@@ -48,7 +53,12 @@
 		$name     = $request->request->get('name');
 		$email    = $request->request->get('email');
 		$password = $request->request->get('password');
-		$data     = createNewUser($name, $email, $password, $app);
+		
+		try {
+			$data = [ 'JWT' => createNewUser($name, $email, $password, $app) ];
+		} catch ( Exception $e ) {
+			$data = [ 'error' => $e->getMessage() ];
+		}
 		
 		return $app->json($data, 200);
 		
@@ -56,7 +66,29 @@
 	
 	$app->post('/signin', function ( Request $request ) use ( $app ){
 		
-		$data = [];
+		$email    = $request->request->get('email');
+		$password = $request->request->get('password');
+		
+		try {
+			$data = [ 'JWT' => signIn($email, $password, $app) ];
+		} catch ( Exception $e ) {
+			$data = [ 'error' => $e->getMessage() ];
+		}
+		
+		return $app->json($data, 200);
+		
+	});
+	
+	
+	$app->post('/renew-jwt', function ( Request $request ) use ( $app ){
+		
+		$JWT = $request->request->get('JWT');
+		
+		try {
+			$data = [ 'JWT' => renewJWTString($JWT) ];
+		} catch ( Exception $e ) {
+			$data = [ 'error' => $e->getMessage() ];
+		}
 		
 		return $app->json($data, 200);
 		

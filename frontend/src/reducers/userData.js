@@ -1,22 +1,15 @@
-import {SIGNIN, SIGNOUT, SIGNUP, FETCHJOBS} from "../actions/type";
+import {SIGNIN, SIGNOUT, SIGNUP, FETCHUSERDATA, SAVEUSERDATA} from "../actions/type";
+import utils from './../utils/utils';
 
 export const initialState = {
-	logged        : false,
-	name          : false,
-	jobs          : [],
-	isLoadingJobs : true
+	name : false,
+	data : []
 };
 export default function( state = initialState, action ){
 	
 	switch ( action.type ) {
 		
 		case SIGNIN:
-			return {
-				...state,
-				logged : true,
-				name   : action.payload.name,
-				jobs   : action.payload.jobs,
-			};
 			break;
 		
 		case SIGNOUT:
@@ -24,14 +17,21 @@ export default function( state = initialState, action ){
 			break;
 		
 		case SIGNUP:
+			utils.triggerNotification('success', `Your have successfully signed up!`);
 			break;
 		
-		case FETCHJOBS:
+		case FETCHUSERDATA:
+			utils.triggerNotification('success', `Welcome ${action.payload.user.name}!`);
 			return {
 				...state,
-				isLoadingJobs : false,
-				jobs          : [ ...action.payload ]
+				name : action.payload.user.name,
+				data : [ ...action.payload.user.data ]
 			};
+			break;
+			break;
+		
+		case SAVEUSERDATA:
+			utils.triggerNotification('success', `Data saved successfully!`);
 			break;
 		
 	}

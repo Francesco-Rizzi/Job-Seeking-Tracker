@@ -2,4 +2,5 @@ export const SIGNIN  = 'signin';
 export const SIGNOUT = 'signot';
 export const SIGNUP  = 'signup';
 
-export const FETCHJOBS = 'fetchjobs';
+export const FETCHUSERDATA = 'fetchuserdata';
+export const SAVEUSERDATA = 'saveuserdata';
