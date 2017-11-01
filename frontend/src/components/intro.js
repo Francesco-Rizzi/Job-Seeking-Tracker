@@ -13,6 +13,7 @@ export default class Intro extends Component {
 					<div className={ns + '-cta'}>
 						<Link to='/app' className={ns + '-link jst-button-primary'}>App</Link>
 						<Link to='/features' className={ns + '-link jst-button-primary'}>Features</Link>
+						<Link to='/about' className={ns + '-link jst-button-primary'}>About</Link>
 					</div>
 				</div>
 			</div>

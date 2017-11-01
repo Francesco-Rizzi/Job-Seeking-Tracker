@@ -14,6 +14,7 @@ export default class Header extends Component {
 							<li>
 								<Link activeClassName='active' to='/app' className={ns + '-link'}>App</Link>
 								<Link activeClassName='active' to='/features' className={ns + '-link'}>Features</Link>
+								<Link activeClassName='active' to='/about' className={ns + '-link'}>About</Link>
 							</li>
 						</ul>
 					</nav>

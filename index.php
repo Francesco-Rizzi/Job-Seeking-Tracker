@@ -11,6 +11,15 @@
 	
 	$app[ 'debug' ] = IS_DEBUG;
 	
+	//Parse JSON body from request if provided
+	$app->before(function ( Request $request ){
+		
+		if ( 0 === strpos($request->headers->get('Content-Type'), 'application/json') ) {
+			$data = json_decode($request->getContent(), TRUE);
+			$request->request->replace(is_array($data) ? $data : []);
+		}
+	});
+	
 	/*
 	 * PUBLIC SECTION
 	 * */
@@ -20,7 +29,7 @@
 		return file_get_contents('./frontend/dist/index.html');
 		
 	})
-		->assert('route', '^(|app|features)$');
+		->assert('route', '^(|app|features|about)$');
 	
 	/*
 	 * API SECTION
@@ -79,6 +88,20 @@
 		
 	});
 	
+	$app->post('/signin-jwt', function ( Request $request ) use ( $app ){
+		
+		$JWT = $request->request->get('JWT');
+		
+		try {
+			checkJWTToken($JWT);
+			$data = [];
+		} catch ( Exception $e ) {
+			$data = [ 'error' => $e->getMessage() ];
+		}
+		
+		return $app->json($data, 200);
+		
+	});
 	
 	$app->post('/renew-jwt', function ( Request $request ) use ( $app ){
 		

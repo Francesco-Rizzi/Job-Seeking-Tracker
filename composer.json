@@ -1,6 +1,7 @@
 {
     "require": {
         "silex/silex": "~2.0",
-        "lcobucci/jwt": "^3.2"
+        "lcobucci/jwt": "^3.2",
+        "doctrine/dbal": "~2.2"
     }
 }

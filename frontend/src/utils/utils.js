@@ -26,6 +26,7 @@ export default class {
 		const f = _.once(() =>{
 			
 			setTimeout(this.renewJWT, 1000 * 60 * 15); // every 15 minutes
+			return true;
 			
 		});
 		
@@ -35,10 +36,11 @@ export default class {
 	
 	static renewJWT = () =>{
 		
-		axios.post('/renew-jwt', {'JWT' : this.getJWT()}).then(( res ) =>{
+		const JWT = this.getJWT();
+		JWT && axios.post('/renew-jwt', {JWT}).then(( res ) =>{
 			
 			if ( res.error ) {
-				this.triggerNotification('error', res.error);
+				//this.triggerNotification('error', res.error);
 			} else {
 				this.saveJWT(res.JWT);
 			}
@@ -67,10 +69,12 @@ export default class {
 	
 	static triggerNotification = ( type, message ) =>{
 		
-		window.trigger('userNotification', {
-			type,
-			message
-		});
+		window.dispatchEvent(new CustomEvent('userNotification', {
+			detail : {
+				type,
+				message
+			}
+		}));
 		
 	};
 	

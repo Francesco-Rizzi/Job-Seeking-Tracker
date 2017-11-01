@@ -36,8 +36,8 @@
 		if ( !$name ) {
 			throw new Exception('Please provide your name.');
 		}
-		if ( !$email ) {
-			throw new Exception('Please provide your email.');
+		if ( !$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			throw new Exception('Please provide a valid email.');
 		}
 		if ( !$password ) {
 			throw new Exception('Please provide your password.');
@@ -103,6 +103,7 @@
 																   'password' => DB_PASSWORD,
 																   'host'     => 'localhost',
 																   'driver'   => 'pdo_mysql',
+																   'charset' => 'utf8mb4',
 																   'port'     => 3306 ] ]);
 		
 	}
@@ -151,8 +152,10 @@
 			 ->setAudience($_SERVER[ 'SERVER_NAME' ]);
 		
 		if ( !$JWT->validate($data) ) {
-		
+			throw new Exception('Expired token.');
 		}
+		
+		return TRUE;
 		
 	}
 	
