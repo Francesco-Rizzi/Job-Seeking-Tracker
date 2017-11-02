@@ -9,12 +9,15 @@ export default class Feature extends Component {
 		
 		return (
 			<div className={`${ns} mod-${this.props.isReverse ? 'reverse' : 'initial'}`}>
-				<h3>{this.props.title}</h3>
-				{/* Actually not so dangerous */}
-				<h4 dangerouslySetInnerHTML={{__html : this.props.description}}></h4>
-				<div>
-					<Link to='/app' className={ns + '-link jst-button-primary'}>Try it</Link>
+				<div className={`${ns}-text`}>
+					<h3 className={`${ns}-title`}>{this.props.title}</h3>
+					{/* Actually not so dangerous */}
+					<h4 className={`${ns}-subtitle`} dangerouslySetInnerHTML={{__html : this.props.description}}></h4>
+					<div className={`${ns}-link`}>
+						<Link to='/app' className={ns + '-link jst-button-primary'}>Take me to the App!</Link>
+					</div>
 				</div>
+				<div className={`${ns}-image`}>image</div>
 			</div>
 		);
 		

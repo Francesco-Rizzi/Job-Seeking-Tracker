@@ -1,0 +1,61 @@
+h1 {
+	font-family: var(--brand-font-family-heading);
+	font-weight: 700;
+}
+
+h1, h2, h3, h4 {
+	margin: 0;
+}
+
+html, body {
+	font-family: var(--brand-font-family-body);
+	color: var(--brand-color-neutral-dark);
+	font-size: var(--brand-font-size-small);
+	font-weight: 400;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+
+	text-decoration: none;
+	color: var(--brand-color-neutral-dark);
+}
+
+ul {
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+	li {
+		list-style: none;
+	}
+}
+
+.container {
+	padding: 0 15px;
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+.body-wrapper {
+	background-color: var(--brand-color-secondary);
+	min-height: calc(100vh - var(--header-height));
+}
+
+.jst-button-primary {
+	padding: 10px 24px;
+	background: var(--brand-color-primary);
+	transition: all var(--brand-transition-time);
+	font-size: var(--brand-font-size-medium);
+	border-radius: var(--brand-radius);
+	cursor: pointer;
+	display: inline-block;
+	&:hover {
+		background: var(--brand-color-primary-light);
+	}
+}
+
+.jst-app-wrapper{
+	position: relative;
+}

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import utils from './../utils/utils';
 
-const ns   = 'jst-notifications';
+const ns   = 'jst-notification';
 let timers = [];
 
 export default class Notifications extends Component {
@@ -14,8 +14,11 @@ export default class Notifications extends Component {
 	render(){
 		const {notifications} = this.state;
 		if ( notifications.length ) {
-			return <div className={`${ns}-wrapper`}>{notifications.map(( e, i ) =>
-																		   <div key={i} className={`${ns} mod-${e.type}`}>{e.message}</div>)}</div>;
+			return <div className={`${ns}-wrapper`}>
+				{notifications.map(( e, i ) =>
+									   <div key={i} className={`${ns} mod-${e.type} ${e.isRemoved ? 'is-removed' : ''}`}>{e.message}
+									   </div>)}
+			</div>;
 		} else {
 			return <div></div>;
 		}
@@ -28,12 +31,23 @@ export default class Notifications extends Component {
 		newNotifications.push(e.detail);
 		this.setState({notifications : newNotifications}); //FIFO
 		
-		timers.push(setTimeout(() =>{
-			const {notifications}  = this.state;
-			const newNotifications = [ ...notifications ];
-			newNotifications.shift();
-			this.setState({notifications : newNotifications});
-		}, 1000 * 5)); //5 seconds messages
+		timers.push(setTimeout((function( id, that ){
+			
+			return function(){
+				
+				const {notifications}  = that.state;
+				const newNotifications = [ ...notifications ];
+				
+				newNotifications[ id - 1 ].isRemoved = true;
+				
+				//Not remove but fade out
+				//newNotifications.shift();
+				
+				that.setState({notifications : newNotifications});
+				
+			};
+			
+		})(newNotifications.length, this), 1000 * 5)); //5 seconds messages
 		
 	};
 	

@@ -31,33 +31,31 @@ class _AppSignInForm extends Component {
 		return (
 			<div className={`${ns}-in`}>
 				
-				<h2>Sign in</h2>
+				<h2 className={`${ns}-title`}>Sign in</h2>
 				<form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
-					<div>
-						<label>Email</label>
-						<div>
-							<Field
-								name="email"
-								component="input"
-								type="email"
-								placeholder="Email"
-								required
-							/>
-						</div>
+					<div className={`${ns}-field-wrapper`}>
+						<label className={`${ns}-label`}>Email</label>
+						<Field
+							className={`${ns}-field`}
+							name="email"
+							component="input"
+							type="email"
+							placeholder="Email"
+							required
+						/>
+					</div>
+					<div className={`${ns}-field-wrapper`}>
+						<label className={`${ns}-label`}>Password</label>
+						<Field
+							className={`${ns}-field`}
+							name="password"
+							component="input"
+							type="password"
+							required
+						/>
 					</div>
 					<div>
-						<label>Password</label>
-						<div>
-							<Field
-								name="password"
-								component="input"
-								type="password"
-								required
-							/>
-						</div>
-					</div>
-					<div>
-						<button type="submit" disabled={this.props.ui.isFrozen}>
+						<button className={`${ns}-link jst-button-primary`} type="submit" disabled={this.props.ui.isFrozen}>
 							Sign in
 						</button>
 					</div>
@@ -84,45 +82,42 @@ class _AppSignUpForm extends Component {
 		return (
 			<div className={`${ns}-up`}>
 				
-				<h2>Sing up</h2>
+				<h2 className={`${ns}-title`}>Sing up</h2>
 				<form onSubmit={this.props.handleSubmit(this.onSubmit.bind(this))}>
-					<div>
-						<label>Name</label>
-						<div>
-							<Field
-								name="name"
-								component="input"
-								type="text"
-								placeholder="Name"
-								required
-							/>
-						</div>
+					<div className={`${ns}-field-wrapper`}>
+						<label className={`${ns}-label`}>Name</label>
+						<Field
+							className={`${ns}-field`}
+							name="name"
+							component="input"
+							type="text"
+							placeholder="Name"
+							required
+						/>
+					</div>
+					<div className={`${ns}-field-wrapper`}>
+						<label className={`${ns}-label`}>Email</label>
+						<Field
+							className={`${ns}-field`}
+							name="email"
+							component="input"
+							type="email"
+							placeholder="Email"
+							required
+						/>
+					</div>
+					<div className={`${ns}-field-wrapper`}>
+						<label className={`${ns}-label`}>Password</label>
+						<Field
+							className={`${ns}-field`}
+							name="password"
+							component="input"
+							type="password"
+							required
+						/>
 					</div>
 					<div>
-						<label>Email</label>
-						<div>
-							<Field
-								name="email"
-								component="input"
-								type="email"
-								placeholder="Email"
-								required
-							/>
-						</div>
-					</div>
-					<div>
-						<label>Password</label>
-						<div>
-							<Field
-								name="password"
-								component="input"
-								type="password"
-								required
-							/>
-						</div>
-					</div>
-					<div>
-						<button type="submit" disabled={this.props.ui.isFrozen}>
+						<button className={`${ns}-link jst-button-primary`} type="submit" disabled={this.props.ui.isFrozen}>
 							Sign up
 						</button>
 					</div>

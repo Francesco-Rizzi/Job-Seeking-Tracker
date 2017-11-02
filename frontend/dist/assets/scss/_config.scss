@@ -1,0 +1,40 @@
+$media-mobile: 576; //FROM BOOTSTRAP
+$media-tablet: 768;
+$media-desktop: 992;
+
+:root {
+
+	/* CONFIG */
+
+	--brand-color-primary: #A38EE2;
+	--brand-color-primary-light: #BAA5FF;
+	--brand-color-primary-dark: #5A507B;
+	--brand-color-secondary-neutral: #F2F4FF;
+	--brand-color-secondary: #E4EEE2;
+	--brand-color-danger: #bd4724;
+	--brand-color-danger-light: #FFDBD0;
+	--brand-color-alert: #D8A325;
+	--brand-color-alert-light: #FFF5DC;
+	--brand-color-success: #239E91;
+	--brand-color-success-light: #D6F1ED;
+	--brand-color-info: #4864B5;
+	--brand-color-info-light: #DDE6FF;
+
+	--brand-color-neutral-dark: #333333;
+	--brand-color-neutral-medium: #888888;
+	--brand-color-neutral-light: #BBBBBB;
+
+	--brand-font-family-body: 'Roboto', sans-serif;
+	--brand-font-family-heading: 'Oswald', sans-serif;
+
+	--brand-transition-time: .3s;
+	--brand-radius: 3px;
+	--header-height: 70px;
+
+	--brand-font-size-huge: 48px;
+	--brand-font-size-big: 24px;
+	--brand-font-size-medium: 18px;
+	--brand-font-size-small: 14px;
+	--brand-font-size-tiny: 10px;
+
+}

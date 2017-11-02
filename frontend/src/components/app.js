@@ -14,7 +14,7 @@ class App extends Component {
 		
 		const {isLogged} = this.props.user;
 		
-		return <div>
+		return <div className={`${ns}-wrapper`}>
 			{isLogged ? <AppLogic /> : <AppSign />}
 			{this.handleFrozen()}
 			<Notifications />

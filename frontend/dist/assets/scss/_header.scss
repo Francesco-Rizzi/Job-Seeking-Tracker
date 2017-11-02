@@ -1,0 +1,34 @@
+.jst-header {
+	padding: 20px 0;
+	background-color: var(--brand-color-secondary-neutral);
+}
+
+.jst-header-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 30px;
+}
+
+.jst-header-link, .jst-header-logo {
+	font-family: var(--brand-font-family-heading);
+	color: var(--brand-color-neutral-dark);
+	transition: all var(--brand-transition-time);
+	font-size: var(--brand-font-size-medium);
+	&:hover {
+		color: var(--brand-color-neutral-medium);
+	}
+}
+
+.jst-header-link {
+	margin-left: 15px;
+	&.active {
+		color: var(--brand-color-neutral-medium);
+		cursor: auto;
+		pointer-events: none;
+	}
+}
+
+.jst-header-logo-icon {
+	margin-right: 5px;
+}
