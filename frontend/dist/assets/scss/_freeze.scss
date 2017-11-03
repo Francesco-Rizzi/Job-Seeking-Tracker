@@ -1,0 +1,52 @@
+.jst-app-frozen-message {
+
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	top: 0;
+	left: 0;
+	font-size: var(--brand-font-size-big);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: -1;
+	flex-direction: column;
+	opacity: 0;
+	background: rgba(255, 255, 255, .8);
+	transition: opacity .5s, z-index 0s linear .5s;
+	padding: 15px;
+	box-sizing: border-box;
+
+	&.is-visible {
+		z-index: 1;
+		opacity: 1;
+		transition: opacity .5s, z-index 0s linear 0s;
+	}
+
+}
+
+.jst-app-frozen-message-loader {
+
+	position: relative;
+	margin-bottom: 40px;
+
+}
+
+.jst-app-frozen-message-title {
+	font-size: var(--brand-font-size-huge);
+	font-family: var(--brand-font-family-heading);
+	margin-bottom: 20px;
+}
+
+.jst-app-frozen-message-subtitle {
+	font-size: var(--brand-font-size-medium);
+	color: var(--brand-color-primary-light);
+	margin-bottom: 150px;
+}
+
+@media screen and (max-width: $media-tablet + 'px') {
+
+	.jst-app-frozen-message-subtitle {
+		margin-bottom: 0;
+	}
+}

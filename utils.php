@@ -36,7 +36,7 @@
 		if ( !$name ) {
 			throw new Exception('Please provide your name.');
 		}
-		if ( !$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		if ( !$email || !filter_var($email, FILTER_VALIDATE_EMAIL) ) {
 			throw new Exception('Please provide a valid email.');
 		}
 		if ( !$password ) {
@@ -44,7 +44,8 @@
 		}
 		
 		$rows = $app[ 'db' ]->fetchAll('SELECT * FROM users WHERE email = ?', [ $email ]);
-		if ( $rows !== FALSE ) {
+		
+		if ( count($rows) ) {
 			throw new Exception('Email already in use.');
 		}
 		
@@ -103,7 +104,7 @@
 																   'password' => DB_PASSWORD,
 																   'host'     => 'localhost',
 																   'driver'   => 'pdo_mysql',
-																   'charset' => 'utf8mb4',
+																   'charset'  => 'utf8mb4',
 																   'port'     => 3306 ] ]);
 		
 	}
@@ -128,7 +129,7 @@
 									 ->sign($signer, JWT_SECRET)
 									 ->getToken();
 		
-		return $token;
+		return (string)$token;
 		
 	}
 	

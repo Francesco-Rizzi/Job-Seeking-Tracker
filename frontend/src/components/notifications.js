@@ -38,7 +38,10 @@ export default class Notifications extends Component {
 				const {notifications}  = that.state;
 				const newNotifications = [ ...notifications ];
 				
-				newNotifications[ id - 1 ].isRemoved = true;
+				const DOMElement        = document.querySelector(`.jst-notification-wrapper .jst-notification:nth-child(${id + 1})`);
+				DOMElement.style.height = DOMElement.clientHeight + 'px';
+				
+				newNotifications[ id ].isRemoved = true;
 				
 				//Not remove but fade out
 				//newNotifications.shift();
@@ -47,7 +50,7 @@ export default class Notifications extends Component {
 				
 			};
 			
-		})(newNotifications.length, this), 1000 * 5)); //5 seconds messages
+		})(newNotifications.length - 1, this), 1000 * 5)); //5 seconds messages
 		
 	};
 	

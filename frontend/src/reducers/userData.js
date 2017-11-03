@@ -11,6 +11,13 @@ export default function( state = initialState, action ){
 	switch ( action.type ) {
 		
 		case SIGNIN:
+			utils.saveJWT(action.payload.JWT);
+			return {
+				...state,
+				isLogged : true
+			};
+			break;
+			
 		case SIGNINJWT:
 			return {
 				...state,
@@ -27,6 +34,7 @@ export default function( state = initialState, action ){
 				...state,
 				isLogged : true
 			};
+			utils.saveJWT(action.payload.JWT);
 			utils.triggerNotification('success', `Your have successfully signed up!`);
 			break;
 		

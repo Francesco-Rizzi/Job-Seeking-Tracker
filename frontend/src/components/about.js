@@ -16,7 +16,7 @@ export default class About extends Component {
 				</h3>
 				<h2>About the App:</h2>
 				<h3>
-					I build this SaaS from scratch, the backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT auth).
+					I build this web app from scratch, the backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT auth).
 					
 					The frontend is a SPA (Single-Page-App) based on React and Redux.
 					

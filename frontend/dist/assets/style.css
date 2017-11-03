@@ -190,7 +190,8 @@ ul {
     width: 100%; }
 
   .jst-feature {
-    flex-direction: column-reverse; }
+    flex-direction: column-reverse;
+    padding-bottom: 90px; }
     .jst-feature.mod-reverse {
       flex-direction: column-reverse; }
 
@@ -277,6 +278,10 @@ ul {
 @media screen and (max-width: 370px) {
   .jst-sing-field {
     width: 180px; } }
+.jst-app-wrapper.mod-frozen {
+  height: calc(100vh - var(--header-height));
+  overflow: hidden; }
+
 .jst-intro {
   min-height: calc(100vh - var(--header-height));
   padding: 100px 0;
@@ -328,7 +333,9 @@ ul {
   width: 200px;
   max-height: 1000px;
   animation: fadeUp .5s;
-  transition: opacity .5s, transform .5s, max-height 0s linear .5s, margin 0s linear .5s, padding 0s linear .5s;
+  box-sizing: border-box;
+  transition: all .5s, border 0s .5s;
+  overflow: hidden;
   transform-origin: top; }
   .jst-notification:not(:last-child) {
     margin-bottom: 15px; }
@@ -350,10 +357,10 @@ ul {
     border: 1px solid var(--brand-color-alert); }
   .jst-notification.is-removed {
     margin: 0;
-    padding: 0;
-    max-height: 0;
+    height: 0 !important;
     opacity: 0;
-    transform: scale(1, 0); }
+    padding: 0;
+    border: 0 solid; }
 
 @keyframes fadeUp {
   from {
@@ -362,5 +369,129 @@ ul {
   to {
     transform: translateY(0px);
     opacity: 1; } }
+.jst-app-frozen-message {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: var(--brand-font-size-big);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+  flex-direction: column;
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.8);
+  transition: opacity .5s, z-index 0s linear .5s;
+  padding: 15px;
+  box-sizing: border-box; }
+  .jst-app-frozen-message.is-visible {
+    z-index: 1;
+    opacity: 1;
+    transition: opacity .5s, z-index 0s linear 0s; }
+
+.jst-app-frozen-message-loader {
+  position: relative;
+  margin-bottom: 40px; }
+
+.jst-app-frozen-message-title {
+  font-size: var(--brand-font-size-huge);
+  font-family: var(--brand-font-family-heading);
+  margin-bottom: 20px; }
+
+.jst-app-frozen-message-subtitle {
+  font-size: var(--brand-font-size-medium);
+  color: var(--brand-color-primary-light);
+  margin-bottom: 150px; }
+
+@media screen and (max-width: 768px) {
+  .jst-app-frozen-message-subtitle {
+    margin-bottom: 0; } }
+@-webkit-keyframes lds-grid {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0.5; }
+  100% {
+    opacity: 1; } }
+@keyframes lds-grid {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0.5; }
+  100% {
+    opacity: 1; } }
+.lds-grid {
+  position: relative;
+  height: 200px;
+  width: 200px; }
+
+.lds-grid div {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-animation: lds-grid linear 1s infinite;
+  animation: lds-grid linear 1s infinite; }
+
+.lds-grid div:nth-child(1),
+.lds-grid div:nth-child(6),
+.lds-grid div:nth-child(8) {
+  -webkit-animation-delay: -0.666s;
+  animation-delay: -0.666s; }
+
+.lds-grid div:nth-child(2),
+.lds-grid div:nth-child(5),
+.lds-grid div:nth-child(7) {
+  -webkit-animation-delay: -0.333s;
+  animation-delay: -0.333s; }
+
+.lds-grid div:nth-child(1),
+.lds-grid div:nth-child(2),
+.lds-grid div:nth-child(3) {
+  top: 50px; }
+
+.lds-grid div:nth-child(4),
+.lds-grid div:nth-child(5),
+.lds-grid div:nth-child(6) {
+  top: 100px; }
+
+.lds-grid div:nth-child(7),
+.lds-grid div:nth-child(8),
+.lds-grid div:nth-child(9) {
+  top: 150px; }
+
+.lds-grid div:nth-child(1),
+.lds-grid div:nth-child(4),
+.lds-grid div:nth-child(7) {
+  left: 50px; }
+
+.lds-grid div:nth-child(2),
+.lds-grid div:nth-child(5),
+.lds-grid div:nth-child(8) {
+  left: 100px; }
+
+.lds-grid div:nth-child(3),
+.lds-grid div:nth-child(6),
+.lds-grid div:nth-child(9) {
+  left: 150px; }
+
+.lds-grid div:nth-child(1),
+.lds-grid div:nth-child(6),
+.lds-grid div:nth-child(8) {
+  background: var(--brand-color-primary-light); }
+
+.lds-grid div:nth-child(2),
+.lds-grid div:nth-child(4),
+.lds-grid div:nth-child(9) {
+  background: var(--brand-color-primary-light); }
+
+.lds-grid div:nth-child(3),
+.lds-grid div:nth-child(5),
+.lds-grid div:nth-child(7) {
+  background: var(--brand-color-primary-light); }
 
 /*# sourceMappingURL=style.css.map */

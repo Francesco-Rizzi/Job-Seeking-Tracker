@@ -13,7 +13,7 @@
 [about](https://job-seeking-tracker.com/about)
 
 ### Tech stuff 👾:
-I build this SaaS from scratch, the backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT auth).
+I build this web app from scratch, the backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT auth).
 
 The frontend is a SPA (Single-Page-App) based on React and Redux.
 

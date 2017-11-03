@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import axios from 'axios';
 
-export default class {
+export default class Utils{
 	
 	static saveJWT = ( JWT ) =>{
 		
@@ -25,7 +25,7 @@ export default class {
 		
 		const f = _.once(() =>{
 			
-			setTimeout(this.renewJWT, 1000 * 60 * 15); // every 15 minutes
+			setTimeout(Utils.renewJWT, 1000 * 60 * 15); // every 15 minutes
 			return true;
 			
 		});
@@ -36,13 +36,13 @@ export default class {
 	
 	static renewJWT = () =>{
 		
-		const JWT = this.getJWT();
+		const JWT = Utils.getJWT();
 		JWT && axios.post('/renew-jwt', {JWT}).then(( res ) =>{
 			
 			if ( res.error ) {
-				//this.triggerNotification('error', res.error);
+				//Utils.triggerNotification('error', res.error);
 			} else {
-				this.saveJWT(res.JWT);
+				Utils.saveJWT(res.JWT);
 			}
 			
 		});
@@ -52,7 +52,7 @@ export default class {
 	static isJWTExpired = ( JWT ) =>{
 		
 		if ( JWT ) {
-			const token = this.parseJWT(JWT);
+			const token = Utils.parseJWT(JWT);
 			return token.exp <= (+new Date);
 		}
 		return true;

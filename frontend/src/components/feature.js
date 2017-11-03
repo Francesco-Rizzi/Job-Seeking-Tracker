@@ -17,7 +17,7 @@ export default class Feature extends Component {
 						<Link to='/app' className={ns + '-link jst-button-primary'}>Take me to the App!</Link>
 					</div>
 				</div>
-				<div className={`${ns}-image`}>image</div>
+				<div className={`${ns}-image`} style={{backgroundImage: `url(assets/assets/images/${this.props.image})`}}>image</div>
 			</div>
 		);
 		

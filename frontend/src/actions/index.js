@@ -6,25 +6,28 @@ export function signIn( email, password ){
 	
 	return ( dispatch ) =>{
 		
-		dispatch({
-					 type    : FREEZE,
-					 payload : {message : 'Signing In...'}
-				 });
+		dispatch(freeze('Signing In...'));
 		
-		axios.post('/signin', {
+		const request = axios.post('/signin', {
 			email,
 			password
-		}).then(res =>{
-			
-			handleResponse(res.data, dispatch, {
-				type    : SIGNIN,
-				payload : {success : true}
-			});
-			
-			dispatch({type : DEFROST});
-			
 		});
 		
+		Promise.all([ delay(500), request ])
+			.then(res =>{
+				
+				res = res[ 1 ];
+				handleResponse(res.data, dispatch, {
+					type    : SIGNIN,
+					payload : {
+						success : true,
+						JWT     : res.data.JWT
+					}
+				});
+				
+				dispatch(defrost());
+				
+			});
 		
 	};
 	
@@ -34,24 +37,25 @@ export function signInWithJWT( JWT ){
 	
 	return ( dispatch ) =>{
 		
-		dispatch({
-					 type    : FREEZE,
-					 payload : {message : 'Auto Sign In with your token...'}
-				 });
+		dispatch(freeze('Auto Sign In with your token...'));
 		
-		axios.post('/signin-jwt', {
+		const request = axios.post('/signin-jwt', {
 			JWT
-		}).then(res =>{
-			
-			handleResponse(res.data, dispatch, {
-				type    : SIGNINJWT,
-				payload : {success : true}
-			});
-			
-			dispatch({type : DEFROST});
-			
 		});
 		
+		Promise.all([ delay(500), request ]).then(res =>{
+			
+			res = res[ 1 ];
+			handleResponse(res.data, dispatch, {
+				type    : SIGNINJWT,
+				payload : {
+					success : true
+				}
+			});
+			
+			dispatch(defrost());
+			
+		});
 		
 	};
 	
@@ -61,23 +65,26 @@ export function signUp( name, email, password ){
 	
 	return ( dispatch ) =>{
 		
-		dispatch({
-					 type    : FREEZE,
-					 payload : {message : 'Signing Up...'}
-				 });
+		dispatch(freeze('Signing Up...'));
 		
-		axios.post('/signup', {
+		const request = axios.post('/signup', {
 			name,
 			email,
 			password
-		}).then(res =>{
+		});
+		
+		Promise.all([ delay(500), request ]).then(res =>{
 			
+			res = res[ 1 ];
 			handleResponse(res.data, dispatch, {
 				type    : SIGNUP,
-				payload : {success : true}
+				payload : {
+					success : true,
+					JWT     : res.data.JWT
+				}
 			});
 			
-			dispatch({type : DEFROST});
+			dispatch(defrost());
 			
 		});
 		
@@ -101,21 +108,21 @@ export function fetchUserData(){
 	
 	return ( dispatch ) =>{
 		
-		dispatch({
-					 type    : FREEZE,
-					 payload : {message : 'Fetching your data...'}
-				 });
+		dispatch(freeze('Fetching your data...'));
 		
-		axios.post('/fetch-user-data', {
+		const request = axios.get('/fetch-user-data', {
 			JWT : utils.getJWT()
-		}).then(res =>{
+		});
+		
+		Promise.all([ delay(500), request ]).then(res =>{
 			
+			res = res[ 1 ];
 			handleResponse(res.data, dispatch, {
 				type    : FETCHUSERDATA,
 				payload : {user : res.user}
 			});
 			
-			dispatch({type : DEFROST});
+			dispatch(defrost());
 			
 		});
 		
@@ -125,17 +132,37 @@ export function fetchUserData(){
 
 export function saveUserData( data, isAuto = false ){
 	
-	axios.post('/save-user-data', {
+	const request = axios.post('/save-user-data', {
 		JWT  : utils.getJWT(),
 		data : data
-	}).then(res =>{
+	});
+	
+	Promise.all([ delay(500), request ]).then(res =>{
 		
+		res = res[ 1 ];
 		handleResponse(res, dispatch, {
 			type    : SAVEUSERDATA,
 			payload : {isAuto}
 		});
 		
 	});
+	
+}
+
+export function freeze( message ){
+	
+	return {
+		type    : FREEZE,
+		payload : {message}
+	};
+	
+}
+
+export function defrost(){
+	
+	return {
+		type : DEFROST
+	};
 	
 }
 
@@ -150,5 +177,11 @@ function handleResponse( res, dispatch, successAction ){
 		dispatch(successAction);
 		
 	}
+	
+}
+
+function delay( milliseconds ){
+	
+	return new Promise(( f, r ) => setTimeout(f, milliseconds));
 	
 }
