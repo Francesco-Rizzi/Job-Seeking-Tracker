@@ -4,17 +4,20 @@ import * as actions from '../actions';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 
-const ns = 'jst-sing';
+const ns = 'jst-sign';
 
 export default class AppSign extends Component {
 	
 	render(){
 		
 		return (
-			<div className={ns}>
-				<AppSignInForm />
-				<div className={`${ns}-or-divider`}>- OR -</div>
-				<AppSignUpForm />
+			<div className={`${ns}-wrapper`}>
+				<div className={`${ns}-page-title`}>App</div>
+				<div className={ns}>
+					<AppSignInForm />
+					<div className={`${ns}-or-divider`}>- OR -</div>
+					<AppSignUpForm />
+				</div>
 			</div>
 		);
 		

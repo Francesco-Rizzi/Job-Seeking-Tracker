@@ -11,12 +11,16 @@ export default class Index extends Component {
 		return (
 			<Router history={browserHistory}>
 				<Route path='/' component={Structure}>
-					<Route path='/app' component={App} />
-					<Route path='/features' component={Features} />
-					<Route path='/about' component={About} />
-					<IndexRoute component={Intro} />
+					<Route title={getTitle('App')} path='/app' component={App} />
+					<Route title={getTitle('Features')} path='/features' component={Features} />
+					<Route title={getTitle('About')} path='/about' component={About} />
+					<IndexRoute title={getTitle()} component={Intro} />
 				</Route>
 			</Router>
 		);
 	}
+}
+
+function getTitle( section ){
+	return section ? `Job Seeking Tracker ${section} | Francesco Rizzi` : `Job Seeking Tracker | Francesco Rizzi`;
 }

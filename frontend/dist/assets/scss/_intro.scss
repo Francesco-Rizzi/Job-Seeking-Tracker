@@ -6,7 +6,7 @@
 	align-items: center;
 	justify-content: center;
 	&.mod-small {
-		padding: 60px 0 60px;
+		padding: 60px 0 150px;
 		height: auto;
 		justify-content: flex-start;
 		min-height: 0;
@@ -15,6 +15,9 @@
 		}
 		.jst-intro-subtitle {
 			margin-bottom: 0;
+		}
+		.jst-intro-title-features {
+			display: inline;
 		}
 	}
 	.jst-intro-cta {
@@ -29,6 +32,10 @@
 	font-family: var(--brand-font-family-heading);
 	font-size: var(--brand-font-size-huge);
 	margin-bottom: 20px;
+}
+
+.jst-intro-title-features{
+	display: none;
 }
 
 .jst-intro-subtitle {
