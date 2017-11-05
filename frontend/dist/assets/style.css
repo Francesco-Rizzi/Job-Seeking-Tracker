@@ -41,7 +41,8 @@ html, body {
   font-weight: 400;
   margin: 0;
   padding: 0;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  background: var(--brand-color-neutral-dark); }
 
 a {
   text-decoration: none;
@@ -295,10 +296,6 @@ ul {
 @media screen and (max-width: 370px) {
   .jst-sign-field {
     width: 180px; } }
-.jst-app-wrapper.mod-frozen {
-  height: calc(100vh - var(--header-height));
-  overflow: hidden; }
-
 .jst-about {
   padding: 60px 0 60px; }
   .jst-about a {
@@ -350,7 +347,7 @@ ul {
   max-height: 1000px;
   animation: fadeUp .5s;
   box-sizing: border-box;
-  transition: all .5s, border 0s .5s;
+  transition: all .5s, border 0s .5s, height .5s;
   overflow: hidden;
   transform-origin: top; }
   .jst-notification:not(:last-child) {
@@ -385,7 +382,7 @@ ul {
   to {
     transform: translateY(0px);
     opacity: 1; } }
-.jst-app-frozen-message {
+.jst-frozen-message {
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -398,31 +395,32 @@ ul {
   z-index: -1;
   flex-direction: column;
   opacity: 0;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.5);
   transition: opacity .5s, z-index 0s linear .5s;
   padding: 15px;
   box-sizing: border-box; }
-  .jst-app-frozen-message.is-visible {
+  .jst-frozen-message.is-visible {
     z-index: 1;
     opacity: 1;
     transition: opacity .5s, z-index 0s linear 0s; }
 
-.jst-app-frozen-message-loader {
+.jst-frozen-message-loader {
   position: relative;
   margin-bottom: 40px; }
 
-.jst-app-frozen-message-title {
+.jst-frozen-message-title {
   font-size: var(--brand-font-size-huge);
   font-family: var(--brand-font-family-heading);
-  margin-bottom: 20px; }
+  margin-bottom: 10px; }
 
-.jst-app-frozen-message-subtitle {
+.jst-frozen-message-subtitle {
   font-size: var(--brand-font-size-medium);
-  color: var(--brand-color-primary-light);
+  color: var(--brand-color-neutral-light);
+  font-style: italic;
   margin-bottom: 150px; }
 
 @media screen and (max-width: 768px) {
-  .jst-app-frozen-message-subtitle {
+  .jst-frozen-message-subtitle {
     margin-bottom: 0; } }
 @-webkit-keyframes lds-grid {
   0% {
@@ -509,5 +507,12 @@ ul {
 .lds-grid div:nth-child(5),
 .lds-grid div:nth-child(7) {
   background: var(--brand-color-primary-light); }
+
+.jst-structure-wrapper {
+  transition: filter .5s; }
+  .jst-structure-wrapper.mod-frozen {
+    height: 100vh;
+    overflow: hidden;
+    filter: blur(10px); }
 
 /*# sourceMappingURL=style.css.map */

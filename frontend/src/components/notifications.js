@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import utils from './../utils/utils';
 
-const ns   = 'jst-notification';
-let timers = [];
+const ns = 'jst-notification';
 
 export default class Notifications extends Component {
 	
@@ -26,31 +25,38 @@ export default class Notifications extends Component {
 	
 	addNotification = ( e ) =>{
 		
-		const {notifications}  = this.state;
-		const newNotifications = [ ...notifications ];
+		const {notifications} = this.state;
+		let newNotifications  = [ ...notifications ];
 		newNotifications.push(e.detail);
-		this.setState({notifications : newNotifications}); //FIFO
+		const ID = newNotifications.length - 1;
 		
-		timers.push(setTimeout((function( id, that ){
+		this.setState({notifications : newNotifications}); //FIFO Stack
+		
+		setTimeout((function( id ){
 			
 			return function(){
 				
-				const {notifications}  = that.state;
-				const newNotifications = [ ...notifications ];
+				const DOMElement = document.querySelector(`.jst-notification-wrapper .jst-notification:nth-child(${id + 1})`);
 				
-				const DOMElement        = document.querySelector(`.jst-notification-wrapper .jst-notification:nth-child(${id + 1})`);
 				DOMElement.style.height = DOMElement.clientHeight + 'px';
 				
-				newNotifications[ id ].isRemoved = true;
+			};
+			
+		})(ID), 0);
+		
+		setTimeout((function( id, that ){
+			
+			return function(){
 				
-				//Not remove but fade out
-				//newNotifications.shift();
+				const {notifications}            = that.state;
+				const newNotifications           = [ ...notifications ];
+				newNotifications[ id ].isRemoved = true;
 				
 				that.setState({notifications : newNotifications});
 				
 			};
 			
-		})(newNotifications.length - 1, this), 1000 * 5)); //5 seconds messages
+		})(ID, this), 1000 * 5); //5 seconds messages
 		
 	};
 	
@@ -60,7 +66,6 @@ export default class Notifications extends Component {
 	
 	componentWillUnmount(){
 		window.removeEventListener('userNotification', this.addNotification, false);
-		timers = [];
 	}
 	
 }

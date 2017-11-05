@@ -1,0 +1,8 @@
+.jst-structure-wrapper {
+	transition: filter .5s;
+	&.mod-frozen {
+		height: 100vh;
+		overflow: hidden;
+		filter: blur(10px);
+	}
+}

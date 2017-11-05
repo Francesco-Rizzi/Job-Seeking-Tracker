@@ -1,8 +1,9 @@
-import {FREEZE, DEFROST} from "../actions/type";
+import {FREEZE, DEFROST, APPVIEWCONFIG, APPVIEWDATA, APPVIEWINSIGHTS} from "../actions/type";
 
 export const initialState = {
 	isFrozen      : false,
-	frozenMessage : ''
+	frozenMessage : '',
+	appView       : APPVIEWDATA
 };
 export default function( state = initialState, action ){
 	
@@ -20,6 +21,27 @@ export default function( state = initialState, action ){
 			return {
 				...state,
 				isFrozen : false
+			};
+			break;
+		
+		case APPVIEWDATA:
+			return {
+				...state,
+				appView : APPVIEWDATA
+			};
+			break;
+		
+		case APPVIEWCONFIG:
+			return {
+				...state,
+				appView : APPVIEWCONFIG
+			};
+			break;
+		
+		case APPVIEWINSIGHTS:
+			return {
+				...state,
+				appView : APPVIEWINSIGHTS
 			};
 			break;
 		

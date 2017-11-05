@@ -1,4 +1,16 @@
-import {SIGNIN, SIGNOUT, SIGNUP, SAVEUSERDATA, FETCHUSERDATA, FREEZE, DEFROST, SIGNINJWT} from "./type";
+import {
+	SIGNIN,
+	SIGNOUT,
+	SIGNUP,
+	SAVEUSERDATA,
+	FETCHUSERDATA,
+	FREEZE,
+	DEFROST,
+	SIGNINJWT,
+	APPVIEWCONFIG,
+	APPVIEWDATA,
+	APPVIEWINSIGHTS
+} from "./type";
 import utils from './../utils/utils';
 import axios from 'axios';
 
@@ -162,6 +174,30 @@ export function defrost(){
 	
 	return {
 		type : DEFROST
+	};
+	
+}
+
+export function goToAppViewData(){
+	
+	return {
+		type : APPVIEWDATA
+	};
+	
+}
+
+export function goToAppViewInsights(){
+	
+	return {
+		type : APPVIEWINSIGHTS
+	};
+	
+}
+
+export function goToAppViewConfig(){
+	
+	return {
+		type : APPVIEWCONFIG
 	};
 	
 }

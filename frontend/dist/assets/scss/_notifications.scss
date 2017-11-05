@@ -13,7 +13,7 @@
 	max-height: 1000px;
 	animation: fadeUp .5s;
 	box-sizing: border-box;
-	transition: all .5s, border 0s .5s;
+	transition: all .5s, border 0s .5s, height .5s;
 	overflow: hidden;
 	transform-origin: top;
 	&:not(:last-child) {
