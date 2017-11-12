@@ -53,7 +53,7 @@ export default class Utils{
 		
 		if ( JWT ) {
 			const token = Utils.parseJWT(JWT);
-			return token.exp <= (+new Date);
+			return token.exp >= (+new Date);
 		}
 		return true;
 		

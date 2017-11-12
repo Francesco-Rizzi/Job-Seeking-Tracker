@@ -80,14 +80,15 @@
 	
 	function fetchUserData( $JWT, $app ){
 		
-		$ID   = getUserIDFromJWT($JWT);
+		$ID   = getUserIDFromJWTString($JWT);
 		$user = $app[ 'db' ]->fetchAssoc('SELECT * FROM users WHERE id = ?', [ $ID ]);
 		
 		if ( $user === FALSE ) {
 			throw new Exception('User not found.');
 		}
 		
-		return $user;
+		return [ 'name' => $user[ 'username' ],
+				 'data' => $user[ 'data' ] ];
 		
 	}
 	
@@ -129,7 +130,7 @@
 									 ->sign($signer, JWT_SECRET)
 									 ->getToken();
 		
-		return (string)$token;
+		return (string) $token;
 		
 	}
 	
@@ -139,8 +140,11 @@
 		
 	}
 	
-	
 	function checkJWTToken( $JWT ){
+		
+		if ( is_string($JWT) ) {
+			$JWT = getJWTTokenFromString($JWT);
+		}
 		
 		$signer = new Sha256();
 		
@@ -149,8 +153,8 @@
 		}
 		
 		$data = new JWTValidatorData();
-		$data->setIssuer($_SERVER[ 'SERVER_NAME' ])
-			 ->setAudience($_SERVER[ 'SERVER_NAME' ]);
+		$data->setIssuer($_SERVER[ 'SERVER_NAME' ]);
+		$data->setAudience($_SERVER[ 'SERVER_NAME' ]);
 		
 		if ( !$JWT->validate($data) ) {
 			throw new Exception('Expired token.');

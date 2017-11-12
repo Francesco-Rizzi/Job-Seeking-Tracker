@@ -37,10 +37,10 @@
 	
 	$app->get('/fetch-user-data', function ( Request $request ) use ( $app ){
 		
-		$JWT = $request->request->get('JWT');
+		$JWT = $request->query->get('JWT');
 		
 		try {
-			$data = [ 'user' => fetchUserData($JWT) ];
+			$data = [ 'user' => fetchUserData($JWT, $app) ];
 		} catch ( Exception $e ) {
 			$data = [ 'error' => $e->getMessage() ];
 		}

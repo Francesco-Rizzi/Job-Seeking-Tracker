@@ -65,6 +65,10 @@ export function signInWithJWT( JWT ){
 				}
 			});
 			
+			if(res.data.error){
+				dispatch(signOut());
+			}
+			
 			dispatch(defrost());
 			
 		});
@@ -123,7 +127,9 @@ export function fetchUserData(){
 		dispatch(freeze('Fetching your data...'));
 		
 		const request = axios.get('/fetch-user-data', {
-			JWT : utils.getJWT()
+			params: {
+				JWT : utils.getJWT()
+			}
 		});
 		
 		Promise.all([ delay(500), request ]).then(res =>{
@@ -131,7 +137,7 @@ export function fetchUserData(){
 			res = res[ 1 ];
 			handleResponse(res.data, dispatch, {
 				type    : FETCHUSERDATA,
-				payload : {user : res.user}
+				payload : {user: res.data.user}
 			});
 			
 			dispatch(defrost());
