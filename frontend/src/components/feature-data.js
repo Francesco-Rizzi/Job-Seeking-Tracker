@@ -1,16 +1,16 @@
 export default [
 	
 	{
-		title       : 'User friendly and easy to use 🎠',
-		description : 'It\'s extremely easy to get started, add your data and see all the most important metrics being instantly created to have a better visualization of your job seeking status.',
+		title       : 'User friendly and intuitive 🎠',
+		description : 'It\'s extremely easy to get started, add your data and see all the most important metrics and charts being instantly created to have a better and intuitive understanding of your job seeking status.',
 		image       : 'mobile.jpg',
 	}, {
 		title       : 'Powerful and advanced features ⚔️',
-		description : 'High level metrics, grouping, filtering and fine-grain controls? All is at your disposal.',
+		description : 'High-level metrics and fine-grain controls and configurations? A powerful decision-helper tool for grade companies based on YOURS preferences and what they actually offer? All is at your disposal.',
 		image       : 'mobile.jpg',
 	}, {
 		title       : 'Graphics and charts 📈',
-		description : 'Everyone loves charts, isn\'t it? Colourful bars, tasty pie-charts and gorgeous graphic? We have it.',
+		description : 'Everyone loves charts, isn\'t it? They give you a visual fast and intuitive understanding on what\'s going on. Colourful bars, tasty pie-charts and gorgeous graphics? We have it.',
 		image       : 'mobile.jpg',
 	}, {
 		title       : 'Mobile ready 📱',
@@ -18,7 +18,7 @@ export default [
 		image       : 'mobile.jpg',
 	}, {
 		title       : 'Free 💸',
-		description : 'Job Seeking Tracker is totally free for everyone! No costs, no adverts, no subscriptions, no freemium or in-app, just use it and be prepared to get into <i>your-new-awesome-job</i>.',
+		description : 'Job Seeking Tracker is totally free for everyone! No costs, no adverts, no subscriptions, no freemium or in-app purchases, just use it and be prepared to get into <i>your-new-awesome-job</i>.',
 		image       : 'mobile.jpg',
 	}, {
 		title       : 'Safe and secure 🔑',
@@ -26,7 +26,7 @@ export default [
 		image       : 'mobile.jpg',
 	}, {
 		title       : 'Open source 💾',
-		description : 'Take inspiration and browse it in my <a href="https://github.com/Francesco-Rizzi/Job-Seeking-Tracker" target="_blank">GitHub repo</a>. Feel free to open issues or PRs in order to improve it.',
+		description : 'Take inspiration and browse the source code in my <a href="https://github.com/Francesco-Rizzi/Job-Seeking-Tracker" target="_blank">GitHub repo</a>. Some proposal for features or improvements? Feel free to open an issue or a PR to discuss it!',
 		image       : 'mobile.jpg',
 	}
 

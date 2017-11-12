@@ -23,12 +23,13 @@ export default class About extends Component {
 					
 					The frontend is a SPA (Single-Page-App) based on React and Redux.
 					
-					The compilation and bundling of the JS stuff is done with Webpack, creating two bundles for <i>Custom</i> end <i>Vendor</i> code along with using name hashing for cache management.
+					The compilation and bundling of the JS stuff is done with Webpack, creating two bundles for <i>Custom</i> end <i>Vendor</i> code along with using name hashing for cache-busting management. Interested in the source code? It is publicly available, check it out on its <a href="https://github.com/Francesco-Rizzi/Job-Seeking-Tracker" target="_blank">GitHub repo</a> !
 				</h4>
 				
 				<h4 className={`${ns}-list-title`}>Frontend (React Single-Page-App):</h4>
 				<ul className={`${ns}-list`}>
-					<li>JavaScript</li>
+					<li>JavaScript (ES6+)</li>
+					<li>JSX</li>
 					<li>React ⚛</li>
 					<li>React-router</li>
 					<li>Redux 🔃</li>
