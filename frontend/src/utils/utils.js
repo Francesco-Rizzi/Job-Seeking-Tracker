@@ -1,7 +1,9 @@
 import _ from 'lodash';
 import axios from 'axios';
 
-export default class Utils{
+let renewalJWTTimer = null;
+
+export default class Utils {
 	
 	static saveJWT = ( JWT ) =>{
 		
@@ -23,14 +25,14 @@ export default class Utils{
 	
 	static startJWTAutoRenewal = () =>{
 		
-		const f = _.once(() =>{
-			
-			setTimeout(Utils.renewJWT, 1000 * 60 * 15); // every 15 minutes
-			return true;
-			
-		});
+		renewalJWTTimer = setInterval(Utils.renewJWT, 1000 * 60 * 15);
 		
-		return f();
+	};
+	
+	static stopJWTAutoRenewal = () =>{
+		
+		clearInterval(renewalJWTTimer);
+		renewalJWTTimer = null;
 		
 	};
 	

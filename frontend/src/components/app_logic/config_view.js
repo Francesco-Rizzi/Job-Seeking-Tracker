@@ -10,7 +10,7 @@ class ConfigView extends Component {
 		
 		return (
 			<div className={ns}>
-				yey
+				conf
 			</div>
 		);
 		

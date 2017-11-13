@@ -3,6 +3,7 @@ import utils from './../utils/utils';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
 import {APPVIEWCONFIG, APPVIEWDATA, APPVIEWINSIGHTS} from "../actions/type";
+import Header from './app_logic/header';
 import DataView from './app_logic/data_view';
 import ConfigView from './app_logic/config_view';
 import InsightsView from './app_logic/insights_view';
@@ -16,7 +17,7 @@ class AppLogic extends Component {
 		
 		return (
 			<div className={ns}>
-				yey
+				<Header />
 				{this.renderView()}
 			</div>
 		);
@@ -45,8 +46,13 @@ class AppLogic extends Component {
 	
 	componentWillMount(){
 		
-		//Fetch the data
-		this.props.fetchUserData();
+		//Fetch the user data ONLY if not present (a.k.a. already fetched)
+		if ( this.props.user.name === false ) {
+			this.props.fetchUserData();
+		}
+		
+		//Auto-renew the JWT
+		utils.startJWTAutoRenewal();
 		
 		//Auto-save data every 5 minutes
 		interval = setInterval(() =>{
@@ -56,6 +62,7 @@ class AppLogic extends Component {
 	}
 	
 	componentWillUnmount(){
+		utils.stopJWTAutoRenewal();
 		interval = null;
 	}
 	

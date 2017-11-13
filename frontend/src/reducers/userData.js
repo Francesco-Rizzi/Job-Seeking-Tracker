@@ -17,7 +17,7 @@ export default function( state = initialState, action ){
 				isLogged : true
 			};
 			break;
-			
+		
 		case SIGNINJWT:
 			return {
 				...state,
@@ -39,12 +39,12 @@ export default function( state = initialState, action ){
 			break;
 		
 		case FETCHUSERDATA:
-			utils.startJWTAutoRenewal();
-			utils.triggerNotification('success', `Welcome ${action.payload.user.name}!`);
+			const {name, data} = action.payload.user;
+			utils.triggerNotification('success', `Welcome ${name}!`);
 			return {
 				...state,
-				name : action.payload.user.name,
-				data : [ ...action.payload.user.data ]
+				name : name,
+				data : [ ...JSON.parse(data) ]
 			};
 			break;
 		

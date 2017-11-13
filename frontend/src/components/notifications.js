@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import utils from './../utils/utils';
 
-const ns = 'jst-notification';
+const ns     = 'jst-notification';
+const timers = [];
 
 export default class Notifications extends Component {
 	
@@ -12,8 +13,9 @@ export default class Notifications extends Component {
 	
 	render(){
 		const {notifications} = this.state;
+		const isLogged = this.props;
 		if ( notifications.length ) {
-			return <div className={`${ns}-wrapper`}>
+			return <div className={`${ns}-wrapper ${isLogged ? 'mod-logged' : ''}`}>
 				{notifications.map(( e, i ) =>
 									   <div key={i} className={`${ns} mod-${e.type} ${e.isRemoved ? 'is-removed' : ''}`}>{e.message}
 									   </div>)}
@@ -36,6 +38,7 @@ export default class Notifications extends Component {
 			
 			return function(){
 				
+				//Animation stuff
 				const DOMElement = document.querySelector(`.jst-notification-wrapper .jst-notification:nth-child(${id + 1})`);
 				
 				DOMElement.style.height = DOMElement.clientHeight + 'px';
@@ -44,7 +47,7 @@ export default class Notifications extends Component {
 			
 		})(ID), 0);
 		
-		setTimeout((function( id, that ){
+		const timer = setTimeout((function( id, that ){
 			
 			return function(){
 				
@@ -57,6 +60,7 @@ export default class Notifications extends Component {
 			};
 			
 		})(ID, this), 1000 * 5); //5 seconds messages
+		timers.push(timer);
 		
 	};
 	
@@ -66,6 +70,7 @@ export default class Notifications extends Component {
 	
 	componentWillUnmount(){
 		window.removeEventListener('userNotification', this.addNotification, false);
+		timers.forEach(t => clearTimeout(t));
 	}
 	
 }

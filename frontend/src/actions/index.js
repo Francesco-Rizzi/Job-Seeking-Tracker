@@ -9,7 +9,8 @@ import {
 	SIGNINJWT,
 	APPVIEWCONFIG,
 	APPVIEWDATA,
-	APPVIEWINSIGHTS
+	APPVIEWINSIGHTS,
+	GOTOAPPVIEW
 } from "./type";
 import utils from './../utils/utils';
 import axios from 'axios';
@@ -28,6 +29,8 @@ export function signIn( email, password ){
 		Promise.all([ delay(500), request ])
 			.then(res =>{
 				
+				dispatch(defrost());
+				
 				res = res[ 1 ];
 				handleResponse(res.data, dispatch, {
 					type    : SIGNIN,
@@ -36,8 +39,6 @@ export function signIn( email, password ){
 						JWT     : res.data.JWT
 					}
 				});
-				
-				dispatch(defrost());
 				
 			});
 		
@@ -57,6 +58,8 @@ export function signInWithJWT( JWT ){
 		
 		Promise.all([ delay(500), request ]).then(res =>{
 			
+			dispatch(defrost());
+			
 			res = res[ 1 ];
 			handleResponse(res.data, dispatch, {
 				type    : SIGNINJWT,
@@ -65,11 +68,9 @@ export function signInWithJWT( JWT ){
 				}
 			});
 			
-			if(res.data.error){
+			if ( res.data.error ) {
 				dispatch(signOut());
 			}
-			
-			dispatch(defrost());
 			
 		});
 		
@@ -91,6 +92,8 @@ export function signUp( name, email, password ){
 		
 		Promise.all([ delay(500), request ]).then(res =>{
 			
+			dispatch(defrost());
+			
 			res = res[ 1 ];
 			handleResponse(res.data, dispatch, {
 				type    : SIGNUP,
@@ -99,8 +102,6 @@ export function signUp( name, email, password ){
 					JWT     : res.data.JWT
 				}
 			});
-			
-			dispatch(defrost());
 			
 		});
 		
@@ -127,7 +128,7 @@ export function fetchUserData(){
 		dispatch(freeze('Fetching your data...'));
 		
 		const request = axios.get('/fetch-user-data', {
-			params: {
+			params : {
 				JWT : utils.getJWT()
 			}
 		});
@@ -137,7 +138,7 @@ export function fetchUserData(){
 			res = res[ 1 ];
 			handleResponse(res.data, dispatch, {
 				type    : FETCHUSERDATA,
-				payload : {user: res.data.user}
+				payload : {user : res.data.user}
 			});
 			
 			dispatch(defrost());
@@ -150,20 +151,24 @@ export function fetchUserData(){
 
 export function saveUserData( data, isAuto = false ){
 	
-	const request = axios.post('/save-user-data', {
-		JWT  : utils.getJWT(),
-		data : data
-	});
-	
-	Promise.all([ delay(500), request ]).then(res =>{
+	return ( dispatch ) =>{
 		
-		res = res[ 1 ];
-		handleResponse(res, dispatch, {
-			type    : SAVEUSERDATA,
-			payload : {isAuto}
+		const request = axios.post('/save-user-data', {
+			JWT  : utils.getJWT(),
+			data : data
 		});
 		
-	});
+		Promise.all([ delay(500), request ]).then(res =>{
+			
+			res = res[ 1 ];
+			handleResponse(res, dispatch, {
+				type    : SAVEUSERDATA,
+				payload : {isAuto}
+			});
+			
+		});
+		
+	};
 	
 }
 
@@ -184,26 +189,11 @@ export function defrost(){
 	
 }
 
-export function goToAppViewData(){
+export function goToAppView( view ){
 	
 	return {
-		type : APPVIEWDATA
-	};
-	
-}
-
-export function goToAppViewInsights(){
-	
-	return {
-		type : APPVIEWINSIGHTS
-	};
-	
-}
-
-export function goToAppViewConfig(){
-	
-	return {
-		type : APPVIEWCONFIG
+		type : GOTOAPPVIEW,
+		payload: {view}
 	};
 	
 }

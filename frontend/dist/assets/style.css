@@ -296,6 +296,38 @@ ul {
 @media screen and (max-width: 370px) {
   .jst-sign-field {
     width: 180px; } }
+.jst-app-logic-header-items {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px 0;
+  position: relative; }
+  .jst-app-logic-header-items:before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100vw;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%); }
+
+.jst-app-logic-header-item {
+  margin-left: 5px;
+  position: relative;
+  font-size: var(--brand-font-size-medium);
+  font-family: var(--brand-font-family-heading); }
+
+.jst-app-logic-header-link {
+  transition: color var(--brand-transition-time);
+  color: var(--brand-color-neutral-dark);
+  cursor: pointer; }
+  .jst-app-logic-header-link:hover, .jst-app-logic-header-link.active {
+    color: var(--brand-color-neutral-medium); }
+  .jst-app-logic-header-link.active {
+    cursor: auto;
+    pointer-events: none; }
+
 .jst-about {
   padding: 60px 0 60px; }
   .jst-about a {
@@ -337,6 +369,8 @@ ul {
   position: absolute;
   right: 0;
   top: 0; }
+  .jst-notification-wrapper.mod-logged {
+    top: 36px; }
 
 .jst-notification {
   font-size: var(--brand-font-size-small);

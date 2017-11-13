@@ -10,14 +10,13 @@ class DataView extends Component {
 		
 		return (
 			<div className={ns}>
-				yey
+				data
 			</div>
 		);
 		
 	}
 	
 }
-
 
 export default connect(( {user, ui} ) =>{
 	return {

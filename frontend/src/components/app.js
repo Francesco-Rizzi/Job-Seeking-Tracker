@@ -17,7 +17,7 @@ class App extends Component {
 		
 		return <div className={`${ns}-wrapper `}>
 			{isLogged ? <AppLogic /> : <AppSign />}
-			<Notifications />
+			<Notifications isLogged={this.props.user.isLogged} />
 		</div>;
 		
 	}

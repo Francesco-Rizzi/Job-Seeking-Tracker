@@ -1,25 +1,38 @@
 import React, {Component} from 'react';
+import {APPVIEWCONFIG, APPVIEWDATA, APPVIEWINSIGHTS} from "../../actions/type";
+import * as actions from '../../actions';
+import {connect} from 'react-redux';
 
 const ns = 'jst-app-logic-header';
 
-export default class Header extends Component {
+class Header extends Component {
+	
 	render(){
 		return (
-			<header className={ns}>
-				<nav>
-					<ul>
-						<li key='1'>
-							<a >Data</a>
-						</li>
-						<li key='2'>
-							<a >Insights</a>
-						</li>
-						<li key='3'>
-							<a >Config</a>
-						</li>
-					</ul>
-				</nav>
-			</header>
+			<nav className={ns}>
+				<ul className={`${ns}-items`}>
+					<li key='1' className={`${ns}-item`}>
+						{this.renderLink('Data', APPVIEWDATA)}
+					</li>
+					<li key='2' className={`${ns}-item`}>
+						{this.renderLink('Insights', APPVIEWINSIGHTS)}
+					</li>
+					<li key='3' className={`${ns}-item`}>
+						{this.renderLink('Config', APPVIEWCONFIG)}
+					</li>
+				</ul>
+			</nav>
 		);
 	}
+	
+	renderLink( name, type ){
+		return <a className={`${ns}-link ${this.props.ui.appView === type ? 'active' : ''}`} onClick={this.props.goToAppView.bind(this, type)}>{name}</a>;
+	}
+	
 }
+
+export default connect(( {ui} ) =>{
+	return {
+		ui
+	};
+}, actions)(Header);

@@ -65,7 +65,7 @@
 	
 	function saveUserData( $JWT, $data, $app ){
 		
-		$ID = getUserIDFromJWT($JWT);
+		$ID = getUserIDFromJWTString($JWT);
 		
 		$rowsAffected = $app[ 'db' ]->update('users', [ 'data'         => $data,
 														'lastUpdateAt' => time() ], [ 'id' => $ID ]);
