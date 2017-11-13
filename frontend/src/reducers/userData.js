@@ -1,11 +1,7 @@
 import {SIGNIN, SIGNOUT, SIGNUP, FETCHUSERDATA, SAVEUSERDATA, SIGNINJWT} from "../actions/type";
 import utils from './../utils/utils';
+import initialState from './initialUserData';
 
-export const initialState = {
-	name     : false,
-	data     : [],
-	isLogged : false
-};
 export default function( state = initialState, action ){
 	
 	switch ( action.type ) {
@@ -44,7 +40,7 @@ export default function( state = initialState, action ){
 			return {
 				...state,
 				name : name,
-				data : [ ...JSON.parse(data) ]
+				data : {...JSON.parse(data)}
 			};
 			break;
 		

@@ -18,6 +18,9 @@ class AppLogic extends Component {
 		return (
 			<div className={ns}>
 				<Header />
+				<h1 className={`${ns}-title`}>
+					Application {this.props.ui.appView}
+				</h1>
 				{this.renderView()}
 			</div>
 		);

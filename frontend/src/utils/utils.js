@@ -39,12 +39,12 @@ export default class Utils {
 	static renewJWT = () =>{
 		
 		const JWT = Utils.getJWT();
-		JWT && axios.post('/renew-jwt', {JWT}).then(( res ) =>{
+		JWT && axios.post('/renew-jwt', {JWT}).then(( {data} ) =>{
 			
-			if ( res.error ) {
+			if ( data.error ) {
 				//Utils.triggerNotification('error', res.error);
 			} else {
-				Utils.saveJWT(res.JWT);
+				Utils.saveJWT(data.JWT);
 			}
 			
 		});
@@ -79,5 +79,66 @@ export default class Utils {
 		}));
 		
 	};
+	
+	static getMaxPossibleRank( conf ){
+		
+		const keys = Object.keys(conf);
+		let tot    = 0;
+		
+		keys.forEach(k =>{
+			
+			if ( k.startsWith('w_') ) {
+				
+				tot += conf[ k ] * 10;
+				
+			}
+			
+		});
+		
+		return tot;
+		
+	};
+	
+	static getJobRank( job, conf ){
+		
+		const min = 0;
+		const max = Utils.getMaxPossibleRank(conf);
+		
+		let jobValue = 0;
+		
+		jobValue += Utils.mathSqueeze(slzr, sltr, job.salary, 0, 10) * conf.w_fpk1;
+		jobValue += Utils.mathSqueeze(eqzr, eqtr, job.equity, 0, 10) * conf.w_fpk2;
+		
+		Object.keys(job.rankings).forEach(k =>{
+			
+			let v = job.rankings[ k ];
+			jobValue += v * conf[ 'w_' + k ];
+			
+		});
+		
+		jobValue = Math.floor(Utils.mathSqueeze(min, max, jobValue, 0, 6));
+		return 'ABCDEF'[ jobValue ];
+		
+	}
+	
+	static mathSqueeze( min, max, v, newMin, newMax ){
+		
+		if ( v <= min ) {
+			return newMin;
+		}
+		
+		if ( v >= max ) {
+			return newMax;
+		}
+		
+		v -= min;
+		max -= min;
+		const percentage = (v / max) * 100;
+		
+		const newStep = (newMax - newMin) / 100;
+		
+		return percentage * newStep + newMin;
+		
+	}
 	
 };

@@ -4,6 +4,7 @@
   --brand-color-primary-light: #BAA5FF;
   --brand-color-primary-dark: #5A507B;
   --brand-color-secondary-neutral: #F2F4FF;
+  --brand-color-secondary-neutral-dark: #CDD3F3;
   --brand-color-secondary: #E4EEE2;
   --brand-color-danger: #bd4724;
   --brand-color-danger-light: #FFDBD0;
@@ -20,7 +21,7 @@
   --brand-font-family-heading: 'Oswald', sans-serif;
   --brand-transition-time: .3s;
   --brand-radius: 3px;
-  --header-height: 70px;
+  --header-height: 54px;
   --brand-font-size-huge: 48px;
   --brand-font-size-big: 24px;
   --brand-font-size-medium: 18px;
@@ -79,7 +80,7 @@ ul {
   position: relative; }
 
 .jst-header {
-  padding: 20px 0;
+  padding: 12px 0;
   background-color: var(--brand-color-secondary-neutral); }
 
 .jst-header-container {
@@ -296,6 +297,12 @@ ul {
 @media screen and (max-width: 370px) {
   .jst-sign-field {
     width: 180px; } }
+.jst-logic-title {
+  font-size: var(--brand-font-size-huge);
+  font-family: var(--brand-font-family-heading);
+  padding: 30px 0 50px;
+  text-transform: capitalize; }
+
 .jst-app-logic-header-items {
   display: flex;
   justify-content: flex-end;
@@ -306,7 +313,7 @@ ul {
     display: block;
     height: 100%;
     width: 100vw;
-    background: white;
+    background: var(--brand-color-secondary-neutral-dark);
     position: absolute;
     top: 50%;
     left: 50%;

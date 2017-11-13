@@ -10,10 +10,22 @@ class ConfigView extends Component {
 		
 		return (
 			<div className={ns}>
-				conf
+				<h2>Here your configuration values</h2>
+				<div className={`${ns}-group`}>
+					<div className={`${ns}-title`}>
+					
+					</div>
+					<div className={`${ns}-description`}>
+					
+					</div>
+				</div>
 			</div>
 		);
 		
+	}
+	
+	renderConfigField(field){
+	
 	}
 	
 }

@@ -12,7 +12,7 @@ export default class AppSign extends Component {
 		
 		return (
 			<div className={`${ns}-wrapper`}>
-				<div className={`${ns}-page-title`}>App</div>
+				<h1 className={`${ns}-page-title`}>App</h1>
 				<div className={ns}>
 					<AppSignInForm />
 					<div className={`${ns}-or-divider`}>- OR -</div>
