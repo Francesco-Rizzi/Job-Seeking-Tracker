@@ -106,8 +106,8 @@ export default class Utils {
 		
 		let jobValue = 0;
 		
-		jobValue += Utils.mathSqueeze(slzr, sltr, job.salary, 0, 10) * conf.w_fpk1;
-		jobValue += Utils.mathSqueeze(eqzr, eqtr, job.equity, 0, 10) * conf.w_fpk2;
+		jobValue += Math.mapRange(slzr, sltr, job.salary, 0, 10) * conf.w_fpk1;
+		jobValue += Math.mapRange(eqzr, eqtr, job.equity, 0, 10) * conf.w_fpk2;
 		
 		Object.keys(job.rankings).forEach(k =>{
 			
@@ -116,28 +116,8 @@ export default class Utils {
 			
 		});
 		
-		jobValue = Math.floor(Utils.mathSqueeze(min, max, jobValue, 0, 6));
+		jobValue = Math.floor(Math.mapRange(min, max, jobValue, 0, 6));
 		return 'ABCDEF'[ jobValue ];
-		
-	}
-	
-	static mathSqueeze( min, max, v, newMin, newMax ){
-		
-		if ( v <= min ) {
-			return newMin;
-		}
-		
-		if ( v >= max ) {
-			return newMax;
-		}
-		
-		v -= min;
-		max -= min;
-		const percentage = (v / max) * 100;
-		
-		const newStep = (newMax - newMin) / 100;
-		
-		return percentage * newStep + newMin;
 		
 	}
 	

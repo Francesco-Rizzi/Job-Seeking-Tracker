@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose} from 'redux';
 import reduxThunk from 'redux-thunk';
+import mathEnhancer from './utils/mathEnancher';
 
 import Index from './components/index';
 import reducers from './reducers';
