@@ -57,10 +57,10 @@ class AppLogic extends Component {
 		//Auto-renew the JWT
 		utils.startJWTAutoRenewal();
 		
-		//Auto-save data every 5 minutes
-		interval = setInterval(() =>{
+		//Auto-save data every 5 minutes => now is on every user action
+		/*interval = setInterval(() =>{
 			this.props.saveUserData(this.props.user.data, true);
-		}, 1000 * 60 * 5);
+		}, 1000 * 10);*/
 		
 	}
 	

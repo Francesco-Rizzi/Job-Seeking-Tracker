@@ -10,7 +10,8 @@ import {
 	APPVIEWCONFIG,
 	APPVIEWDATA,
 	APPVIEWINSIGHTS,
-	GOTOAPPVIEW
+	GOTOAPPVIEW,
+	SETCONFIGDATA
 } from "./type";
 import utils from './../utils/utils';
 import axios from 'axios';
@@ -26,21 +27,20 @@ export function signIn( email, password ){
 			password
 		});
 		
-		Promise.all([ delay(500), request ])
-			.then(res =>{
-				
-				dispatch(defrost());
-				
-				res = res[ 1 ];
-				handleResponse(res.data, dispatch, {
-					type    : SIGNIN,
-					payload : {
-						success : true,
-						JWT     : res.data.JWT
-					}
-				});
-				
+		Promise.all([ delay(500), request ]).then(res =>{
+			
+			dispatch(defrost());
+			
+			res = res[ 1 ];
+			handleResponse(res.data, dispatch, {
+				type    : SIGNIN,
+				payload : {
+					success : true,
+					JWT     : res.data.JWT
+				}
 			});
+			
+		});
 		
 	};
 	
@@ -149,22 +149,24 @@ export function fetchUserData(){
 	
 }
 
-export function saveUserData( data, isAuto = false ){
+export function saveUserData( isAuto = true ){
 	
-	return ( dispatch ) =>{
+	return ( dispatch, getState ) =>{
 		
 		const request = axios.post('/save-user-data', {
 			JWT  : utils.getJWT(),
-			data : data
+			data : JSON.stringify(getState().user.data)
 		});
 		
-		Promise.all([ delay(500), request ]).then(res =>{
+		request.then(res =>{
 			
-			res = res[ 1 ];
-			handleResponse(res, dispatch, {
+			handleResponse(res.data, dispatch, {
 				type    : SAVEUSERDATA,
 				payload : {isAuto}
 			});
+			if ( res.data.error ) {
+				dispatch(signOut());
+			}
 			
 		});
 		
@@ -192,11 +194,31 @@ export function defrost(){
 export function goToAppView( view ){
 	
 	return {
-		type : GOTOAPPVIEW,
-		payload: {view}
+		type    : GOTOAPPVIEW,
+		payload : {view}
 	};
 	
 }
+
+export function setConfigValue( code, value ){
+	
+	return ( dispatch ) =>{
+		
+		dispatch({
+					 type    : SETCONFIGDATA,
+					 payload : {
+						 code,
+						 value
+					 }
+				 });
+		
+		dispatch(saveUserData());
+		
+	};
+	
+}
+
+//UTILS
 
 function handleResponse( res, dispatch, successAction ){
 	

@@ -12,8 +12,6 @@
 @import "scss/app_sign";
 //APP - logic
 @import "scss/app_logic";
-//APP - logic header
-@import "scss/app_logic/header";
 //ABOUT
 @import "scss/about";
 //NOTIFICATIONS
@@ -24,3 +22,10 @@
 @import "scss/loader";
 //STRUCTURE
 @import "scss/structure";
+//
+//APP - logic header
+@import "scss/app_logic/header";
+//APP - logic config
+@import "scss/app_logic/config";
+//APP - logic slider
+@import "scss/app_logic/slider";

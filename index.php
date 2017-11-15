@@ -51,7 +51,14 @@
 	
 	$app->post('/save-user-data', function ( Request $request ) use ( $app ){
 		
-		$data = [];
+		$data = $request->request->get('data');
+		$JWT  = $request->request->get('JWT');
+		
+		try {
+			$data = saveUserData($JWT, $data, $app);
+		} catch ( Exception $e ) {
+			$data = [ 'error' => $e->getMessage() ];
+		}
 		
 		return $app->json($data, 200);
 		

@@ -74,7 +74,7 @@
 			throw new Exception('Something went wrong, please retry or contact the author.');
 		}
 		
-		return [];
+		return [ 'success' => TRUE ];
 		
 	}
 	
@@ -135,6 +135,10 @@
 	}
 	
 	function getJWTTokenFromString( $JWTString ){
+		
+		if(!$JWTString){
+			throw new Exception('Invalid token.');
+		}
 		
 		return ( new JWTParser() )->parse((string) $JWTString);
 		

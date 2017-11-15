@@ -7,10 +7,10 @@ export default {
 			
 			//misc def
 			ncmd : 15,
-			slzr : 30000,
-			sltr : 100000,
-			eqzr : 0,
-			eqtr : 2,
+			slzr : 45,
+			sltr : 140,
+			eqzr : 1,
+			eqtr : 11,
 			
 			//weights def
 			w_fpk1 : 5,

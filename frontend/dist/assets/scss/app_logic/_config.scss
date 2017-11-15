@@ -1,0 +1,63 @@
+.jst-app-logic-view-config-title {
+	margin-bottom: 30px;
+	font-family: var(--brand-font-family-heading);
+	font-size: var(--brand-font-size-big);
+}
+
+.jst-app-logic-view-config-group {
+	padding-bottom: 60px;
+}
+
+.jst-app-logic-view-config-field {
+	margin-bottom: 15px;
+	background: var(--brand-color-neutral-ultra-light);
+	border: 1px solid var(--brand-color-neutral-light);
+	border-radius: var(--brand-radius);
+}
+
+.jst-app-logic-view-config-field-name {
+	width: 200px;
+	margin-right: 15px;
+	border-right: 1px solid var(--brand-color-neutral-light);
+	flex-shrink: 0;
+	padding: 15px 0 15px 15px;
+	font-weight: 600;
+}
+
+.jst-app-logic-view-config-field-slider {
+	width: 100%;
+}
+
+.jst-app-logic-view-config-field-name-slider-wrap {
+	display: flex;
+	align-items: center;
+	padding-right: 15px;
+}
+
+.jst-app-logic-view-config-field-description {
+	padding: 15px;
+	border-top: 1px solid var(--brand-color-neutral-light);
+}
+
+@media screen and (max-width: $media-mobile + 'px') {
+
+	.jst-app-logic-view-config-field-name {
+		border-right: none;
+		width: 100%;
+		padding: 15px;
+		margin: 0;
+		box-sizing: border-box;
+	}
+
+	.jst-app-logic-view-config-field-name-slider-wrap {
+		flex-direction: column;
+		padding: 0;
+	}
+
+	.jst-app-logic-view-config-field-slider{
+		padding: 15px;
+		border-top: 1px solid var(--brand-color-neutral-light);
+		box-sizing: border-box;
+	}
+
+}
