@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import utils from './../utils/utils';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';

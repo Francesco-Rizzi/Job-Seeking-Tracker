@@ -29,30 +29,34 @@ export default {
 			
 		},
 		
-		jobs : [ {
-			//First example company
-			role          : 'Data Analyst',
-			company       : 'ACME Corp.',
-			location      : 'UK',
-			link          : '',
-			stageCode     : 0,
-			lastContactOn : +(new Date()),
-			salary        : 70000,
-			equity        : 1.25,
-			rankings      : {
-				fpk3 : 6,
-				pic1 : 4,
-				pic2 : 6,
-				pic3 : 2,
-				pic4 : 7,
-				pic5 : 7,
-				poc1 : 4,
-				poc2 : 4,
-				ppr1 : 6,
-				ppr2 : 8,
-				ppr3 : 5,
-			}
-		}, ]
+		jobs : {
+			
+			123456 : {
+				//First example company
+				role          : 'Data Analyst',
+				company       : 'ACME Corp.',
+				location      : 'UK',
+				link          : '',
+				stageCode     : 1,
+				lastContactOn : +(new Date()),
+				insertedOn    : +(new Date()),
+				salary        : 70000,
+				equity        : 1.25,
+				rankings      : {
+					fpk3 : 6,
+					pic1 : 4,
+					pic2 : 6,
+					pic3 : 2,
+					pic4 : 7,
+					pic5 : 7,
+					poc1 : 4,
+					poc2 : 4,
+					ppr1 : 6,
+					ppr2 : 8,
+					ppr3 : 5,
+				}
+			},
+		}
 		
 	},
 };

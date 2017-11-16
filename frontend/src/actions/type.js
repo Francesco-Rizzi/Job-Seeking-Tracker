@@ -15,3 +15,7 @@ export const APPVIEWINSIGHTS = 'insights';
 export const APPVIEWCONFIG   = 'config';
 
 export const SETCONFIGDATA = 'setconfigdata';
+
+export const CREATEJOB= 'createjob';
+export const REMOVEJOB= 'removejob';
+export const EDITJOB = 'editjob';

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 const ns = 'jst-app-logic-view-data-job';
 
-class DataViewJob extends Component {
+export default class DataViewJob extends Component {
 	
 	render(){
 		
@@ -20,7 +20,8 @@ class DataViewJob extends Component {
 				
 				</div>
 				<div className={`${ns}-actions`}>
-				
+				<button  className={`${ns}-action jst-button-danger mod-small`}  onClick={() => this.props.onRemove(job.id)}>Remove</button>
+				<button  className={`${ns}-action jst-button-primary mod-small`}  onClick={() => this.props.onEdit(job.id)}>Edit</button>
 				</div>
 			</div>
 		);
@@ -34,6 +35,3 @@ class DataViewJob extends Component {
 	}
 	
 }
-
-
-export default connect(null, actions)(DataViewJob);

@@ -218,6 +218,18 @@ export function setConfigValue( code, value ){
 	
 }
 
+export function createJob( jobData ){
+
+}
+
+export function editJob( jobData ){
+
+}
+
+export function removeJob( jobID ){
+
+}
+
 //UTILS
 
 function handleResponse( res, dispatch, successAction ){

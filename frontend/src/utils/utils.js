@@ -42,7 +42,7 @@ export default class Utils {
 		JWT && axios.post('/renew-jwt', {JWT}).then(( {data} ) =>{
 			
 			if ( data.error ) {
-				//Utils.triggerNotification('error', res.error);
+				Utils.triggerNotification('error', data.error);
 			} else {
 				Utils.saveJWT(data.JWT);
 			}
@@ -118,6 +118,31 @@ export default class Utils {
 		
 		jobValue = Math.floor(Math.mapRange(min, max, jobValue, 0, 6));
 		return 'ABCDEF'[ jobValue ];
+		
+	}
+	
+	static getJobID( job ){
+		
+		function hash( ...params ){
+			
+			let hash   = 0, i, chr;
+			let string = params.concat('');
+			
+			if ( string.length === 0 ) {
+				throw new Error('Invalid hash arguments.');
+			}
+			
+			for ( i = 0; i < string.length; i++ ) {
+				chr  = string.charCodeAt(i);
+				hash = ((hash << 5) - hash) + chr;
+				hash |= 0; // Convert to 32bit integer
+			}
+			
+			return hash;
+			
+		};
+		
+		return hash(job.role, job.company, job.insertedOn);
 		
 	}
 	

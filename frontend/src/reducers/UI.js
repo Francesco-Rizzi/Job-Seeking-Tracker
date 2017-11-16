@@ -1,9 +1,9 @@
-import {FREEZE, DEFROST, APPVIEWDATA, GOTOAPPVIEW,SIGNOUT} from "../actions/type";
+import {FREEZE, DEFROST, APPVIEWDATA, GOTOAPPVIEW, SIGNOUT, SHOWJOBFORM, HIDEJOBFORM} from "../actions/type";
 
 export const initialState = {
-	isFrozen      : false,
-	frozenMessage : '',
-	appView       : APPVIEWDATA
+	isFrozen            : false,
+	frozenMessage       : '',
+	appView             : APPVIEWDATA,
 };
 export default function( state = initialState, action ){
 	
@@ -31,10 +31,13 @@ export default function( state = initialState, action ){
 			};
 			break;
 		
-		case SIGNOUT:
-			return initialState;
+		case SHOWJOBFORM:
+			return {
+				...state,
+				appIsJobFormVisible : true,
+			};
 			break;
-		
+			
 	}
 	
 	return state;

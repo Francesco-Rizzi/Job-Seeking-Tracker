@@ -44,19 +44,33 @@ ul {
 	min-height: calc(100vh - var(--header-height));
 }
 
-.jst-button-primary {
+.jst-button-danger, .jst-button-primary {
 	padding: 10px 24px;
-	background: var(--brand-color-primary);
 	transition: all var(--brand-transition-time);
 	font-size: var(--brand-font-size-medium);
 	border-radius: var(--brand-radius);
+	border: none;
 	cursor: pointer;
 	display: inline-block;
+	&.mod-small{
+		padding: 5px 10px;
+	}
+}
+
+.jst-button-primary {
+	background: var(--brand-color-primary);
 	&:hover {
 		background: var(--brand-color-primary-light);
 	}
 }
 
-.jst-app-wrapper{
+.jst-button-danger {
+	background: var(--brand-color-danger);
+	&:hover {
+		background: var(--brand-color-danger-tiny-light);
+	}
+}
+
+.jst-app-wrapper {
 	position: relative;
 }
