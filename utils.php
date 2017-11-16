@@ -179,8 +179,7 @@
 	
 	function renewJWTString( $JWTString ){
 		
-		$ID = getJWTTokenFromString($JWTString);
-		
+		$ID = getUserIDFromJWTString($JWTString);
 		return createJWT($ID);
 		
 	}

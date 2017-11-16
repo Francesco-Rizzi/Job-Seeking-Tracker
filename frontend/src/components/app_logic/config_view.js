@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import * as actions from '../../actions';
 import {connect} from 'react-redux';
 import data from './config_view_data';
-import Slider from 'rc-slider';
+import Slider, {createSliderWithTooltip} from 'rc-slider';
 
+const SliderWithTooltip = createSliderWithTooltip(Slider);
 const ns = 'jst-app-logic-view-config';
 
 class ConfigView extends Component {
@@ -43,7 +44,7 @@ class ConfigView extends Component {
 						{field.name}
 					</div>
 					<div className={`${ns}-field-slider`}>
-						<Slider step={step} min={min} max={max} defaultValue={value} onAfterChange={this.onSliderChange.bind(this, field.code)} />
+						<SliderWithTooltip step={step} min={min} max={max} defaultValue={value} onAfterChange={this.onSliderChange.bind(this, field.code)} />
 					</div>
 				</div>
 				<div className={`${ns}-field-description`}>

@@ -1,4 +1,4 @@
-import {FREEZE, DEFROST, APPVIEWDATA, GOTOAPPVIEW} from "../actions/type";
+import {FREEZE, DEFROST, APPVIEWDATA, GOTOAPPVIEW,SIGNOUT} from "../actions/type";
 
 export const initialState = {
 	isFrozen      : false,
@@ -29,6 +29,10 @@ export default function( state = initialState, action ){
 				...state,
 				appView : action.payload.view
 			};
+			break;
+		
+		case SIGNOUT:
+			return initialState;
 			break;
 		
 	}

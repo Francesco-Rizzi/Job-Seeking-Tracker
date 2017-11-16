@@ -20,6 +20,9 @@ class Header extends Component {
 					<li key='3' className={`${ns}-item`}>
 						{this.renderLink('Config', APPVIEWCONFIG)}
 					</li>
+					<li key='4' className={`${ns}-item`}>
+						<a className={`${ns}-link`} onClick={this.props.signOut}>Logout</a>
+					</li>
 				</ul>
 			</nav>
 		);
