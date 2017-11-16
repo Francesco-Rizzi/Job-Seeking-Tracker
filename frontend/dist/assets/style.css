@@ -557,6 +557,18 @@ ul {
     cursor: auto;
     pointer-events: none; }
 
+.jst-app-logic-header-link-logout {
+  transition: color var(--brand-transition-time);
+  color: var(--brand-color-neutral-dark);
+  font-size: var(--brand-font-size-medium);
+  font-family: var(--brand-font-family-heading);
+  position: absolute;
+  top: 5px;
+  z-index: 9;
+  cursor: pointer; }
+  .jst-app-logic-header-link-logout:hover, .jst-app-logic-header-link-logout.active {
+    color: var(--brand-color-alert); }
+
 .jst-app-logic-view-config-title {
   margin-bottom: 30px;
   font-family: var(--brand-font-family-heading);

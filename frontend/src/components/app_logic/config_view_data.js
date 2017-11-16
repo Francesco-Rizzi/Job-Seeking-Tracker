@@ -123,13 +123,3 @@ export default {
 	]
 	
 };
-
-//STAGES
-//0 - idea
-//1 - candidate
-//2 - exploration call
-//3 - practical task
-//4 - on-site interview
-//5 - final interview
-//6 - offer
-//7 - rejected

@@ -27,11 +27,25 @@
 	transition: color var(--brand-transition-time);
 	color: var(--brand-color-neutral-dark);
 	cursor: pointer;
-	&:hover, &.active{
+	&:hover, &.active {
 		color: var(--brand-color-neutral-medium);
 	}
 	&.active {
 		cursor: auto;
 		pointer-events: none;
+	}
+}
+
+.jst-app-logic-header-link-logout {
+	transition: color var(--brand-transition-time);
+	color: var(--brand-color-neutral-dark);
+	font-size: var(--brand-font-size-medium);
+	font-family: var(--brand-font-family-heading);
+	position: absolute;
+	top: 5px;
+	z-index: 9;
+	cursor: pointer;
+	&:hover, &.active {
+		color: var(--brand-color-alert);
 	}
 }

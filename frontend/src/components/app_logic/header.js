@@ -10,6 +10,7 @@ class Header extends Component {
 	render(){
 		return (
 			<nav className={ns}>
+				<a className={`${ns}-link-logout`} onClick={this.props.signOut}>Logout</a>
 				<ul className={`${ns}-items`}>
 					<li key='1' className={`${ns}-item`}>
 						{this.renderLink('Data', APPVIEWDATA)}
@@ -19,9 +20,6 @@ class Header extends Component {
 					</li>
 					<li key='3' className={`${ns}-item`}>
 						{this.renderLink('Config', APPVIEWCONFIG)}
-					</li>
-					<li key='4' className={`${ns}-item`}>
-						<a className={`${ns}-link`} onClick={this.props.signOut}>Logout</a>
 					</li>
 				</ul>
 			</nav>
