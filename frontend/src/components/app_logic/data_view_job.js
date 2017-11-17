@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import * as actions from '../../actions';
-import {connect} from 'react-redux';
+import utils from './../../utils/utils';
 
 const ns = 'jst-app-logic-view-data-job';
 
@@ -9,19 +8,25 @@ export default class DataViewJob extends Component {
 	render(){
 		
 		const {job} = this.props;
+		const id    = utils.getJobID(job);
 		
 		return (
 			<div className={`${ns}-item`}>
 				<div className={`${ns}-overview`}>
-					{job.role}
+					<div>
+						{job.role}
+					</div>
+					<div>
+						{job.company}
+					</div>
 					{this.renderLink(job)}
 				</div>
 				<div className={`${ns}-details`}>
 				
 				</div>
 				<div className={`${ns}-actions`}>
-				<button  className={`${ns}-action jst-button-danger mod-small`}  onClick={() => this.props.onRemove(job.id)}>Remove</button>
-				<button  className={`${ns}-action jst-button-primary mod-small`}  onClick={() => this.props.onEdit(job.id)}>Edit</button>
+					<button className={`${ns}-action jst-button-danger mod-small`} onClick={() => this.props.onRemove(id)}>Remove</button>
+					<button className={`${ns}-action jst-button-primary mod-small mod-space-left`} onClick={() => this.props.onEdit(id)}>Edit</button>
 				</div>
 			</div>
 		);

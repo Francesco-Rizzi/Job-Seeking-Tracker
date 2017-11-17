@@ -126,7 +126,7 @@ export default class Utils {
 		function hash( ...params ){
 			
 			let hash   = 0, i, chr;
-			let string = params.concat('');
+			let string = params.join('');
 			
 			if ( string.length === 0 ) {
 				throw new Error('Invalid hash arguments.');
@@ -138,7 +138,7 @@ export default class Utils {
 				hash |= 0; // Convert to 32bit integer
 			}
 			
-			return hash;
+			return hash + '';
 			
 		};
 		

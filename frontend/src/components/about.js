@@ -19,11 +19,17 @@ export default class About extends Component {
 				<h3 className={`${ns}-title mod-space-top`}>About the app:</h3>
 				
 				<h4 className={`${ns}-desc`}>
-					I build this web app from scratch, the backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT auth).
+					I have built this Web App from scratch, managing the full process: <i>concept</i> + <i>design</i> + <i>user experience</i> + <i>backend</i> + <i>frontend</i> + <i>deploy</i>, and I'm pretty proud of it :).
 					
-					The frontend is a SPA (Single-Page-App) based on React and Redux.
+					Why Job Seeking Tracker? To solve a problem! Easily and effectively track my job seeking activity, get visual insights from the data and, most important, taking the best decision on chosing a company evaluating many different traits <i>tailored to user's preferences</i>.
 					
-					The compilation and bundling of the JS stuff is done with Webpack, creating two bundles for <i>Custom</i> end <i>Vendor</i> code along with using name hashing for cache-busting management. Interested in the source code? It is publicly available, check it out on its <a href="https://github.com/Francesco-Rizzi/Job-Seeking-Tracker" target="_blank">GitHub repo</a> !
+					The backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT authentication).
+					
+					The frontend is a SPA (Single-Page-App) based on React and Redux (+ many other libraries, see below).
+					
+					The transpilation and bundling of the JavaScript stuff is made via Webpack, creating two bundles for <i>Custom</i> end <i>Vendor</i> code, along with using file-name-hashing for cache-busting management.
+					
+					Interested in the source code? It is publicly available, check it out on its <a href="https://github.com/Francesco-Rizzi/Job-Seeking-Tracker" target="_blank">GitHub repo</a> !
 				</h4>
 				
 				<h4 className={`${ns}-list-title`}>Frontend (React Single-Page-App):</h4>
@@ -32,11 +38,17 @@ export default class About extends Component {
 					<li>JSX</li>
 					<li>React ⚛</li>
 					<li>React-router</li>
+					<li>React-slider</li>
+					<li>React-stars</li>
+					<li>React-collapse</li>
 					<li>Redux 🔃</li>
 					<li>Redux-thunk</li>
 					<li>Redux-form</li>
 					<li>Lodash</li>
 					<li>Axios</li>
+					<li>
+						<a href='https://github.com/Francesco-Rizzi/Math.mapRange' target='_blank'>Math.mapRange</a> (Math enhancer)
+					</li>
 					<li>CSS</li>
 					<li>CSS variables</li>
 					<li>SASS</li>
@@ -52,7 +64,8 @@ export default class About extends Component {
 						<a href='https://silex.symfony.com/' target='_blank'>Silex Framework</a> (a.k.a. Lightweight Symfony)
 					</li>
 					<li>MySQL</li>
-					<li>Doctrine DBAL</li>
+					<li><a href='http://www.doctrine-project.org/projects/dbal.html' target='_blank'>Doctrine DBAL</a> (Database Abstaction Layer)
+					</li>
 					<li>Composer</li>
 					<li>Linux 🐧</li>
 					<li>Apache</li>

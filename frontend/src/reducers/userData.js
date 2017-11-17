@@ -1,9 +1,13 @@
-import {SIGNIN, SIGNOUT, SIGNUP, FETCHUSERDATA, SAVEUSERDATA, SIGNINJWT, SETCONFIGDATA} from "../actions/type";
+import {
+	SIGNIN, SIGNOUT, SIGNUP, FETCHUSERDATA, SAVEUSERDATA, SIGNINJWT, SETCONFIGDATA, CREATEJOB, REMOVEJOB, EDITJOB
+} from "../actions/type";
 import utils from './../utils/utils';
 import initialState from './initialUserData';
 import _ from 'lodash';
 
 export default function( state = initialState, action ){
+	
+	let newState, jobID, jobData;
 	
 	switch ( action.type ) {
 		
@@ -28,12 +32,12 @@ export default function( state = initialState, action ){
 			break;
 		
 		case SIGNUP:
+			utils.saveJWT(action.payload.JWT);
+			utils.triggerNotification('success', `Your have successfully signed up!`);
 			return {
 				...state,
 				isLogged : true
 			};
-			utils.saveJWT(action.payload.JWT);
-			utils.triggerNotification('success', `Your have successfully signed up!`);
 			break;
 		
 		case FETCHUSERDATA:
@@ -61,10 +65,48 @@ export default function( state = initialState, action ){
 			break;
 		
 		case SETCONFIGDATA:
-			let newState        = _.cloneDeep(state);
+			
 			const {code, value} = action.payload;
 			
+			newState                            = _.cloneDeep(state);
 			newState.data.configuration[ code ] = value;
+			return newState;
+			
+			break;
+		
+		case CREATEJOB:
+			
+			newState = _.cloneDeep(state);
+			
+			jobData = action.payload.jobData;
+			jobID   = utils.getJobID(jobData);
+			
+			newState.data.jobs[ jobID ] = jobData;
+			return newState;
+			
+			break;
+		
+		case REMOVEJOB:
+			
+			newState = _.cloneDeep(state);
+			
+			jobID = action.payload.jobID;
+			
+			delete newState.data.jobs[ jobID ];
+			return newState;
+			
+			break;
+		
+		case EDITJOB:
+			
+			newState = _.cloneDeep(state);
+			
+			jobData = action.payload.jobData;
+			jobID   = utils.getJobID(jobData);
+			
+			delete newState.data.jobs[ action.payload.oldJobID ];
+			newState.data.jobs[ jobID ] = jobData;
+			
 			return newState;
 			
 			break;

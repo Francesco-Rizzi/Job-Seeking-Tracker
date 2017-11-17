@@ -33,7 +33,7 @@ class DataView extends Component {
 					</div>
 				))}
 				<div className={`${ns}-add`}>
-					<a className='jst-button-primary'>Add Job</a>
+					<a className='jst-button-primary' onClick={this.onNew}>Add Job</a>
 				</div>
 				{this.renderJobForm()}
 			</div>
@@ -49,7 +49,6 @@ class DataView extends Component {
 		ids.forEach(id =>{
 			
 			let j     = jobs[ id ];
-			j.id      = id;
 			let group = res[ j.stageCode ];
 			group ? group.push(j) : res[ j.stageCode ] = [ j ];
 			
@@ -66,6 +65,10 @@ class DataView extends Component {
 					  });
 	};
 	
+	onNew = () =>{
+		this.setState({action : 'new',});
+	};
+	
 	onRemove = ( jobID ) =>{
 		this.props.removeJob(jobID);
 	};
@@ -73,12 +76,14 @@ class DataView extends Component {
 	renderJobForm(){
 		
 		if ( this.state.action === 'edit' && this.state.jobID !== false ) {
-			return <JobForm job={this.props.user.data.jobs[ this.state.jobID ]} onCancel={this.onFormCancel} onSave={this.onFormSave} />;
+			return <JobForm initialValues={this.props.user.data.jobs[ this.state.jobID ]} onCancel={this.onFormCancel} onSave={this.onFormSave} />;
 		}
 		
 		if ( this.state.action === 'new' ) {
-			return <JobForm job={{}} onCancel={this.onFormCancel} onSave={this.onFormSave} />;
+			return <JobForm onCancel={this.onFormCancel} onSave={this.onFormSave} />;
 		}
+		
+		return null;
 		
 	}
 	
@@ -86,12 +91,12 @@ class DataView extends Component {
 		this.clearAndCloseForm();
 	};
 	
-	onFormSave = ( jobData ) =>{
+	onFormSave = ( oldJobID = false, jobData ) =>{
 		
 		if ( this.state.action === 'new' ) {
 			this.props.createJob(jobData);
 		} else {
-			this.props.editJob(jobData);
+			this.props.editJob(jobData, oldJobID);
 		}
 		
 		this.clearAndCloseForm();
@@ -106,9 +111,6 @@ class DataView extends Component {
 	
 }
 
-export default connect(( {user, ui} ) =>{
-	return {
-		user,
-		ui
-	};
+export default connect(( {user} ) =>{
+	return {user};
 }, actions)(DataView);

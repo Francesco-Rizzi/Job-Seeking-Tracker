@@ -11,7 +11,10 @@ import {
 	APPVIEWDATA,
 	APPVIEWINSIGHTS,
 	GOTOAPPVIEW,
-	SETCONFIGDATA
+	SETCONFIGDATA,
+	CREATEJOB,
+	REMOVEJOB,
+	EDITJOB
 } from "./type";
 import utils from './../utils/utils';
 import axios from 'axios';
@@ -135,13 +138,17 @@ export function fetchUserData(){
 		
 		Promise.all([ delay(500), request ]).then(res =>{
 			
+			dispatch(defrost());
+			
 			res = res[ 1 ];
 			handleResponse(res.data, dispatch, {
 				type    : FETCHUSERDATA,
 				payload : {user : res.data.user}
 			});
 			
-			dispatch(defrost());
+			if ( res.data.error ) {
+				dispatch(signOut());
+			}
 			
 		});
 		
@@ -219,15 +226,51 @@ export function setConfigValue( code, value ){
 }
 
 export function createJob( jobData ){
-
+	
+	return ( dispatch ) =>{
+		
+		dispatch({
+					 type    : CREATEJOB,
+					 payload : {jobData}
+				 });
+		
+		dispatch(saveUserData());
+		
+	};
+	
 }
 
-export function editJob( jobData ){
-
+export function editJob( jobData, oldJobID ){
+	
+	return ( dispatch ) =>{
+		
+		dispatch({
+					 type    : EDITJOB,
+					 payload : {
+						 jobData,
+						 oldJobID
+					 }
+				 });
+		
+		dispatch(saveUserData());
+		
+	};
+	
 }
 
 export function removeJob( jobID ){
-
+	
+	return ( dispatch ) =>{
+		
+		dispatch({
+					 type    : REMOVEJOB,
+					 payload : {jobID}
+				 });
+		
+		dispatch(saveUserData());
+		
+	};
+	
 }
 
 //UTILS

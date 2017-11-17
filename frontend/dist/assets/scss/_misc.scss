@@ -44,7 +44,7 @@ ul {
 	min-height: calc(100vh - var(--header-height));
 }
 
-.jst-button-danger, .jst-button-primary {
+.jst-button-danger, .jst-button-primary, .jst-button-link {
 	padding: 10px 24px;
 	transition: all var(--brand-transition-time);
 	font-size: var(--brand-font-size-medium);
@@ -52,8 +52,11 @@ ul {
 	border: none;
 	cursor: pointer;
 	display: inline-block;
-	&.mod-small{
+	&.mod-small {
 		padding: 5px 10px;
+	}
+	&.mod-space-left {
+		margin-left: 5px;
 	}
 }
 
@@ -61,6 +64,15 @@ ul {
 	background: var(--brand-color-primary);
 	&:hover {
 		background: var(--brand-color-primary-light);
+	}
+}
+
+.jst-button-link {
+	background: transparent;
+	color: var(--brand-color-primary-dark);
+	text-decoration: underline;
+	&:hover {
+		color: var(--brand-color-primary);
 	}
 }
 
