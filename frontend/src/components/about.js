@@ -41,11 +41,13 @@ export default class About extends Component {
 					<li>React-slider</li>
 					<li>React-stars</li>
 					<li>React-collapse</li>
+					<li>React-datepicker</li>
 					<li>Redux 🔃</li>
 					<li>Redux-thunk</li>
 					<li>Redux-form</li>
-					<li>Lodash</li>
 					<li>Axios</li>
+					<li>Lodash</li>
+					<li>Moment</li>
 					<li>
 						<a href='https://github.com/Francesco-Rizzi/Math.mapRange' target='_blank'>Math.mapRange</a> (Math enhancer)
 					</li>
@@ -70,6 +72,7 @@ export default class About extends Component {
 					<li>Linux 🐧</li>
 					<li>Apache</li>
 					<li>HTACCESS</li>
+					<li>SSL</li>
 				</ul>
 			</div>
 		);

@@ -1,16 +1,26 @@
 .jst-app-logic-job-form {
 	position: fixed;
 	padding: 0 15px;
-	background: rgba(228, 238, 226, .75);
+	background: rgba(228, 238, 226, .9);
 	top: 0;
 	left: 0;
 	height: 100vh;
 	width: 100vw;
 	box-sizing: border-box;
-	//display: flex;
-	//align-items: center;
-	//justify-content: center;
 	z-index: 9999;
+}
+
+.jst-app-logic-job-form-title {
+	font-family: var(--brand-font-family-heading);
+	font-size: var(--brand-font-size-big);
+	padding: 0 10px;
+	margin-bottom: 10px;
+}
+
+.jst-app-logic-job-form-actions {
+	padding: 0 10px;
+	margin-top: 30px;
+	text-align: right;
 }
 
 .jst-app-logic-job-form-form {
@@ -21,11 +31,72 @@
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
 	max-height: calc(100vh - 80px);
+	width: 100%;
+	max-width: 600px;
 }
 
 .jst-app-logic-job-form-field {
-
+	display: block;
+	width: 100%;
+	font-family: var(--brand-font-family-body);
+	font-size: var(--brand-font-size-medium);
+	border: 1px solid var(--brand-color-secondary-neutral);
+	border-radius: var(--brand-radius);
+	height: 40px;
+	padding: 0 10px;
+	box-sizing: border-box;
+	&::placeholder {
+		color: var(--brand-color-neutral-light);
+	}
 	&.mod-rating {
-		//display: none;
+		display: none;
+	}
+	&.mod-hide {
+		display: none;
+	}
+}
+
+.jst-app-logic-job-form-label {
+	font-size: var(--brand-font-size-medium);
+	margin-bottom: 5px;
+	display: block;
+}
+
+.jst-app-logic-job-form-field-wrapper {
+	position: relative;
+	padding: 10px;
+	box-sizing: border-box;
+	display: inline-block;
+}
+
+.jst-app-logic-job-form-field-wrapper-row {
+	margin-bottom: 10px;
+	font-size: 0px;
+	&.mod-3 > .jst-app-logic-job-form-field-wrapper {
+		width: 33.33%;
+	}
+	&.mod-4 > .jst-app-logic-job-form-field-wrapper {
+		width: 25%;
+	}
+	&.mod-4 .jst-app-logic-job-form-label {
+		font-size: var(--brand-font-size-small);
+	}
+}
+
+.react-datepicker-popper {
+	z-index: 999 !important;
+}
+
+@media screen and (max-width: 500px) {
+	.jst-app-logic-job-form-field-wrapper-row {
+		&.mod-3 > .jst-app-logic-job-form-field-wrapper {
+			width: 100%;
+		}
+		&.mod-4 > .jst-app-logic-job-form-field-wrapper {
+			width: 50%;
+		}
+	}
+	.react-datepicker-wrapper, .react-datepicker__input-container {
+		display: block!important;
 	}
 }

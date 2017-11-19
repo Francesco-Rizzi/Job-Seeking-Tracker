@@ -70,9 +70,9 @@
 		$rowsAffected = $app[ 'db' ]->update('users', [ 'data'         => $data,
 														'lastUpdateAt' => time() ], [ 'id' => $ID ]);
 		
-		if ( $rowsAffected !== 1 ) {
+		/*if ( $rowsAffected !== 1 ) { //sometimes if data is equal (ex. 2 call with the same data at the same time, the row count will be 0
 			throw new Exception('Something went wrong, please retry or contact the author.');
-		}
+		}*/
 		
 		return [ 'success' => TRUE ];
 		

@@ -24,12 +24,22 @@
 	 * PUBLIC SECTION
 	 * */
 	
+	$routesRegExp = '^(|app|features|about|features)$';
 	$app->get('/{route}', function (){
 		
 		return file_get_contents('./frontend/dist/index.html');
 		
 	})
-		->assert('route', '^(|app|features|about)$');
+		->assert('route', $routesRegExp);
+	
+	
+	$app->get('/{route}/{subroute}', function (){
+		
+		return file_get_contents('./frontend/dist/index.html');
+		
+	})
+		->assert('route', 'features')
+		->assert('subroute', 'the-company-ranker');
 	
 	/*
 	 * API SECTION

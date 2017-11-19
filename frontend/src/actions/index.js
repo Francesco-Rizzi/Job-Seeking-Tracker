@@ -14,7 +14,8 @@ import {
 	SETCONFIGDATA,
 	CREATEJOB,
 	REMOVEJOB,
-	EDITJOB
+	EDITJOB,
+	RESETUSERDATA
 } from "./type";
 import utils from './../utils/utils';
 import axios from 'axios';
@@ -265,6 +266,20 @@ export function removeJob( jobID ){
 		dispatch({
 					 type    : REMOVEJOB,
 					 payload : {jobID}
+				 });
+		
+		dispatch(saveUserData());
+		
+	};
+	
+}
+
+export function resetUserData(){
+	
+	return ( dispatch ) =>{
+		
+		dispatch({
+					 type : RESETUSERDATA
 				 });
 		
 		dispatch(saveUserData());

@@ -25,7 +25,8 @@ export default class Utils {
 	
 	static startJWTAutoRenewal = () =>{
 		
-		renewalJWTTimer = setInterval(Utils.renewJWT, 1000 * 60 * 15);
+		renewalJWTTimer = setInterval(Utils.renewJWT, 1000 * 60 * 5);
+		Utils.renewJWT();
 		
 	};
 	
@@ -106,10 +107,10 @@ export default class Utils {
 		
 		let jobValue = 0;
 		
-		jobValue += Math.mapRange(slzr, sltr, job.salary, 0, 10) * conf.w_fpk1;
-		jobValue += Math.mapRange(eqzr, eqtr, job.equity, 0, 10) * conf.w_fpk2;
+		jobValue += Math.mapRange(conf.slzr, conf.sltr, job.salary, 0, 10) * conf.w_fpk1;
+		jobValue += Math.mapRange(conf.eqzr, conf.eqtr, job.equity, 0, 10) * conf.w_fpk2;
 		
-		Object.keys(job.rankings).forEach(k =>{
+		job.rankings && Object.keys(job.rankings).forEach(k =>{
 			
 			let v = job.rankings[ k ];
 			jobValue += v * conf[ 'w_' + k ];
@@ -117,7 +118,7 @@ export default class Utils {
 		});
 		
 		jobValue = Math.floor(Math.mapRange(min, max, jobValue, 0, 6));
-		return 'ABCDEF'[ jobValue ];
+		return 'FEDCBA'[ jobValue ];
 		
 	}
 	
@@ -135,7 +136,7 @@ export default class Utils {
 			for ( i = 0; i < string.length; i++ ) {
 				chr  = string.charCodeAt(i);
 				hash = ((hash << 5) - hash) + chr;
-				hash |= 0; // Convert to 32bit integer
+				hash |= 0;
 			}
 			
 			return hash + '';

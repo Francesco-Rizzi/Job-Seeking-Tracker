@@ -1,7 +1,7 @@
 RewriteEngine on
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^assets/(.*)$ frontend/dist/$1 [NC,L]
+RewriteRule ^(.*)libs/(.*)$ frontend/dist/$2 [NC,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php [QSA,L]

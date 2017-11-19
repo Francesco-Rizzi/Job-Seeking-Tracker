@@ -1,5 +1,15 @@
 import {
-	SIGNIN, SIGNOUT, SIGNUP, FETCHUSERDATA, SAVEUSERDATA, SIGNINJWT, SETCONFIGDATA, CREATEJOB, REMOVEJOB, EDITJOB
+	SIGNIN,
+	SIGNOUT,
+	SIGNUP,
+	FETCHUSERDATA,
+	SAVEUSERDATA,
+	SIGNINJWT,
+	SETCONFIGDATA,
+	CREATEJOB,
+	REMOVEJOB,
+	EDITJOB,
+	RESETUSERDATA
 } from "../actions/type";
 import utils from './../utils/utils';
 import initialState from './initialUserData';
@@ -62,6 +72,16 @@ export default function( state = initialState, action ){
 			} else {
 				utils.triggerNotification('success', `Data saved successfully!`);
 			}*/
+			break;
+		
+		case RESETUSERDATA:
+			newState = _.cloneDeep(initialState);
+			utils.triggerNotification('success', `Data reset successful!`);
+			return {
+				...newState,
+				isLogged : true,
+				name     : state.name
+			};
 			break;
 		
 		case SETCONFIGDATA:

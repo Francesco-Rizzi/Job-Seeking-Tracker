@@ -4,7 +4,7 @@ export default {
 		
 		{
 			name   : 'Salary and Equity rater configuration',
-			cssMod : 'misc',
+			cssMod : 'rater',
 			fields : [ {
 				name : 'Salary 0 rating',
 				desc : 'Select the worst case salary(K/y), where you\'d give a 0 rating.',
@@ -29,6 +29,24 @@ export default {
 				min  : 2,
 				max  : 20
 			} ]
+		},
+		
+		{
+			name   : 'Miscellaneous',
+			cssMod : 'misc',
+			fields : [ {
+				name : 'Time to stall',
+				desc : 'Select the time (in Days) of inactivity to mark a job as inactive (no reply).',
+				code : 'nrpl',
+				min  : 4,
+				max  : 44
+			} ]
+		},
+		
+		{
+			name   : 'The Company Ranker',
+			cssMod : '',
+			desc   : 'desc <a href="/features/the-company-ranker" target="_blank">The Company Ranker</a>'
 		},
 		
 		{
@@ -57,7 +75,7 @@ export default {
 			cssMod : 'pic',
 			fields : [ {
 				name : 'Current traction',
-				desc : 'How much is the current traction of the company important in your job decision between 0 and 10',
+				desc : 'How much is the current traction of the company important in your job decision between 0 and 10.',
 				code : 'w_pic1',
 				max  : 10
 			}, {

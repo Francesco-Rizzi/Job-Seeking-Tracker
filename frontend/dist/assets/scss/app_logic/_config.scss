@@ -39,6 +39,23 @@
 	border-top: 1px solid var(--brand-color-neutral-light);
 }
 
+.jst-app-logic-view-config-description {
+	font-size: var(--brand-font-size-medium);
+	margin-bottom: 15px;
+	font-weight: 400;
+	text-align: justify;
+	a {
+		font-weight: 700;
+		font-style: italic;
+		text-decoration: underline;
+	}
+}
+
+.jst-app-logic-view-config-reset-wrap{
+	padding-bottom: 60px;
+	text-align: right;
+}
+
 @media screen and (max-width: $media-mobile + 'px') {
 
 	.jst-app-logic-view-config-field-name {

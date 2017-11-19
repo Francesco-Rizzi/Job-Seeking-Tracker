@@ -7,21 +7,19 @@ export default class DataViewJob extends Component {
 	
 	render(){
 		
-		const {job} = this.props;
-		const id    = utils.getJobID(job);
+		const {job, rankingConf} = this.props;
+		const id                 = utils.getJobID(job);
+		const grade              = utils.getJobRank(job, rankingConf);
 		
 		return (
 			<div className={`${ns}-item`}>
+				<div className={`${ns}-title`}>Overview:</div>
 				<div className={`${ns}-overview`}>
-					<div>
-						{job.role}
-					</div>
-					<div>
-						{job.company}
-					</div>
-					{this.renderLink(job)}
+					<div><b>{job.role}</b> at <b>{job.company}</b> in <b>{job.location}</b> {/*this.renderLink(job)*/}</div>
+					<div>Company Ranker: <b className={`${ns}-grade mod-${grade}`}>{grade}</b></div>
 				</div>
 				<div className={`${ns}-details`}>
+					<div className={`${ns}-title`}>Full data:</div>
 				
 				</div>
 				<div className={`${ns}-actions`}>
@@ -34,8 +32,8 @@ export default class DataViewJob extends Component {
 	}
 	
 	renderLink( job ){
-		if ( job.url ) {
-			return <a href={job.url} target='_blank'>job url</a>;
+		if ( job.link ) {
+			return <a href={job.link} target='_blank'>(<i>got-to-job</i>)</a>;
 		}
 	}
 	

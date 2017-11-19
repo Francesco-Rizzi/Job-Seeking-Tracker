@@ -6,7 +6,7 @@ export default {
 		configuration : {
 			
 			//misc def
-			ncmd : 15,
+			nrpl : 24,
 			slzr : 45,
 			sltr : 140,
 			eqzr : 1,
@@ -35,8 +35,8 @@ export default {
 				//First example company
 				role          : 'Data Analyst',
 				company       : 'ACME Corp.',
-				location      : 'UK',
-				link          : '',
+				location      : 'San Francisco',
+				link          : 'http://acme-corp.com',
 				stageCode     : 1,
 				lastContactOn : 644688366,
 				insertedOn    : 644688366,

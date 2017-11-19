@@ -29,7 +29,7 @@ class DataView extends Component {
 					<div key={k} className={`${ns}-group`}>
 						<h2 className={`${ns}-title`}>{stageNames[ k ]}</h2>
 						{groupedJobs[ k ].map(( j, i ) =>
-												  <DataViewJob key={i} job={j} onEdit={this.onEdit} onRemove={this.onRemove} />)}
+												  <DataViewJob key={i} job={j} rankingConf={this.props.user.data.configuration} onEdit={this.onEdit} onRemove={this.onRemove} />)}
 					</div>
 				))}
 				<div className={`${ns}-add`}>

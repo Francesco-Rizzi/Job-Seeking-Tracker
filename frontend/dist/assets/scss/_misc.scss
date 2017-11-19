@@ -44,7 +44,7 @@ ul {
 	min-height: calc(100vh - var(--header-height));
 }
 
-.jst-button-danger, .jst-button-primary, .jst-button-link {
+.jst-button-danger, .jst-button-primary {
 	padding: 10px 24px;
 	transition: all var(--brand-transition-time);
 	font-size: var(--brand-font-size-medium);
@@ -56,7 +56,47 @@ ul {
 		padding: 5px 10px;
 	}
 	&.mod-space-left {
-		margin-left: 5px;
+		margin-left: 10px;
+	}
+}
+
+.jst-button-link-alert, .jst-button-link-danger, .jst-button-link-primary {
+	padding: 10px 0;
+	transition: all var(--brand-transition-time);
+	font-size: var(--brand-font-size-medium);
+	border: none;
+	cursor: pointer;
+	display: inline-block;
+	box-shadow: none;
+	background: transparent;
+	text-decoration: underline;
+	outline: none;
+	&.mod-small {
+		padding: 5px 0;
+	}
+	&.mod-space-left {
+		margin-left: 10px;
+	}
+}
+
+.jst-button-link-primary {
+	color: var(--brand-color-primary-dark);
+	&:hover {
+		color: var(--brand-color-primary);
+	}
+}
+
+.jst-button-link-alert {
+	color: var(--brand-color-alert-dark);
+	&:hover {
+		color: var(--brand-color-alert);
+	}
+}
+
+.jst-button-link-danger {
+	color: var(--brand-color-danger);
+	&:hover {
+		color: var(--brand-color-danger-tiny-light);
 	}
 }
 
@@ -64,15 +104,6 @@ ul {
 	background: var(--brand-color-primary);
 	&:hover {
 		background: var(--brand-color-primary-light);
-	}
-}
-
-.jst-button-link {
-	background: transparent;
-	color: var(--brand-color-primary-dark);
-	text-decoration: underline;
-	&:hover {
-		color: var(--brand-color-primary);
 	}
 }
 
