@@ -37,7 +37,7 @@ class ConfigView extends Component {
 		return (
 			<div className={`${ns}-group mod-${group.cssMod}`} key={i}>
 				<h2 className={`${ns}-title`}>
-					{group.name}
+					{group.isWeight ? '[weights] ' : ''}{group.name}
 				</h2>
 				{/* Actually not so dangerous */}
 				{group.desc &&

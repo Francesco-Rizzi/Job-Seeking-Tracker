@@ -46,13 +46,14 @@ export default {
 		{
 			name   : 'The Company Ranker',
 			cssMod : '',
-			desc   : 'desc <a href="/features/the-company-ranker" target="_blank">The Company Ranker</a>'
+			desc   : 'The Company Ranker is a powerful decision-helper tool which ranks companies tailored on <i>your</i> preferences. Below you can fine-tune each one of the 13 different inputs that it uses for ranking companies, choosing what matters most for you! Discover move on how it works: <a href="/features/the-company-ranker" target="_blank">The Company Ranker</a>.'
 		},
 		
 		{
-			name   : '[weights] Financial package',
-			cssMod : 'finance',
-			fields : [ {
+			name     : 'Financial package',
+			isWeight : true,
+			cssMod   : 'finance',
+			fields   : [ {
 				name : 'Salary',
 				desc : 'How much is salary important in your job decision between 0 (I don\'t care at all) and 10 (this is a very key aspect).',
 				code : 'w_fpk1',
@@ -71,9 +72,10 @@ export default {
 		},
 		
 		{
-			name   : '[weights] Successful prospect of you in the company',
-			cssMod : 'pic',
-			fields : [ {
+			name     : 'Successful prospect of you in the company',
+			isWeight : true,
+			cssMod   : 'pic',
+			fields   : [ {
 				name : 'Current traction',
 				desc : 'How much is the current traction of the company important in your job decision between 0 and 10.',
 				code : 'w_pic1',
@@ -102,9 +104,10 @@ export default {
 		},
 		
 		{
-			name   : '[weights] Successful prospect of you in another company',
-			cssMod : 'poc',
-			fields : [ {
+			name     : 'Successful prospect of you in another company',
+			isWeight : true,
+			cssMod   : 'poc',
+			fields   : [ {
 				name : 'Learning opportunities',
 				desc : 'How much the learning and professional growth opportunities are important in your job decision between 0 and 10.',
 				code : 'w_poc1',
@@ -118,9 +121,10 @@ export default {
 		},
 		
 		{
-			name   : '[weights] Personal preferences',
-			cssMod : 'ppr',
-			fields : [ {
+			name     : 'Personal preferences',
+			isWeight : true,
+			cssMod   : 'ppr',
+			fields   : [ {
 				name : 'Team composition',
 				desc : 'How much the team composition (size, roles, structure, etc.) is important in your job decision between 0 and 10.',
 				code : 'w_ppr1',

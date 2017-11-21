@@ -21,11 +21,11 @@ export default class About extends Component {
 				<h4 className={`${ns}-desc`}>
 					I have built this Web App from scratch, managing the full process: <i>concept</i> + <i>design</i> + <i>user experience</i> + <i>architecture</i> + <i>backend</i> + <i>frontend</i> + <i>deploy</i>, and I'm pretty proud of it :).
 					
-					Why Job Seeking Tracker? To solve a problem! Easily and effectively track my job seeking activity, get visual insights from the data and, most important, taking the best decision on chosing a company evaluating many different traits <i>tailored to user's preferences</i>.
+					Why Job Seeking Tracker? To solve a problem! Easily and effectively track my job seeking activity, get visual insights from the data and, most important, taking the best decision on chosing a company evaluating many different traits <i>tailored to user's preferences</i>. Check out how <a href="/features/the-company-ranker" target="_blank">The Company Ranker™</a> works!
 					
 					The backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT authentication).
 					
-					The frontend is a SPA (Single-Page-App) based on React and Redux (+ many other libraries, see below).
+					The frontend is a SPA (Single-Page-App) based on React and Redux (+ many other UI/UX libraries, see below).
 					
 					The transpilation and bundling of the JavaScript stuff is made via Webpack, creating two bundles for <i>Custom</i> end <i>Vendor</i> code, along with using file-name-hashing for cache-busting management.
 					
@@ -43,6 +43,7 @@ export default class About extends Component {
 					<li>React-smooth-collapse</li>
 					<li>React-datepicker</li>
 					<li>React-tooltip</li>
+					<li>React-toggle</li>
 					<li>Redux 🔃</li>
 					<li>Redux-thunk</li>
 					<li>Redux-form</li>

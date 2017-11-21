@@ -39,7 +39,7 @@ export default class DataViewJob extends Component {
 								<b>{job.role}</b> at <b>{job.company}</b> in <b>{job.location}</b>
 							</div>
 							<div>
-								<span className={`${ns}-see-details`} onClick={() => this.setState({detailMode : !this.state.detailMode})}><i>{!this.state.detailMode ? 'see' : 'hide'} details</i></span>
+								<span className={`${ns}-see-details`} onClick={() => this.setState({detailMode : !this.state.detailMode})}><i>{!this.state.detailMode ? 'show' : 'hide'} details</i></span>
 								{this.renderLink(job)}
 							</div>
 						

@@ -24,13 +24,15 @@ class DataView extends Component {
 		const data        = this.props.user.data;
 		const groupedJobs = this.groupJobsByStage(data.jobs);
 		const keys        = Object.keys(groupedJobs);
+		const rankingConf= this.props.user.data.configuration;
 		
 		return (
 			<div className={ns}>
 				{keys.map(k => (
 					<div key={k} className={`${ns}-group`}>
 						<h2 className={`${ns}-title`}>{stageNames[ k ]} ({groupedJobs[ k ].length})</h2>
-						{_.sortBy(groupedJobs[ k ], [ 'location', 'role' ]).map(( j, i ) => <DataViewJob key={i} job={j} rankingConf={this.props.user.data.configuration} onEdit={this.onEdit} onRemove={this.onRemove} />)}
+						{_.sortBy(groupedJobs[ k ], [j => utils.getJobRank(j, rankingConf), j => -j.insertedOn]).map(( j, i ) =>
+																							   <DataViewJob key={i} job={j} rankingConf={rankingConf} onEdit={this.onEdit} onRemove={this.onRemove} />)}
 					</div>
 				))}
 				<div className={`${ns}-add`}>

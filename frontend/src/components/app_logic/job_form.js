@@ -105,6 +105,12 @@ class JobForm extends Component {
 	}
 	
 	onLastContactOnChange = ( date ) =>{
+		const d = new Date();
+		date.set({
+					 hour   : d.getHours(),
+					 minute : d.getMinutes(),
+					 second : 0
+				 });
 		this.props.changeField('lastContactOn', +date);
 	};
 	
@@ -123,7 +129,7 @@ class JobForm extends Component {
 			<div className={`${ns}-field-wrapper`}>
 				<label className={`${ns}-label`}>{name}</label>
 				<Field className={`${ns}-field mod-rating`} name={code} component="input" type="number" />
-				<ReactStars color1={'#888888'} color2={'#e6c304'} value={val} onChange={this.onRatingChange.bind(this, code)}  />
+				<ReactStars color1={'#888888'} color2={'#e6c304'} value={val} onChange={this.onRatingChange.bind(this, code)} />
 			</div>
 		);
 	}

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-
+import inputsData from './app_logic/config_view_data';
+import _ from 'lodash';
 
 const ns = 'jst-the-company-ranker-page';
 
@@ -7,74 +8,59 @@ export default class TheCompanyRankerPage extends Component {
 	
 	render(){
 		
+		const inputs = _.filter(inputsData.dataGroups, {'isWeight' : true});
+		
 		return (
 			<div className={ns}>
 				
 				<h1 className={`${ns}-title`}>The Company Ranker</h1>
-				<h2 className={`${ns}-desc`}>I'm Francesco, if you want to discover some more stuff about me, check out these links: <a href="http://francescorizzi.info/" target="_blank" title="Personal website">my website</a>, <a target="_blank" href="https://github.com/Francesco-Rizzi" title="GitHub profile">GitHub</a>, <a target="_blank" href="https://www.linkedin.com/in/francesco-rizzi-199524a5/" title="LinkedIn profile">LinkedIn</a>, <a target="_blank" href="https://twitter.com/0xFFrancesco" title="Twitter profile">Twitter @0xFFrancesco</a>, <a target="_blank" href="https://www.instagram.com/finallyfrancesco/" title="Instagram profile">Instagram @finallyfrancesco</a>, <a href='https://medium.com/@francesco_rizzi' target='_blank'>Medium</a>.
+				<h2 className={`${ns}-subtitle`}>
+					The Company Ranker is a powerful decision-helper tool which ranks companies tailored on <i>your</i> preferences.
 				</h2>
 				
-				<h3 className={`${ns}-title mod-space-top`}>About the app:</h3>
-				
-				<h4 className={`${ns}-desc`}>
-					I have built this Web App from scratch, managing the full process: <i>concept</i> + <i>design</i> + <i>user experience</i> + <i>backend</i> + <i>frontend</i> + <i>deploy</i>, and I'm pretty proud of it :).
-					
-					Why Job Seeking Tracker? To solve a problem! Easily and effectively track my job seeking activity, get visual insights from the data and, most important, taking the best decision on chosing a company evaluating many different traits <i>tailored to user's preferences</i>.
-					
-					The backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT authentication).
-					
-					The frontend is a SPA (Single-Page-App) based on React and Redux (+ many other libraries, see below).
-					
-					The transpilation and bundling of the JavaScript stuff is made via Webpack, creating two bundles for <i>Custom</i> end <i>Vendor</i> code, along with using file-name-hashing for cache-busting management.
-					
-					Interested in the source code? It is publicly available, check it out on its <a href="https://github.com/Francesco-Rizzi/Job-Seeking-Tracker" target="_blank">GitHub repo</a> !
-				</h4>
-				
-				<h4 className={`${ns}-list-title`}>Frontend (React Single-Page-App):</h4>
-				<ul className={`${ns}-list`}>
-					<li>JavaScript (ES6+)</li>
-					<li>JSX</li>
-					<li>React ⚛</li>
-					<li>React-router</li>
-					<li>React-slider</li>
-					<li>React-stars</li>
-					<li>React-smooth-collapse</li>
-					<li>React-datepicker</li>
-					<li>React-tooltip</li>
-					<li>Redux 🔃</li>
-					<li>Redux-thunk</li>
-					<li>Redux-form</li>
-					<li>Axios</li>
-					<li>Lodash</li>
-					<li>Moment</li>
-					<li>
-						<a href='https://github.com/Francesco-Rizzi/Math.mapRange' target='_blank'>Math.mapRange</a> (Math enhancer)
-					</li>
-					<li>CSS</li>
-					<li>CSS variables</li>
-					<li>SASS</li>
-					<li>Webpack (<a href='https://webpack.js.org/guides/code-splitting/' target='_blank'>+ vendor splitting</a>)</li>
-					<li>Babel</li>
-					<li>NPM 📦</li>
-				</ul>
-				
-				<h4 className={`${ns}-list-title`}>Backend (LAMP, JWT auth):</h4>
-				<ul className={`${ns}-list`}>
-					<li>PHP 🐘</li>
-					<li>
-						<a href='https://silex.symfony.com/' target='_blank'>Silex Framework</a> (a.k.a. Lightweight Symfony)
-					</li>
-					<li>MySQL</li>
-					<li><a href='http://www.doctrine-project.org/projects/dbal.html' target='_blank'>Doctrine DBAL</a> (Database Abstaction Layer)
-					</li>
-					<li>Composer</li>
-					<li>Linux 🐧</li>
-					<li>Apache</li>
-					<li>HTACCESS</li>
-					<li>SSL</li>
-				</ul>
+				<div className={`${ns}-desc`}>
+					This sounds kinda of going to school for companies? It is.
+					<br />
+					<br />
+					Its main purpose is to give a simple and straightforward overview of a company using many different inputs to find at a glance which is the best company to go forward with. I took inspiration from some broad Machine Learning knowledge, it in fact uses <b>13 different parameters weighted on your preferences</b> (you can fine tune each weight in the app config view). Why? Because the job seeking process can be long and painful, and having a tool which can give you an immediate visual explanation on how things are going on is really helpful. You don't have to review every time the job offers to understand which is better, it is now really simple! <b>A</b> means <i>TOP offer</i>, while <b>F</b> means <i>really bad offer</i>.
+					<br />
+					<div className={`${ns}-image`}>
+						<img src='/libs/assets/images/the-company-ranker.svg' title='The Company Ranker logic'/>
+					</div>
+					<br />
+					Q: But I'm not interested in money, my main interest is the company culture!
+					<br />
+					A: No problem! With this tool you can set how much something is important in your decision. Money is not important? Give it a low weight in the configuration! Culture is your main concern? Give it an high weight in the configuration, easy right? You can fine-tune 13 different factors! Here a list:
+					<br />
+					<div>
+						{this.renderInputs(inputs)}
+					</div>
+					<br />
+					Q: How do you evaluate culture, benefits, etc.?
+					<br />
+					A: You evaluate them! Every job has its own evaluations (from 0 to 5, step of 0.5) in stars, using it is really much simple that explaining it, give it a try! Here an example of what you'd see:
+					<br />
+					<div className={`${ns}-image`}>
+						<img src='/libs/assets/images/stars.png' title='The Company Ranker logic' />
+					</div>
+				</div>
+			
 			</div>
 		);
+		
+	}
+	
+	renderInputs( inputs ){
+		return inputs.map(( i, k ) => (
+			<div key={k} className={`${ns}-input`}>
+				<div className={`${ns}-input-name`}>{i.name}</div>
+				<ul>
+					{i.fields.map(( f, k ) => (
+						<li key={k} className={`${ns}-input-item`}>{f.name}</li>
+					))}
+				</ul>
+			</div>
+		));
 		
 	}
 	
