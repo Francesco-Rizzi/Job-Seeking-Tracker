@@ -98,8 +98,9 @@ export default function( state = initialState, action ){
 			
 			newState = _.cloneDeep(state);
 			
-			jobData = action.payload.jobData;
-			jobID   = utils.getJobID(jobData);
+			jobData            = action.payload.jobData;
+			jobData.insertedOn = +new Date();
+			jobID              = utils.getJobID(jobData);
 			
 			newState.data.jobs[ jobID ] = jobData;
 			return newState;

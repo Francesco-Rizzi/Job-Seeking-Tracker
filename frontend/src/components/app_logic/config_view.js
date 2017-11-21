@@ -24,6 +24,9 @@ class ConfigView extends Component {
 		return (
 			<div className={ns}>
 				{data.dataGroups.map(( g, i ) => this.renderGroup(g, i))}
+				<h2 className={`${ns}-title`}>
+					Reset all data (cannot undo)
+				</h2>
 				{this.renderReset()}
 			</div>
 		);
@@ -73,13 +76,12 @@ class ConfigView extends Component {
 		return (
 			<div className={`${ns}-reset-wrap`}>
 				<button type='button' className={`jst-button-alert`} onClick={() => this.setState({reset : !resetEnabled})}>{resetEnabled ? 'Disable' : 'Enable'} Reset</button>
-				<button type='button' className={`jst-button-${!resetEnabled ? 'disabled' : 'danger'} mod-space-left`} disabled={!resetEnabled} onClick={this.onReset}>Reset (cannot undo)</button>
+				<button type='button' className={`jst-button-${!resetEnabled ? 'disabled' : 'danger'} mod-space-left`} disabled={!resetEnabled} onClick={this.onReset}>Reset</button>
 			</div>
 		);
 	}
 	
 	onSliderChanging( code, v ){
-		console.log(v);
 		this.setState({sliders : {[code] : v}});
 	}
 	

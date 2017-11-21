@@ -44,7 +44,7 @@ ul {
 	min-height: calc(100vh - var(--header-height));
 }
 
-.jst-button-danger, .jst-button-primary {
+.jst-button-danger, .jst-button-primary, .jst-button-alert , .jst-button-disabled{
 	padding: 10px 24px;
 	transition: all var(--brand-transition-time);
 	font-size: var(--brand-font-size-medium);
@@ -112,6 +112,18 @@ ul {
 	&:hover {
 		background: var(--brand-color-danger-tiny-light);
 	}
+}
+
+.jst-button-alert {
+	background: var(--brand-color-alert-dark);
+	&:hover {
+		background: var(--brand-color-alert);
+	}
+}
+
+.jst-button-disabled {
+	background: var(--brand-color-neutral-light);
+	cursor: not-allowed;
 }
 
 .jst-app-wrapper {

@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import * as actions from '../../actions';
 import {connect} from 'react-redux';
 import DataViewJob from './data_view_job';
-import stageNames from './stages_data';
+import {fullStages as stageNames} from './stages_data';
 import JobForm from './job_form';
+import utils from './../../utils/utils';
+import _ from 'lodash';
 
 const ns = 'jst-app-logic-view-data';
 
@@ -27,9 +29,8 @@ class DataView extends Component {
 			<div className={ns}>
 				{keys.map(k => (
 					<div key={k} className={`${ns}-group`}>
-						<h2 className={`${ns}-title`}>{stageNames[ k ]}</h2>
-						{groupedJobs[ k ].map(( j, i ) =>
-												  <DataViewJob key={i} job={j} rankingConf={this.props.user.data.configuration} onEdit={this.onEdit} onRemove={this.onRemove} />)}
+						<h2 className={`${ns}-title`}>{stageNames[ k ]} ({groupedJobs[ k ].length})</h2>
+						{_.sortBy(groupedJobs[ k ], [ 'location', 'role' ]).map(( j, i ) => <DataViewJob key={i} job={j} rankingConf={this.props.user.data.configuration} onEdit={this.onEdit} onRemove={this.onRemove} />)}
 					</div>
 				))}
 				<div className={`${ns}-add`}>
@@ -48,9 +49,10 @@ class DataView extends Component {
 		
 		ids.forEach(id =>{
 			
-			let j     = jobs[ id ];
-			let group = res[ j.stageCode ];
-			group ? group.push(j) : res[ j.stageCode ] = [ j ];
+			let j         = jobs[ id ];
+			let stageCode = utils.isJobStalled(j, this.props.user.data.configuration.nrpl) ? 9 : j.stageCode;
+			let group     = res[ stageCode ];
+			group ? group.push(j) : res[ stageCode ] = [ j ];
 			
 		});
 		

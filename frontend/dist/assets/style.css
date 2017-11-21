@@ -68,7 +68,7 @@ ul {
   background-color: var(--brand-color-secondary);
   min-height: calc(100vh - var(--header-height)); }
 
-.jst-button-danger, .jst-button-primary {
+.jst-button-danger, .jst-button-primary, .jst-button-alert, .jst-button-disabled {
   padding: 10px 24px;
   transition: all var(--brand-transition-time);
   font-size: var(--brand-font-size-medium);
@@ -76,9 +76,9 @@ ul {
   border: none;
   cursor: pointer;
   display: inline-block; }
-  .jst-button-danger.mod-small, .jst-button-primary.mod-small {
+  .jst-button-danger.mod-small, .jst-button-primary.mod-small, .jst-button-alert.mod-small, .jst-button-disabled.mod-small {
     padding: 5px 10px; }
-  .jst-button-danger.mod-space-left, .jst-button-primary.mod-space-left {
+  .jst-button-danger.mod-space-left, .jst-button-primary.mod-space-left, .jst-button-alert.mod-space-left, .jst-button-disabled.mod-space-left {
     margin-left: 10px; }
 
 .jst-button-link-alert, .jst-button-link-danger, .jst-button-link-primary {
@@ -121,6 +121,15 @@ ul {
   background: var(--brand-color-danger); }
   .jst-button-danger:hover {
     background: var(--brand-color-danger-tiny-light); }
+
+.jst-button-alert {
+  background: var(--brand-color-alert-dark); }
+  .jst-button-alert:hover {
+    background: var(--brand-color-alert); }
+
+.jst-button-disabled {
+  background: var(--brand-color-neutral-light);
+  cursor: not-allowed; }
 
 .jst-app-wrapper {
   position: relative; }
@@ -658,6 +667,9 @@ ul {
     font-style: italic;
     text-decoration: underline; }
 
+.jst-app-logic-view-config-reset-wrap {
+  padding-bottom: 60px; }
+
 @media screen and (max-width: 576px) {
   .jst-app-logic-view-config-field-name {
     border-right: none;
@@ -780,6 +792,106 @@ ul {
   text-align: right;
   padding-bottom: 100px; }
 
+.jst-app-logic-view-data-group {
+  border-radius: var(--brand-radius);
+  background: var(--brand-color-neutral-ultra-light);
+  margin-bottom: 60px;
+  border: 1px solid var(--brand-color-neutral-light); }
+
+.jst-app-logic-view-data-title {
+  padding: 15px;
+  border-bottom: 1px solid var(--brand-color-neutral-light);
+  font-size: var(--brand-font-size-big);
+  font-family: var(--brand-font-family-heading); }
+
+.jst-app-logic-view-data-job-item {
+  padding: 15px; }
+  .jst-app-logic-view-data-job-item:not(:last-child) {
+    border-bottom: 1px solid var(--brand-color-neutral-light); }
+
+.jst-app-logic-view-data-job-overview {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between; }
+
+.jst-app-logic-view-data-job-overview-text {
+  font-size: var(--brand-font-size-medium); }
+
+.jst-app-logic-view-data-job-right {
+  display: flex;
+  align-items: center; }
+
+.jst-app-logic-view-data-job-overview-rank {
+  font-size: var(--brand-font-size-big);
+  font-family: var(--brand-font-family-heading);
+  margin-right: 15px;
+  border-radius: var(--brand-radius);
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+  cursor: help; }
+  .jst-app-logic-view-data-job-overview-rank.mod-a, .jst-app-logic-view-data-job-overview-rank.mod-b {
+    color: var(--brand-color-success);
+    background: var(--brand-color-success-light); }
+  .jst-app-logic-view-data-job-overview-rank.mod-c, .jst-app-logic-view-data-job-overview-rank.mod-d {
+    color: var(--brand-color-alert);
+    background: var(--brand-color-alert-light); }
+  .jst-app-logic-view-data-job-overview-rank.mod-e, .jst-app-logic-view-data-job-overview-rank.mod-f {
+    color: var(--brand-color-danger);
+    background: var(--brand-color-danger-light); }
+
+.jst-app-logic-view-data-job-see-details, .jst-app-logic-view-data-job-link {
+  margin-top: 3px;
+  color: var(--brand-color-neutral-medium);
+  font-size: var(--brand-font-size-small);
+  cursor: pointer; }
+
+.jst-app-logic-view-data-job-link {
+  margin-left: 15px; }
+
+.jst-app-logic-view-data-job-link a {
+  color: var(--brand-color-neutral-medium); }
+
+.jst-app-logic-view-data-job-overview-actions.mod-desktop {
+  text-align: right;
+  flex-shrink: 0;
+  /*.jst-app-logic-view-data-job-action {
+  	margin-top: 5px;
+  	margin-bottom: 5px;
+  }*/ }
+
+.jst-app-logic-view-data-job-overview-actions.mod-mobile {
+  display: none;
+  text-align: right;
+  padding-top: 15px; }
+
+.jst-app-logic-view-data-job-details {
+  padding: 15px 0 0 0; }
+
+.jst-app-logic-view-data-job-detail-group {
+  display: flex;
+  flex-wrap: wrap; }
+
+.jst-app-logic-view-data-job-detail-field {
+  flex-basis: 150px;
+  flex-shrink: 0;
+  max-width: 100%;
+  padding-top: 15px;
+  font-size: var(--brand-font-size-small); }
+  .jst-app-logic-view-data-job-detail-field.mod-date {
+    flex-basis: auto;
+    flex-grow: 1; }
+  .jst-app-logic-view-data-job-detail-field.mod-rating {
+    font-size: var(--brand-font-size-small); }
+
+@media screen and (max-width: 576px) {
+  .jst-app-logic-view-data-job-overview-actions.mod-desktop {
+    display: none; }
+
+  .jst-app-logic-view-data-job-overview-actions.mod-mobile {
+    display: block; } }
 .jst-app-logic-job-form {
   position: fixed;
   padding: 0 15px;

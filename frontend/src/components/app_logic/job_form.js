@@ -84,7 +84,6 @@ class JobForm extends Component {
 						{this.renderRating('Culture', 'rankings.ppr3')}
 					</div>
 					
-					
 					<div className={`${ns}-actions`}>
 						<button className={`${ns}-action jst-button-link-danger mod-small`} onClick={this.props.onCancel} type='button'>
 							Cancel
@@ -119,11 +118,12 @@ class JobForm extends Component {
 	}
 	
 	renderRating( name, code ){
+		const val = this.props.getField(code) / 2 || 0;
 		return (
 			<div className={`${ns}-field-wrapper`}>
 				<label className={`${ns}-label`}>{name}</label>
 				<Field className={`${ns}-field mod-rating`} name={code} component="input" type="number" />
-				<ReactStars color1={'#888888'} color2={'#e6c304'} value={this.props.getField(code) / 2 || 0} onChange={this.onRatingChange.bind(this, code)} />
+				<ReactStars color1={'#888888'} color2={'#e6c304'} value={val} onChange={this.onRatingChange.bind(this, code)}  />
 			</div>
 		);
 	}

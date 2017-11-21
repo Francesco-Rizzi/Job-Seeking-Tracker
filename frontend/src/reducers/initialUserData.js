@@ -31,15 +31,15 @@ export default {
 		
 		jobs : {
 			
-			"-1539079575" : {
+			"-1943686361" : {
 				//First example company
 				role          : 'Data Analyst',
 				company       : 'ACME Corp.',
 				location      : 'San Francisco',
 				link          : 'http://acme-corp.com',
 				stageCode     : 1,
-				lastContactOn : 644688366,
-				insertedOn    : 644688366,
+				lastContactOn : 644688366000,
+				insertedOn    : 644688366000,
 				salary        : 70000,
 				equity        : 1.25,
 				rankings      : {

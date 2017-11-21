@@ -1,4 +1,4 @@
-export default {
+const stages = {
 	0 : 'Interesting',
 	1 : 'Candidate',
 	2 : 'Exploration call',
@@ -9,3 +9,10 @@ export default {
 	7 : 'Rejected',
 	8 : 'Rejected by me',
 };
+
+export const fullStages = {
+	...stages,
+	9 : 'Inactive (no reply)'
+};
+
+export default stages;

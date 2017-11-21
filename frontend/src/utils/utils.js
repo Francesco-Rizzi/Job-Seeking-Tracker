@@ -147,4 +147,13 @@ export default class Utils {
 		
 	}
 	
+	static isJobStalled( job, daysToStall, referenceDate = +new Date(), ){
+		
+		const elapsedTime = referenceDate - job.lastContactOn;
+		
+		const days = elapsedTime / 1000 / 3600 / 24;
+		return days > daysToStall;
+		
+	}
+	
 };
