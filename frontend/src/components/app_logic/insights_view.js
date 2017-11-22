@@ -28,7 +28,7 @@ class InsightsView extends Component {
 		super(props);
 		this.state = {
 			excludeInactive : false,
-			salt            : Math.random() * 180,
+			salt            : Math.random() * 360,
 		};
 	}
 	
@@ -47,8 +47,12 @@ class InsightsView extends Component {
 				</div>
 				<div className={`${ns}-charts-wrap`}>
 					<div className={`${ns}-charts-group`}>
-						{this.renderChart('Stages by Location','bar', charts.stageByLocationBars, {XAxisKey : 'location'})}
-						{this.renderChart('Stages overall','pie', charts.stageByLocationPie)}
+						{this.renderChart('Stages by Location', 'bar', charts.stageByLocationBars, {XAxisKey : 'location'})}
+						{this.renderChart('Stages overall', 'pie', charts.stageByLocationPie)}
+					</div>
+					<div className={`${ns}-charts-group`}>
+						{this.renderChart('Ranks by Location', 'bar', charts.rankByLocationBars, {XAxisKey : 'location'})}
+						{this.renderChart('Ranks overall', 'pie', charts.rankByLocationPie)}
 					</div>
 				</div>
 			</div>
@@ -61,11 +65,19 @@ class InsightsView extends Component {
 		const jobs = this.props.user.data.jobs;
 		
 		const res = {
+			//STAGES BY LOCATION
 			stageByLocationBars : {
 				data : {},
 				bars : {}
 			},
 			stageByLocationPie  : {
+				data : {},
+			}, //RANK BY LOCATION
+			rankByLocationBars  : {
+				data : {},
+				bars : {}
+			},
+			rankByLocationPie   : {
 				data : {},
 			},
 		};
@@ -77,15 +89,26 @@ class InsightsView extends Component {
 			if ( this.isJobIncluded(job) ) {
 				
 				//STAGES BY LOCATION
-				res.stageByLocationBars.data[ job.location ] = res.stageByLocationBars.data[ job.location ] || {};
+				createIfNotExits(res.stageByLocationBars.data, job.location);
 				
-				let dataPoint      = res.stageByLocationBars.data[ job.location ];
-				let stage          = stageNames[ utils.getJobStageCode(job, this.props.user.data.configuration.nrpl) ];
-				dataPoint[ stage ] = dataPoint[ stage ] ? dataPoint[ stage ] + 1 : 1;
+				let dataPoint = res.stageByLocationBars.data[ job.location ];
+				let stage     = stageNames[ utils.getJobStageCode(job, this.props.user.data.configuration.nrpl) ];
+				
+				addOrInitialize(dataPoint, stage);
+				addOrInitialize(res.stageByLocationPie.data, stage);
 				
 				res.stageByLocationBars.bars[ stage ] = 1;
 				
-				res.stageByLocationPie.data[ stage ] = res.stageByLocationPie.data[ stage ] + 1 || 1;
+				//RANK BY LOCATION
+				createIfNotExits(res.rankByLocationBars.data, job.location);
+				
+				dataPoint = res.rankByLocationBars.data[ job.location ];
+				let rank  = utils.getJobRank(job, this.props.user.data.configuration);
+				
+				addOrInitialize(dataPoint, rank);
+				addOrInitialize(res.rankByLocationPie.data, rank);
+				
+				res.rankByLocationBars.bars[ rank ] = 1;
 				
 			}
 			
@@ -97,7 +120,35 @@ class InsightsView extends Component {
 		});
 		res.stageByLocationBars.bars = Object.keys(res.stageByLocationBars.bars);
 		
+		//RANK BY LOCATION
+		res.rankByLocationBars.data = _.map(res.rankByLocationBars.data, ( values, key ) =>{
+			return {location : key, ...values};
+		});
+		res.rankByLocationBars.bars = Object.keys(res.rankByLocationBars.bars).sort().reverse();
+		res.rankByLocationPie.data = sortObjectKeys(res.rankByLocationPie.data, true);
+		
 		return res;
+		
+		function createIfNotExits( obj, key ){
+			if ( !obj[ key ] ) {
+				obj[ key ] = {};
+			}
+		}
+		
+		function addOrInitialize( obj, key ){
+			obj[ key ] ? ++obj[ key ] : obj[ key ] = 1;
+		}
+		
+		function sortObjectKeys( obj, reverse = false ){
+			let arr = Object.keys(obj).sort();
+			if (reverse){
+				arr.reverse();
+			}
+			return arr.reduce(( acc, key ) =>{
+				acc[ key ] = obj[ key ];
+				return acc;
+			}, {});
+		}
 		
 	}
 	
@@ -165,7 +216,7 @@ class InsightsView extends Component {
 	renderPieChart( data ){
 		
 		const dataArray = _.map(data.data, ( v, k ) => ({
-			stage  : k,
+			key  : k,
 			number : v
 		}));
 		
@@ -178,18 +229,18 @@ class InsightsView extends Component {
 			const x      = cx + radius * Math.cos(-midAngle * RADIAN);
 			const y      = cy + radius * Math.sin(-midAngle * RADIAN);
 			
-			return (
-				<text x={x} y={y} fill="white" textAnchor={'middle'} dominantBaseline="central">
-					{payload.payload.stage}
-				</text>
-			);
+			const text =
+					  <text x={x} y={y} fill="white" textAnchor={'middle'} dominantBaseline="central">{payload.payload.key}</text>;
+			return text;
+			
 		};
 		
 		return (
 			<PieChart>
 				<Tooltip />
-				<Pie data={dataArray} dataKey="number" nameKey="stage" fill="#8884d8" labelLine={false} label={renderCustomizedLabel}>
-					{dataArray.map(( e, i ) => <Cell key={i} fill={utils.generateLegendColor(i, tot, this.state.salt)} />)}
+				<Pie data={dataArray} dataKey="number" nameKey="key" fill="#8884d8" labelLine={false} label={renderCustomizedLabel}>
+					{dataArray.map(( e, i ) =>
+									   <Cell key={i} fill={utils.generateLegendColor(i, tot, this.state.salt)} />)}
 				</Pie>
 			</PieChart>
 		);

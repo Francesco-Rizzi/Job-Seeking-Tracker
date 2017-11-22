@@ -8,7 +8,7 @@
 	}
 }
 
-.jst-app-logic-view-insights-chart-title, .jst-app-logic-view-insights-options-title  {
+.jst-app-logic-view-insights-chart-title, .jst-app-logic-view-insights-options-title {
 	font-size: var(--brand-font-size-big);
 	padding: 60px 0 30px;
 	font-family: var(--brand-font-family-heading);
@@ -22,12 +22,28 @@
 	text-align: center;
 }
 
-.jst-app-logic-view-insights-charts-group{
+.jst-app-logic-view-insights-charts-group {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.jst-app-logic-view-insights-chart-wrap{
+.jst-app-logic-view-insights-chart-wrap {
 	width: 50%;
+}
+
+.jst-app-logic-view-insights-charts-wrap {
+	padding-bottom: 100px;
+}
+
+@media screen and (max-width: $media-tablet+ 'px') {
+
+	.jst-app-logic-view-insights-charts-group {
+		flex-direction: column;
+	}
+
+	.jst-app-logic-view-insights-chart-wrap {
+		width: 100%;
+	}
+
 }

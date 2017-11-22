@@ -815,6 +815,15 @@ ul {
 .jst-app-logic-view-insights-chart-wrap {
   width: 50%; }
 
+.jst-app-logic-view-insights-charts-wrap {
+  padding-bottom: 100px; }
+
+@media screen and (max-width: 768px) {
+  .jst-app-logic-view-insights-charts-group {
+    flex-direction: column; }
+
+  .jst-app-logic-view-insights-chart-wrap {
+    width: 100%; } }
 .jst-app-logic-view-data-add {
   text-align: right;
   padding-bottom: 100px; }
