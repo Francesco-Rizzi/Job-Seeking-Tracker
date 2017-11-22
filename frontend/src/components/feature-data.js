@@ -6,7 +6,7 @@ export default [
 		image       : 'mobile.jpg',
 	}, {
 		title       : 'Powerful and advanced features ⚔️',
-		description : 'High-level metrics, fine-grain controls and configurations? A powerful decision-helper tool (more about <a href="/features/the-company-ranker" target="_blank">The Company Ranker™</a>) for rank companies based on <i>YOUR preferences</i> and what they actually offer? All is at your disposal.',
+		description : 'High-level metrics, fine-grain controls and configurations? A powerful decision-helper tool (more about <a href="/features/the-company-ranker" target="_blank">The Company Ranker</a>) for rank companies based on <i>YOUR preferences</i> and what they actually offer? All is at your disposal.',
 		image       : 'mobile.jpg',
 	}, {
 		title       : 'Graphics and charts 📈',

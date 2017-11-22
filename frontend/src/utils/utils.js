@@ -156,4 +156,17 @@ export default class Utils {
 		
 	}
 	
+	static getJobStageCode( job, daysToStall, referenceDate ){
+		return Utils.isJobStalled(job, daysToStall, referenceDate) ? 9 : job.stageCode;
+	}
+	
+	static generateLegendColor( index, tot, salt = 0 ){
+		
+		let step = 360 / tot;
+		step     = step < 30 ? step : 50;
+		let hue  = (step * index + salt) % 360;
+		return `hsl(${hue}, 50%, 50%)`;
+		
+	}
+	
 };

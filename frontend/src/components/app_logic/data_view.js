@@ -52,7 +52,7 @@ class DataView extends Component {
 		ids.forEach(id =>{
 			
 			let j         = jobs[ id ];
-			let stageCode = utils.isJobStalled(j, this.props.user.data.configuration.nrpl) ? 9 : j.stageCode;
+			let stageCode = utils.getJobStageCode(j, this.props.user.data.configuration.nrpl);
 			let group     = res[ stageCode ];
 			group ? group.push(j) : res[ stageCode ] = [ j ];
 			
