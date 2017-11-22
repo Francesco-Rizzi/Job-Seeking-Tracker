@@ -163,7 +163,7 @@ export default class Utils {
 	static generateLegendColor( index, tot, salt = 0 ){
 		
 		let step = 360 / tot;
-		step     = step < 30 ? step : 50;
+		step     = step < 40 ? step : 40;
 		let hue  = (step * index + salt) % 360;
 		return `hsl(${hue}, 50%, 50%)`;
 		

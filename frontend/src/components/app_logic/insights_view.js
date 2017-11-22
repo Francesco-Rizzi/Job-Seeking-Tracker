@@ -54,6 +54,30 @@ class InsightsView extends Component {
 						{this.renderChart('Ranks by Location', 'bar', charts.rankByLocationBars, {XAxisKey : 'location'})}
 						{this.renderChart('Ranks overall', 'pie', charts.rankByLocationPie)}
 					</div>
+					<div className={`${ns}-charts-group`}>
+						{this.renderChart('Roles by Location', 'bar', charts.roleByLocationBars, {XAxisKey : 'location'})}
+						{this.renderChart('Roles overall', 'pie', charts.roleByLocationPie)}
+					</div>
+					<div className={`${ns}-numeric`}>
+						<h2 className={`${ns}-other-title`}>Other metrics:</h2>
+						<div>
+							<div>
+								<div>Active Jobs:</div>
+								<div>Inactive Jobs:</div>
+								<div>Total Jobs:</div>
+							</div>
+							<div>
+								<div>Min salary:</div>
+								<div>Max salary:</div>
+								<div>Avg salary:</div>
+							</div>
+							<div>
+								<div>Companies:</div>
+								<div>Drop rate:</div>
+								<div>Inactive rate:</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		);
@@ -79,6 +103,13 @@ class InsightsView extends Component {
 			},
 			rankByLocationPie   : {
 				data : {},
+			}, //ROLE BY LOCATION
+			roleByLocationBars  : {
+				data : {},
+				bars : {}
+			},
+			roleByLocationPie   : {
+				data : {},
 			},
 		};
 		
@@ -89,45 +120,50 @@ class InsightsView extends Component {
 			if ( this.isJobIncluded(job) ) {
 				
 				//STAGES BY LOCATION
-				createIfNotExits(res.stageByLocationBars.data, job.location);
-				
-				let dataPoint = res.stageByLocationBars.data[ job.location ];
-				let stage     = stageNames[ utils.getJobStageCode(job, this.props.user.data.configuration.nrpl) ];
-				
-				addOrInitialize(dataPoint, stage);
-				addOrInitialize(res.stageByLocationPie.data, stage);
-				
-				res.stageByLocationBars.bars[ stage ] = 1;
+				byLocationOps('stage', stageNames[ utils.getJobStageCode(job, this.props.user.data.configuration.nrpl) ], job);
 				
 				//RANK BY LOCATION
-				createIfNotExits(res.rankByLocationBars.data, job.location);
+				byLocationOps('rank', utils.getJobRank(job, this.props.user.data.configuration), job);
 				
-				dataPoint = res.rankByLocationBars.data[ job.location ];
-				let rank  = utils.getJobRank(job, this.props.user.data.configuration);
-				
-				addOrInitialize(dataPoint, rank);
-				addOrInitialize(res.rankByLocationPie.data, rank);
-				
-				res.rankByLocationBars.bars[ rank ] = 1;
+				//ROLE BY LOCATION
+				byLocationOps('role', job.role, job);
 				
 			}
 			
 		}
 		
 		//STAGES BY LOCATION
-		res.stageByLocationBars.data = _.map(res.stageByLocationBars.data, ( values, key ) =>{
-			return {location : key, ...values};
-		});
-		res.stageByLocationBars.bars = Object.keys(res.stageByLocationBars.bars);
+		byLocationPostOps('stage');
 		
 		//RANK BY LOCATION
-		res.rankByLocationBars.data = _.map(res.rankByLocationBars.data, ( values, key ) =>{
-			return {location : key, ...values};
-		});
-		res.rankByLocationBars.bars = Object.keys(res.rankByLocationBars.bars).sort().reverse();
-		res.rankByLocationPie.data = sortObjectKeys(res.rankByLocationPie.data, true);
+		byLocationPostOps('rank');
+		res.rankByLocationBars.bars = res.rankByLocationBars.bars.sort().reverse();
+		res.rankByLocationPie.data  = sortObjectKeys(res.rankByLocationPie.data, true);
+		
+		//ROLE BY LOCATION
+		byLocationPostOps('role');
 		
 		return res;
+		
+		
+		function byLocationPostOps( mainKey ){
+			res[ mainKey + 'ByLocationBars' ].data = _.map(res[ mainKey + 'ByLocationBars' ].data, ( values, key ) =>{
+				return {location : key, ...values};
+			});
+			res[ mainKey + 'ByLocationBars' ].data = _.sortBy(res[ mainKey + 'ByLocationBars' ].data, [ 'location' ]);
+			res[ mainKey + 'ByLocationBars' ].bars = Object.keys(res[ mainKey + 'ByLocationBars' ].bars);
+		}
+		
+		function byLocationOps( mainKey, data, job ){
+			createIfNotExits(res[ mainKey + 'ByLocationBars' ].data, job.location);
+			
+			let dataPoint = res[ mainKey + 'ByLocationBars' ].data[ job.location ];
+			
+			addOrInitialize(dataPoint, data);
+			addOrInitialize(res[ mainKey + 'ByLocationPie' ].data, data);
+			
+			res[ mainKey + 'ByLocationBars' ].bars[ data ] = 1;
+		}
 		
 		function createIfNotExits( obj, key ){
 			if ( !obj[ key ] ) {
@@ -141,7 +177,7 @@ class InsightsView extends Component {
 		
 		function sortObjectKeys( obj, reverse = false ){
 			let arr = Object.keys(obj).sort();
-			if (reverse){
+			if ( reverse ) {
 				arr.reverse();
 			}
 			return arr.reduce(( acc, key ) =>{
@@ -216,7 +252,7 @@ class InsightsView extends Component {
 	renderPieChart( data ){
 		
 		const dataArray = _.map(data.data, ( v, k ) => ({
-			key  : k,
+			key    : k,
 			number : v
 		}));
 		
