@@ -19,6 +19,7 @@ import {
 } from 'recharts';
 import _ from 'lodash';
 import moment from 'moment';
+import DatePicker from 'react-datepicker';
 import utils from './../../utils/utils';
 
 const ns = 'jst-app-logic-view-insights';
@@ -31,6 +32,10 @@ class InsightsView extends Component {
 			excludeInactive   : false,
 			excludeInterested : true,
 			excludeRejected   : false,
+			lastContactMin    : false,
+			lastContactMax    : false,
+			insertedOnMin     : false,
+			insertedOnMax     : false,
 			salt              : Math.random() * 360,
 		};
 	}
@@ -43,9 +48,19 @@ class InsightsView extends Component {
 			<div className={ns}>
 				<h2 className={`${ns}-options-title`}>Options</h2>
 				<div className={`${ns}-options-wrap`}>
-					{this.renderToggle('excludeInactive', 'Exclude Inactive Jobs')}
-					{this.renderToggle('excludeInterested', 'Exclude Jobs in Interesting Stage')}
-					{this.renderToggle('excludeRejected', 'Exclude rejected Jobs')}
+					<div>
+						<div>
+							Last contact time-range Filter:
+						</div>
+						<div>
+							Inserted time-range Filter:
+						</div>
+					</div>
+					<div>
+						{this.renderToggle('excludeInactive', 'Exclude Inactive Jobs')}
+						{this.renderToggle('excludeInterested', 'Exclude Jobs in Interesting Stage')}
+						{this.renderToggle('excludeRejected', 'Exclude rejected Jobs')}
+					</div>
 				</div>
 				<div className={`${ns}-charts-wrap`}>
 					<div className={`${ns}-charts-group`}>
@@ -71,19 +86,19 @@ class InsightsView extends Component {
 						<h2 className={`${ns}-other-title`}>Other metrics:</h2>
 						<div>
 							<div>
-								<div>Active Jobs:</div>
-								<div>Inactive Jobs:</div>
-								<div>Total Jobs:</div>
+								<div>Total Jobs: {charts.misc.totalJobs - charts.misc.inactiveJobs}</div>
+								<div>Active Jobs: {charts.misc.totalJobs}</div>
+								<div>Inactive Jobs: {charts.misc.inactiveJobs}</div>
 							</div>
 							<div>
-								<div>Min salary:</div>
-								<div>Max salary:</div>
-								<div>Avg salary:</div>
+								<div>Min salary: {charts.misc.minSalary / 1000}K/y</div>
+								<div>Max salary: {charts.misc.maxSalary / 1000}K/y</div>
+								<div>Avg salary: {(charts.misc.avgSalary / 1000).toFixed(0)}K/y</div>
 							</div>
 							<div>
-								<div>Companies:</div>
-								<div>Drop rate:</div>
-								<div>Inactive rate:</div>
+								<div>Companies: {Object.keys(charts.misc.companies).length}</div>
+								<div>Drop rate: {charts.misc.dropped / charts.misc.totalJobs * 100}%</div>
+								<div>Inactive rate: {charts.misc.inactiveJobs / charts.misc.totalJobs * 100}%</div>
 							</div>
 						</div>
 					</div>
@@ -135,7 +150,16 @@ class InsightsView extends Component {
 				}
 			},
 			minInsertedDate     : Infinity,
-			maxInsertedDate     : 0
+			maxInsertedDate     : 0,
+			misc                : {
+				totalJobs    : 0,
+				inactiveJobs : 0,
+				companies    : {},
+				dropped      : 0,
+				minSalary    : Infinity,
+				maxSalary    : 0,
+				avgSalary    : []
+			}
 		};
 		
 		for ( let k in jobs ) {
@@ -173,6 +197,29 @@ class InsightsView extends Component {
 				createIfNotExits(res.rankByTime.data, timeStamp);
 				addOrInitialize(res.rankByTime.prevValues, rank);
 				res.rankByTime.data[ timeStamp ] = {...res.rankByTime.prevValues};
+				
+				//MISC
+				res.misc.totalJobs += 1;
+				res.misc.companies[ job.company ] = 1;
+				
+				let salary = +job.salary;
+				
+				if ( salary < res.misc.minSalary ) {
+					res.misc.minSalary = salary;
+				}
+				if ( salary > res.misc.maxSalary ) {
+					res.misc.maxSalary = salary;
+				}
+				res.misc.avgSalary.push(salary);
+				
+				if ( [ 7, 8 ].indexOf(+job.stageCode) !== -1 ) {
+					res.misc.dropped += 1;
+				}
+				
+				if ( utils.isJobStalled(job, this.props.user.data.configuration.nrpl) ) {
+					res.misc.inactiveJobs += 1;
+				}
+				
 			}
 			
 		}
@@ -206,6 +253,13 @@ class InsightsView extends Component {
 							F : 0,
 						});
 		res.rankByTime.data = _.sortBy(objToArrayWithKeys(res.rankByTime.data, 'time'), 'time');
+		
+		//MISC
+		const avgSalaryLength = res.misc.avgSalary.length;
+		res.misc.avgSalary    = res.misc.avgSalary.reduce(( acc, e ) =>{
+			return acc + Number(e);
+		}, 0);
+		res.misc.avgSalary /= avgSalaryLength;
 		
 		//FINAL RES
 		return res;
@@ -394,7 +448,7 @@ class InsightsView extends Component {
 				<CartesianGrid strokeDasharray="3 3" />
 				<Tooltip separator={': '} labelFormatter={v => moment(+v).format('DD MMMM')} />
 				{names.map(( e, i ) =>
-							   <Area key={i} type="monotone" dataKey={e} stroke={utils.generateLegendColor(i, tot, this.state.salt)} fillOpacity={1} fill={`url(#color${i})`} />)}
+							   <Area key={i} type="monotone" dataKey={e} stackId="1" stroke={utils.generateLegendColor(i, tot, this.state.salt)} fillOpacity={1} fill={`url(#color${i})`} />)}
 			</AreaChart>
 		);
 		
