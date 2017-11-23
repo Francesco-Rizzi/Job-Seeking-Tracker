@@ -165,7 +165,7 @@ export default class Utils {
 		let step = 360 / tot;
 		step     = step < 40 ? step : 40;
 		let hue  = (step * index + salt) % 360;
-		return `hsl(${hue}, 50%, 50%)`;
+		return `hsl(${hue}, 35%, 55%)`;
 		
 	}
 	
