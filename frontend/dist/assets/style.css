@@ -227,7 +227,7 @@ ul {
 .jst-feature-image {
   width: 40%;
   height: 280px;
-  background: var(--brand-color-alert); }
+  background: no-repeat center center  / contain; }
 
 .jst-feature-title {
   font-family: var(--brand-font-family-heading);
@@ -395,6 +395,23 @@ ul {
   list-style: upper-roman;
   margin: 5px 0 5px 47px; }
 
+.jst-about-img-wrap {
+  display: flex;
+  align-items: center; }
+  .jst-about-img-wrap img {
+    margin-right: 30px;
+    max-width: 120px; }
+  .jst-about-img-wrap h2 {
+    max-width: 520px;
+    text-align: left; }
+
+@media screen and (max-width: 576px) {
+  .jst-about-img-wrap {
+    flex-direction: column; }
+    .jst-about-img-wrap img {
+      margin-right: 0;
+      margin-bottom: 30px;
+      max-width: 150px; } }
 .jst-notification-wrapper {
   position: absolute;
   right: 0;

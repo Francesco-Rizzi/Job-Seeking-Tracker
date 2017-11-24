@@ -1,4 +1,4 @@
-.jst-about{
+.jst-about {
 	padding: 60px 0 60px;
 	a {
 		font-weight: 700;
@@ -15,16 +15,16 @@
 	text-align: center;
 }
 
-.jst-about-title{
+.jst-about-title {
 	font-family: var(--brand-font-family-heading);
 	font-size: var(--brand-font-size-big);
 	margin-bottom: 30px;
-	&.mod-space-top{
+	&.mod-space-top {
 		margin-top: 60px;
 	}
 }
 
-.jst-about-desc{
+.jst-about-desc {
 	font-size: var(--brand-font-size-medium);
 	font-weight: 400;
 	text-align: justify;
@@ -36,11 +36,37 @@
 	margin: 30px 0 10px;
 }
 
-.jst-about-list{
-	li{
+.jst-about-list {
+	li {
 		font-size: var(--brand-font-size-medium);
 		font-weight: 400;
 		list-style: upper-roman;
 		margin: 5px 0 5px 47px;
 	}
+}
+
+.jst-about-img-wrap {
+	display: flex;
+	align-items: center;
+	img {
+		margin-right: 30px;
+		max-width: 120px;
+	}
+	h2 {
+		max-width: 520px;
+		text-align: left;
+	}
+}
+
+@media screen and (max-width: $media-mobile + 'px') {
+
+	.jst-about-img-wrap {
+		flex-direction: column;
+		img {
+			margin-right: 0;
+			margin-bottom: 30px;
+			max-width: 150px;
+		}
+	}
+
 }
