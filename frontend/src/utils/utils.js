@@ -2,6 +2,7 @@ import _ from 'lodash';
 import axios from 'axios';
 
 let renewalJWTTimer = null;
+let checkJWTTimer   = null;
 
 export default class Utils {
 	
@@ -34,6 +35,26 @@ export default class Utils {
 		
 		clearInterval(renewalJWTTimer);
 		renewalJWTTimer = null;
+		
+	};
+	
+	static startJWTAutoCheck = ( failFn ) =>{
+		
+		checkJWTTimer = setInterval(function(){
+			
+			if ( Utils.isJWTExpired() ) {
+				failFn();
+				Utils.stopJWTAutoCheck();
+			}
+			
+		}, 1000 * 60 * 15);
+		
+	};
+	
+	static stopJWTAutoCheck = () =>{
+		
+		clearInterval(checkJWTTimer);
+		checkJWTTimer = null;
 		
 	};
 	

@@ -60,9 +60,9 @@ class InsightsView extends Component {
 						</div>
 					</div>
 					<div className={`${ns}-option-group mod-last`}>
-						{this.renderToggle('excludeInactive', 'Exclude Inactive Jobs')}
 						{this.renderToggle('excludeInterested', 'Exclude Jobs in Interesting Stage')}
-						{this.renderToggle('excludeRejected', 'Exclude rejected Jobs')}
+						{this.renderToggle('excludeInactive', 'Exclude Inactive Jobs')}
+						{this.renderToggle('excludeRejected', 'Exclude Rejected Jobs')}
 					</div>
 				</div>
 				<div className={`${ns}-charts-wrap`}>
