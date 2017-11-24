@@ -27,6 +27,7 @@
 		"jsdom": "^8.1.0",
 		"lodash": "^4.0.1",
 		"mocha": "^2.4.5",
+		"moment": "^2.19.2",
 		"rc-slider": "^8.4.0",
 		"react": "^0.14.3",
 		"react-addons-test-utils": "^0.14.7",

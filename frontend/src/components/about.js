@@ -19,9 +19,7 @@ export default class About extends Component {
 				<h3 className={`${ns}-title mod-space-top`}>About the app:</h3>
 				
 				<h4 className={`${ns}-desc`}>
-					I have built this Web App from scratch, managing the full process: <i>concept</i> + <i>design</i> + <i>user experience</i> + <i>architecture</i> + <i>backend</i> + <i>frontend</i> + <i>deploy</i>, and I'm pretty proud of it :).
-					
-					Why Job Seeking Tracker? To solve a problem! Easily and effectively track my job seeking activity, get visual insights from the data and, most important, taking the best decision on chosing a company evaluating many different traits <i>tailored to user's preferences</i>. Check out how <a href="/features/the-company-ranker" target="_blank">The Company Ranker</a> works!
+					I have built this Web App from scratch, managing the full process: <i>concept</i> + <i>design</i> + <i>user experience</i> + <i>architecture</i> + <i>backend</i> + <i>frontend</i> + <i>deploy</i>, and I'm pretty proud of it :). <b>Why Job Seeking Tracker? To solve a problem!</b> Easily and effectively track my job seeking activity, get visual insights from the data and, most important, taking the best decision on chosing a company evaluating many different traits <i>tailored to user's preferences</i>. Check out how <a href="/features/the-company-ranker" target="_blank">The Company Ranker</a> works!
 					
 					The backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT authentication).
 					

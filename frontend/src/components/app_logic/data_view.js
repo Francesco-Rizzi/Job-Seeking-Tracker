@@ -31,7 +31,7 @@ class DataView extends Component {
 				{keys.map(k => (
 					<div key={k} className={`${ns}-group`}>
 						<h2 className={`${ns}-title`}>{stageNames[ k ]} ({groupedJobs[ k ].length})</h2>
-						{_.sortBy(groupedJobs[ k ], [j => utils.getJobRank(j, rankingConf), j => -j.insertedOn]).map(( j, i ) =>
+						{_.sortBy(groupedJobs[ k ],[ j => -j.lastContactOn]).map(( j, i ) =>
 																							   <DataViewJob key={i} job={j} rankingConf={rankingConf} onEdit={this.onEdit} onRemove={this.onRemove} />)}
 					</div>
 				))}

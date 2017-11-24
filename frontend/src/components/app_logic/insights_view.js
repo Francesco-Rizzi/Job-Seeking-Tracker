@@ -19,7 +19,7 @@ import {
 } from 'recharts';
 import _ from 'lodash';
 import moment from 'moment';
-import DatePicker from 'react-datepicker';
+import TimeRangeSelector from './time_range';
 import utils from './../../utils/utils';
 
 const ns = 'jst-app-logic-view-insights';
@@ -32,31 +32,34 @@ class InsightsView extends Component {
 			excludeInactive   : false,
 			excludeInterested : true,
 			excludeRejected   : false,
-			lastContactMin    : false,
-			lastContactMax    : false,
-			insertedOnMin     : false,
-			insertedOnMax     : false,
+			lastContactMin    : +moment().subtract(30, 'days').startOf('date'),
+			lastContactMax    : +moment().add(10, 'days').startOf('date'),
+			insertedOnMin     : +moment().subtract(30, 'days').startOf('date'),
+			insertedOnMax     : +moment().add(10, 'days').startOf('date'),
 			salt              : Math.random() * 360,
 		};
 	}
 	
 	render(){
 		
-		const charts = this.getInsightsData();
+		const charts    = this.getInsightsData();
+		const totalJobs = charts.misc.totalJobs;
 		
 		return (
 			<div className={ns}>
 				<h2 className={`${ns}-options-title`}>Options</h2>
 				<div className={`${ns}-options-wrap`}>
-					<div>
+					<div className={`${ns}-option-group`}>
 						<div>
-							Last contact time-range Filter:
+							<div className={`${ns}-option-title`}>Last contact date-range:</div>
+							<TimeRangeSelector startDate={this.state.lastContactMin} endDate={this.state.lastContactMax} handleChangeStart={this.createTimeRangeHandler('lastContact')} handleChangeEnd={this.createTimeRangeHandler('lastContact', false)} />
 						</div>
 						<div>
-							Inserted time-range Filter:
+							<div className={`${ns}-option-title mod-last`}>Inserted date-range:</div>
+							<TimeRangeSelector startDate={this.state.insertedOnMin} endDate={this.state.insertedOnMax} handleChangeStart={this.createTimeRangeHandler('insertedOn')} handleChangeEnd={this.createTimeRangeHandler('insertedOn', false)} />
 						</div>
 					</div>
-					<div>
+					<div className={`${ns}-option-group mod-last`}>
 						{this.renderToggle('excludeInactive', 'Exclude Inactive Jobs')}
 						{this.renderToggle('excludeInterested', 'Exclude Jobs in Interesting Stage')}
 						{this.renderToggle('excludeRejected', 'Exclude rejected Jobs')}
@@ -86,19 +89,19 @@ class InsightsView extends Component {
 						<h2 className={`${ns}-other-title`}>Other metrics:</h2>
 						<div>
 							<div>
-								<div>Total Jobs: {charts.misc.totalJobs - charts.misc.inactiveJobs}</div>
-								<div>Active Jobs: {charts.misc.totalJobs}</div>
+								<div>Total Jobs: {totalJobs}</div>
+								<div>Active Jobs: {totalJobs - charts.misc.inactiveJobs}</div>
 								<div>Inactive Jobs: {charts.misc.inactiveJobs}</div>
 							</div>
 							<div>
-								<div>Min salary: {charts.misc.minSalary / 1000}K/y</div>
-								<div>Max salary: {charts.misc.maxSalary / 1000}K/y</div>
-								<div>Avg salary: {(charts.misc.avgSalary / 1000).toFixed(0)}K/y</div>
+								<div>Min salary: {totalJobs ? (charts.misc.minSalary / 1000) : '?'}K/y</div>
+								<div>Max salary: {totalJobs ? (charts.misc.maxSalary / 1000) : '?'}K/y</div>
+								<div>Avg salary: {totalJobs ? ((charts.misc.avgSalary / 1000).toFixed(0)) : '?'}K/y</div>
 							</div>
 							<div>
 								<div>Companies: {Object.keys(charts.misc.companies).length}</div>
-								<div>Drop rate: {charts.misc.dropped / charts.misc.totalJobs * 100}%</div>
-								<div>Inactive rate: {charts.misc.inactiveJobs / charts.misc.totalJobs * 100}%</div>
+								<div>Drop rate: {totalJobs ? ((charts.misc.dropped / charts.misc.totalJobs).toFixed(0) * 100) : '?'}%</div>
+								<div>Inactive rate: {totalJobs ? ((charts.misc.inactiveJobs / charts.misc.totalJobs).toFixed(0) * 100) : '?'}%</div>
 							</div>
 						</div>
 					</div>
@@ -340,21 +343,23 @@ class InsightsView extends Component {
 		const {excludeInactive, excludeInterested, excludeRejected} = this.state;
 		
 		if ( excludeInactive && !isActive ) {
-			
 			return false;
-			
 		}
 		
 		if ( excludeInterested && +job.stageCode === 0 ) {
-			
 			return false;
-			
 		}
 		
 		if ( excludeRejected && !([ 7, 8 ].indexOf(+job.stageCode) === -1) ) {
-			
 			return false;
-			
+		}
+		
+		if ( job.insertedOn < this.state.insertedOnMin || job.insertedOn > this.state.insertedOnMax ) {
+			return false;
+		}
+		
+		if ( job.lastContactOn < this.state.lastContactMin || job.lastContactOn > this.state.lastContactMax ) {
+			return false;
 		}
 		
 		return true;
@@ -363,7 +368,12 @@ class InsightsView extends Component {
 	
 	renderChart( name, type = false, chartData, options = {} ){
 		
+		
 		const chooseChart = () =>{
+			
+			if ( (typeof chartData.data === 'array' && !chartData.length) || (typeof chartData.data === 'object' && !Object.keys(chartData.data).length) ) {
+				return <div className={`${ns}-chart-nodata`}>no data available</div>;
+			}
 			
 			switch ( type ) {
 				case 'bar':
@@ -492,6 +502,51 @@ class InsightsView extends Component {
 	handleToggle = ( key ) =>{
 		this.setState({[key] : !this.state[ key ]});
 	};
+	
+	createTimeRangeHandler( stateKey, isStart = true ){
+		
+		const minKey = stateKey + 'Min';
+		const maxKey = stateKey + 'Max';
+		
+		return ( date ) =>{
+			
+			const oldMin  = this.state[ minKey ];
+			const oldMax  = this.state[ maxKey ];
+			let newMin    = oldMin;
+			let newMax    = oldMax;
+			const current = isStart ? +date.startOf('date') : +date.endOf('date');
+			
+			isStart ? newMin = current : newMax = current;
+			
+			if ( isStart ) {
+				
+				if ( current > oldMax ) {
+					
+					newMin = oldMax;
+					newMax = current;
+					
+				}
+				
+			} else {
+				
+				if ( current < oldMin ) {
+					
+					newMin = current;
+					newMax = oldMin;
+					
+				}
+				
+			}
+			
+			this.setState({
+							  [minKey] : newMin,
+							  [maxKey] : newMax
+						  });
+			
+		};
+		
+	}
+	
 }
 
 
