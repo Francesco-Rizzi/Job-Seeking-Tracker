@@ -87,21 +87,21 @@ class InsightsView extends Component {
 					</div>
 					<div className={`${ns}-numeric`}>
 						<h2 className={`${ns}-other-title`}>Other metrics:</h2>
-						<div>
-							<div>
+						<div className={`${ns}-numeric-wrap`}>
+							<div className={`${ns}-numeric-item`}>
 								<div>Total Jobs: {totalJobs}</div>
 								<div>Active Jobs: {totalJobs - charts.misc.inactiveJobs}</div>
 								<div>Inactive Jobs: {charts.misc.inactiveJobs}</div>
 							</div>
-							<div>
+							<div className={`${ns}-numeric-item`}>
 								<div>Min salary: {totalJobs ? (charts.misc.minSalary / 1000) : '?'}K/y</div>
 								<div>Max salary: {totalJobs ? (charts.misc.maxSalary / 1000) : '?'}K/y</div>
 								<div>Avg salary: {totalJobs ? ((charts.misc.avgSalary / 1000).toFixed(0)) : '?'}K/y</div>
 							</div>
-							<div>
+							<div className={`${ns}-numeric-item`}>
 								<div>Companies: {Object.keys(charts.misc.companies).length}</div>
-								<div>Drop rate: {totalJobs ? ((charts.misc.dropped / charts.misc.totalJobs).toFixed(0) * 100) : '?'}%</div>
-								<div>Inactive rate: {totalJobs ? ((charts.misc.inactiveJobs / charts.misc.totalJobs).toFixed(0) * 100) : '?'}%</div>
+								<div>Drop rate: {totalJobs ? ((charts.misc.dropped / totalJobs * 100).toFixed(0)) : '?'}%</div>
+								<div>Inactive rate: {totalJobs ? ((charts.misc.inactiveJobs / totalJobs * 100).toFixed(0)) : '?'}%</div>
 							</div>
 						</div>
 					</div>

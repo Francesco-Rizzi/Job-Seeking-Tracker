@@ -843,6 +843,18 @@ ul {
 .jst-app-logic-view-insights-option-group.mod-last {
   margin-left: 30px; }
 
+.jst-app-logic-view-insights-numeric-wrap {
+  overflow: hidden;
+  align-items: center; }
+
+.jst-app-logic-view-insights-numeric-item {
+  width: 200px;
+  float: left;
+  font-family: var(--brand-font-family-body);
+  font-size: var(--brand-font-size-medium); }
+  .jst-app-logic-view-insights-numeric-item > div {
+    margin-bottom: 15px; }
+
 .jst-app-time-range-selector {
   display: flex;
   align-items: center; }
@@ -877,7 +889,11 @@ ul {
 
   .jst-app-logic-view-insights-option-group.mod-last {
     margin-left: 0;
-    margin-top: 30px; } }
+    margin-top: 30px; }
+
+  .jst-app-logic-view-insights-numeric-item {
+    width: 100%;
+    float: none; } }
 @media screen and (max-width: 576px) {
   .jst-app-time-range-selector {
     flex-direction: column;
