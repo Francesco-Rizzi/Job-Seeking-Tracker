@@ -70,7 +70,7 @@ export default class About extends Component {
 						<a href='https://silex.symfony.com/' target='_blank'>Silex Framework</a> (a.k.a. Lightweight Symfony)
 					</li>
 					<li>MySQL</li>
-					<li><a href='http://www.doctrine-project.org/projects/dbal.html' target='_blank'>Doctrine DBAL</a> (Database Abstaction Layer)
+					<li><a href='http://www.doctrine-project.org/projects/dbal.html' target='_blank'>Doctrine DBAL</a> (DataBase Abstaction Layer)
 					</li>
 					<li>Composer</li>
 					<li>Linux 🐧</li>
