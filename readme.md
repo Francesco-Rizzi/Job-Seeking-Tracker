@@ -1,21 +1,21 @@
 # 👔 Job Seeking Tracker
-### TBD
-<!--
-
-# 👔 Job Seeking Tracker
 ## A simple yet powerful tool for effectively track, update and manage your job seeking activity.
 
-Why Job Seeking Tracker? To solve a problem! Easily and effectively track my job seeking activity, get visual insights from the data and, most important, taking the best decision on chosing a company evaluating many different traits tailored to user's preferences.
+### Description:
+
+I have built this Web App from scratch, managing the full process: <i>concept</i> + <i>design</i> + <i>user experience</i> + <i>architecture</i> + <i>backend</i> + <i>frontend</i> + <i>deploy</i>, and I'm pretty proud of it :). <b>Why Job Seeking Tracker? To solve a problem!</b> Easily and effectively track my job seeking activity, get visual insights from the data and, most important, take the best decision on choosing a company evaluating many different traits <i>tailored on my preferences</i>. Check out how <a href="/features/the-company-ranker" target="_blank">The Company Ranker</a> works!The backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT authentication).The frontend is a SPA (Single-Page-App) based on React and Redux (+ many other UI/UX libraries, see below).
+The transpilation and bundling of the JavaScript stuff is made via Webpack, creating two bundles for <i>Custom</i> end <i>Vendor</i> code, along with using file-name-hashing for cache-busting management.
 
 ### Discover more:
-[features](https://job-seeking-tracker.com/features)
+[Features](https://job-seeking-tracker.com/features)
 
-[app](https://job-seeking-tracker.com/)
+[The-Company-Ranker](https://job-seeking-tracker.com/features/the-company-ranker)
 
-[about](https://job-seeking-tracker.com/about)
+[App](https://job-seeking-tracker.com/)
+
+[About](https://job-seeking-tracker.com/about)
 
 ### Tech stuff 👾:
-I have built this Web App from scratch, managing the full process: concept + design + user experience + backend + frontend + deploy, and I'm pretty proud of it :). The backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT authentication). The frontend is a SPA (Single-Page-App) based on React and Redux (+ many other libraries, see below). The transpilation and bundling of the JavaScript stuff is made via Webpack, creating two bundles for Custom end Vendor code, along with using file-name-hashing for cache-busting management.
 
 ##### Frontend (React Single-Page-App):
 
@@ -29,6 +29,8 @@ I have built this Web App from scratch, managing the full process: concept + des
 					<li>React-smooth-collapse</li>
 					<li>React-datepicker</li>
 					<li>React-tooltip</li>
+					<li>React-toggle-button</li>
+					<li><a href='http://recharts.org/' target='_blank'>Recharts</a> (React charting library based on D3.js)</li>
 					<li>Redux 🔃</li>
 					<li>Redux-thunk</li>
 					<li>Redux-form</li>
@@ -54,13 +56,11 @@ I have built this Web App from scratch, managing the full process: concept + des
 						<a href='https://silex.symfony.com/' target='_blank'>Silex Framework</a> (a.k.a. Lightweight Symfony)
 					</li>
 					<li>MySQL</li>
-					<li><a href='http://www.doctrine-project.org/projects/dbal.html' target='_blank'>Doctrine DBAL</a> (Database Abstaction Layer)
+					<li><a href='http://www.doctrine-project.org/projects/dbal.html' target='_blank'>Doctrine DBAL</a> (DataBase Abstaction Layer)
 					</li>
 					<li>Composer</li>
 					<li>Linux 🐧</li>
 					<li>Apache</li>
 					<li>HTACCESS</li>
-					<li>SSL</li>
+					<li>SSL (Let's Encrypt + <a href='https://certbot.eff.org/' target='_blank'>Certbot</a>)</li>
 				</ul>
-
- -->
