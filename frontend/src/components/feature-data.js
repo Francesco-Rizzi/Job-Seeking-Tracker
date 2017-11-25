@@ -26,7 +26,7 @@ export default [
 		image       : 'safe-and-secure.jpg',
 	}, {
 		title       : 'Open source 💾',
-		description : 'Take inspiration and browse the source code in my <a href="https://github.com/Francesco-Rizzi/Job-Seeking-Tracker" target="_blank">GitHub repo</a>. Some proposal for features or improvements? Feel free to open an issue or a PR to discuss it!',
+		description : 'Take inspiration and browse the source code in its <a href="https://github.com/Francesco-Rizzi/Job-Seeking-Tracker" target="_blank">GitHub repo</a>. Any proposal for features or improvements? Feel free to open an issue or a pull request to discuss it!',
 		image       : 'open-source.jpg',
 	}
 

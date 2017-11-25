@@ -50,12 +50,12 @@ class JobForm extends Component {
 					</div>
 					
 					<div className={`${ns}-field-wrapper-row mod-3`}>
-						{this.renderField('Salary(K/y)', 'salary', 'number', {
+						{this.renderField('Salary (early)', 'salary', 'number', {
 							min  : 20000,
-							max  : 3000000,
+							max  : 750000,
 							step : 1
 						})}
-						{this.renderField('Equity(%)', 'equity', 'number', {
+						{this.renderField('Equity (%)', 'equity', 'number', {
 							min  : 0,
 							max  : 30,
 							step : .01

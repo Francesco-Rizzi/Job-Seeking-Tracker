@@ -94,8 +94,8 @@ class InsightsView extends Component {
 								<div>Inactive Jobs: {charts.misc.inactiveJobs}</div>
 							</div>
 							<div className={`${ns}-numeric-item`}>
-								<div>Min salary: {totalJobs ? (charts.misc.minSalary / 1000) : '?'}K/y</div>
-								<div>Max salary: {totalJobs ? (charts.misc.maxSalary / 1000) : '?'}K/y</div>
+								<div>Min salary: {totalJobs ? (charts.misc.minSalary / 1000).toFixed(0) : '?'}K/y</div>
+								<div>Max salary: {totalJobs ? (charts.misc.maxSalary / 1000).toFixed(0) : '?'}K/y</div>
 								<div>Avg salary: {totalJobs ? ((charts.misc.avgSalary / 1000).toFixed(0)) : '?'}K/y</div>
 							</div>
 							<div className={`${ns}-numeric-item`}>
