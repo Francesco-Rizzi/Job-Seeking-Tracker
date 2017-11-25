@@ -76,7 +76,7 @@ export default class About extends Component {
 					<li>Linux 🐧</li>
 					<li>Apache</li>
 					<li>HTACCESS</li>
-					<li>SSL</li>
+					<li>SSL (Let's Encrypt + <a href='https://certbot.eff.org/' target='_blank'>Certbot</a>)</li>
 				</ul>
 			</div>
 		);
