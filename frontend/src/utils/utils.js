@@ -42,7 +42,7 @@ export default class Utils {
 		
 		checkJWTTimer = setInterval(function(){
 			
-			if ( Utils.isJWTExpired() ) {
+			if ( Utils.isJWTExpired(Utils.getJWT()) ) {
 				failFn();
 				Utils.stopJWTAutoCheck();
 			}
