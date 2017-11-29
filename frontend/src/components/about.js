@@ -15,7 +15,7 @@ export default class About extends Component {
 				<h1 className={`${ns}-title`}>About the author:</h1>
 				<div className={`${ns}-img-wrap`}>
 					<img src='/libs/assets/images/Francesco-Rizzi-picture.png' alt='Francesco-Rizzi-picture' title='Francesco Rizzi picture' />
-					<h2 className={`${ns}-desc`}>I'm Francesco, if you want to discover some more stuff about me, check out these links: <a href="http://francescorizzi.info/" target="_blank" title="Personal website">my website</a>, <a target="_blank" href="https://github.com/Francesco-Rizzi" title="GitHub profile">GitHub</a>, <a target="_blank" href="https://www.linkedin.com/in/francesco-rizzi-199524a5/" title="LinkedIn profile">LinkedIn</a>, <a target="_blank" href="https://twitter.com/0xFFrancesco" title="Twitter profile">Twitter @0xFFrancesco</a>, <a target="_blank" href="https://www.instagram.com/finallyfrancesco/" title="Instagram profile">Instagram @finallyfrancesco</a>, <a href='https://medium.com/@francesco_rizzi' target='_blank'>Medium</a>.
+					<h2 className={`${ns}-desc`}>I'm Francesco, if you want to discover some more stuff about me, check out these links: <a rel="me nofollow" href="http://francescorizzi.info/" target="_blank" title="Personal website">my website</a>, <a rel="me nofollow" target="_blank" href="https://github.com/Francesco-Rizzi" title="GitHub profile">GitHub</a>, <a rel="me nofollow" target="_blank" href="https://www.linkedin.com/in/francesco-rizzi-199524a5/" title="LinkedIn profile">LinkedIn</a>, <a rel="me nofollow" target="_blank" href="https://twitter.com/0xFFrancesco" title="Twitter profile">Twitter @0xFFrancesco</a>, <a target="_blank" href="https://www.instagram.com/finallyfrancesco/" title="Instagram profile" rel="me nofollow">Instagram @finallyfrancesco</a>, <a href='https://medium.com/@francesco_rizzi' target='_blank' rel="me nofollow" title='Medium profile'>Medium</a>.
 					</h2>
 				</div>
 				
@@ -30,7 +30,7 @@ export default class About extends Component {
 					
 					The transpilation and bundling of the JavaScript stuff is made via Webpack, creating two bundles for <i>Custom</i> end <i>Vendor</i> code, along with using file-name-hashing for cache-busting management.
 					
-					Interested in the source code? It is publicly available, check it out on its <a href="https://github.com/Francesco-Rizzi/Job-Seeking-Tracker" target="_blank">GitHub repo</a> !
+					Interested in the source code? It is publicly available, check it out on its <a href="https://github.com/Francesco-Rizzi/Job-Seeking-Tracker" rel="me nofollow" target="_blank">GitHub repo</a> !
 				</h4>
 				
 				<h4 className={`${ns}-list-title`}>Frontend (React Single-Page-App):</h4>
@@ -53,7 +53,7 @@ export default class About extends Component {
 					<li>Lodash</li>
 					<li>Moment</li>
 					<li>
-						<a href='https://github.com/Francesco-Rizzi/Math.mapRange' target='_blank'>Math.mapRange</a> (Math enhancer)
+						<a rel="me nofollow" href='https://github.com/Francesco-Rizzi/Math.mapRange' target='_blank'>Math.mapRange</a> (Math enhancer)
 					</li>
 					<li>CSS</li>
 					<li>CSS variables</li>
