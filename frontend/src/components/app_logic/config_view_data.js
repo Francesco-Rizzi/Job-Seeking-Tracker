@@ -55,17 +55,17 @@ export default {
 			cssMod   : 'finance',
 			fields   : [ {
 				name : 'Salary',
-				desc : 'How much is salary important in your job decision between 0 (I don\'t care at all) and 10 (this is a very key aspect).',
+				desc : 'How much the salary is important in your job decision between 0 (I don\'t care at all) and 10 (this is a very key aspect).',
 				code : 'w_fpk1',
 				max  : 10
 			}, {
 				name : 'Equity',
-				desc : 'How much are the company equities and stock options important in your job decision between 0 and 10.',
+				desc : 'How much the company equities and stock options are important in your job decision between 0 and 10.',
 				code : 'w_fpk2',
 				max  : 10
 			}, {
 				name : 'Benefits',
-				desc : 'How much are the benefits (ex. free lunch, subsided canteen, gym membership, parking, etc.) important in your job decision between 0 and 10.',
+				desc : 'How much the benefits (ex. free lunch, subsided canteen, gym membership, parking, etc.) are important in your job decision between 0 and 10.',
 				code : 'w_fpk3',
 				max  : 10
 			} ]
@@ -77,22 +77,22 @@ export default {
 			cssMod   : 'pic',
 			fields   : [ {
 				name : 'Current traction',
-				desc : 'How much is the current traction of the company important in your job decision between 0 and 10.',
+				desc : 'How much the current traction of the company is important in your job decision between 0 and 10.',
 				code : 'w_pic1',
 				max  : 10
 			}, {
 				name : 'Founder\'s strength',
-				desc : 'Founders are the ones whom will take the most important decisions for the company future, how much is this important in your job decision between 0 and 10.',
+				desc : 'Founders are the ones whom will take the most important decisions for the company future, how much that is important in your job decision between 0 and 10.',
 				code : 'w_pic2',
 				max  : 10
 			}, {
 				name : 'Growth rate',
-				desc : 'How much is the growth rate (how much the company is expanding now and in the future) of the company important in your job decision between 0 and 10.',
+				desc : 'How much the growth rate (how much the company is expanding now and in the future) of the company is important in your job decision between 0 and 10.',
 				code : 'w_pic3',
 				max  : 10
 			}, {
 				name : 'Employees retention',
-				desc : 'Retaining employees is a good sign of treating them well and offer them a career progression and opportunities, how much is that important in your job decision between 0 and 10.',
+				desc : 'Retaining employees is a good sign of treating them well and offer them career progression and opportunities, how much that is important in your job decision between 0 and 10.',
 				code : 'w_pic4',
 				max  : 10
 			}, {
@@ -114,7 +114,7 @@ export default {
 				max  : 10
 			}, {
 				name : 'Company size and reputation',
-				desc : 'How much the company size/reputation/awareness in order to be very nice looking on your CV and career path is important in your job decision between 0 and 10.',
+				desc : 'How much the company size/reputation/awareness (in order to be very nice looking on your CV) is important in your job decision between 0 and 10.',
 				code : 'w_poc2',
 				max  : 10
 			} ]
@@ -131,12 +131,12 @@ export default {
 				max  : 10
 			}, {
 				name : 'Location',
-				desc : 'How much is the job location important in your job decision between 0 and 10.',
+				desc : 'How much the job location is important in your job decision between 0 and 10.',
 				code : 'w_ppr2',
 				max  : 10
 			}, {
 				name : 'Culture',
-				desc : 'How much important is the company and people culture in your job decision between 0 and 10.',
+				desc : 'How much the company and people culture is important in your job decision between 0 and 10.',
 				code : 'w_ppr3',
 				max  : 10
 			} ]
