@@ -170,7 +170,7 @@ export default class Utils {
 	
 	static isJobStalled( job, daysToStall, referenceDate = +new Date(), ){
 		
-		if([0,6,7,8].indexOf(job.stageCode) !== -1){
+		if([0,6,7,8].indexOf(+job.stageCode) !== -1){
 			return false;
 		}
 		
