@@ -34,7 +34,7 @@ class InsightsView extends Component {
 			excludeRejected   : false,
 			lastContactMin    : +moment().subtract(30, 'days').startOf('date'),
 			lastContactMax    : +moment().add(10, 'days').startOf('date'),
-			insertedOnMin     : +moment().subtract(30, 'days').startOf('date'),
+			insertedOnMin     : +moment().subtract(90, 'days').startOf('date'),
 			insertedOnMax     : +moment().add(10, 'days').startOf('date'),
 			salt              : Math.random() * 360,
 		};
