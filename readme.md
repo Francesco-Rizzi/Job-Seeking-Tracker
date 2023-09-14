@@ -3,17 +3,9 @@
 
 ### Description:
 
-I have built this Web App from scratch, managing the full process: <i>concept</i> + <i>design</i> + <i>user experience</i> + <i>architecture</i> + <i>backend</i> + <i>frontend</i> + <i>deploy</i>, and I'm pretty proud of it :). <b>Why Job Seeking Tracker? To solve a problem!</b> Easily and effectively track my job seeking activity, get visual insights from the data and, most important, take the best decision on choosing a company evaluating many different traits <i>tailored on my preferences</i>. Check out how <a href="https://job-seeking-tracker.com/features/the-company-ranker" target="_blank">The Company Ranker</a> works!The backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT authentication).The frontend is a SPA (Single-Page-App) based on React and Redux (+ many other UI/UX libraries, see below).
+I have built this Web App from scratch, managing the full process: <i>concept</i> + <i>design</i> + <i>user experience</i> + <i>architecture</i> + <i>backend</i> + <i>frontend</i> + <i>deploy</i>, and I'm pretty proud of it :). <b>Why Job Seeking Tracker? To solve a problem!</b> Easily and effectively track my job seeking activity, get visual insights from the data and, most important, take the best decision on choosing a company evaluating many different traits <i>tailored on my preferences</i>. The backend is mainly a LAMP based stack which provides APIs for storing and retrieving data as well as registering and authenticating users (JWT authentication).The frontend is a SPA (Single-Page-App) based on React and Redux (+ many other UI/UX libraries, see below).
 The transpilation and bundling of the JavaScript stuff is made via Webpack, creating two bundles for <i>Custom</i> end <i>Vendor</i> code, along with using file-name-hashing for cache-busting management.
 
-### Discover more:
-[Features](https://job-seeking-tracker.com/features)
-
-[The-Company-Ranker](https://job-seeking-tracker.com/features/the-company-ranker)
-
-[App](https://job-seeking-tracker.com/)
-
-[About](https://job-seeking-tracker.com/about)
 
 ### Tech stuff 👾:
 
